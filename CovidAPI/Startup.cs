@@ -35,7 +35,7 @@ namespace CovidAPI
             // Add your services here
             services.AddScoped<ICovidDataService, CovidDataService>();
 
-            // Add other services...
+            services.AddHttpClient();
 
             // Add controllers and configure CORS policies
             services.AddControllers();
