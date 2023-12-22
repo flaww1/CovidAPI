@@ -1,4 +1,5 @@
-﻿// CovidDataController.cs
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CovidAPI.Models;
 using CovidAPI.Services.Rest;
 using Microsoft.AspNetCore.Mvc;
@@ -7,24 +8,27 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/coviddata")]
 public class CovidDataController : ControllerBase
 {
+    private readonly IGeolocationService _geolocationService; 
+
     private readonly ICovidDataService _covidDataService;
 
-    public CovidDataController(ICovidDataService covidDataService)
+    public CovidDataController(ICovidDataService covidDataService, IGeolocationService geolocationService)
     {
         _covidDataService = covidDataService;
+        _geolocationService = geolocationService;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<CovidData>> Get()
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetAllData()
     {
-        var data = _covidDataService.GetAllData();
+        var data = await _covidDataService.GetAllDataAsync();
         return Ok(data);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<CovidData> GetById(int id)
+    public async Task<ActionResult<CovidDataDTO>> GetDataById(int id)
     {
-        var data = _covidDataService.GetDataById(id);
+        var data = await _covidDataService.GetDataByIdAsync(id);
 
         if (data == null)
         {
@@ -35,30 +39,73 @@ public class CovidDataController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<CovidData> Post([FromBody] CovidData covidData)
+    public async Task<ActionResult<CovidDataDTO>> AddData([FromBody] CovidDataDTO covidDataDTO)
     {
-        _covidDataService.AddData(covidData);
-        return CreatedAtAction(nameof(GetById), new { id = covidData.Id }, covidData);
+        await _covidDataService.AddDataAsync(covidDataDTO);
+        return CreatedAtAction(nameof(GetDataById), new { id = covidDataDTO.Id }, covidDataDTO);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] CovidData covidData)
+    public async Task<IActionResult> UpdateData(int id, [FromBody] CovidDataDTO covidDataDTO)
     {
-        if (id != covidData.Id)
+        if (id != covidDataDTO.Id)
         {
             return BadRequest();
         }
 
-        _covidDataService.UpdateData(covidData);
+        await _covidDataService.UpdateDataAsync(covidDataDTO);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult DeleteData(int id)
     {
-        _covidDataService.DeleteData(id);
+        _covidDataService.DeleteDataAsync(id);
         return NoContent();
     }
 
+    [HttpGet("country/{country}")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByCountry(string country)
+    {
+        try
+        {
+            var data = await _covidDataService.GetDataByCountryAsync(country);
 
+            if (data != null && data.Any())
+            {
+                // Fetch geolocation information for the first result (assuming one result for a country)
+                var geolocation = await _geolocationService.GetGeolocationInfoAsync(data.First().Country);
+
+                // Update the Geolocation property in each CovidDataDTO
+                foreach (var covidData in data)
+                {
+                    covidData.Geolocation = geolocation?.Results?.FirstOrDefault()?.Components;
+                }
+
+                return Ok(data);
+            }
+
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception or handle it appropriately
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+
+    [HttpGet("year/{year}")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByYear(int year)
+    {
+        var data = await _covidDataService.GetDataByYearAsync(year);
+        return Ok(data);
+    }
+
+    [HttpGet("week/{week}")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByWeek(string week)
+    {
+        var data = await _covidDataService.GetDataByWeekAsync(week);
+        return Ok(data);
+    }
 }

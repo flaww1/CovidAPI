@@ -1,13 +1,16 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using CovidAPI.Models;
 using CovidAPI.Services;
 using CovidAPI.Services.Rest;
-using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-
+using System;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace CovidAPI
 {
@@ -20,7 +23,6 @@ namespace CovidAPI
         {
             Configuration = configuration;
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,18 +37,25 @@ namespace CovidAPI
 
             // Add other services...
 
-            // Add controllers and enable CORS if needed
+            // Add controllers and configure CORS policies
             services.AddControllers();
-            services.AddCors(); // You can configure CORS policies if needed
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
 
             // Add Swagger for API documentation
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1" });
             });
+            services.AddScoped<IGeolocationService, GeolocationService>(); 
 
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,11 +70,25 @@ namespace CovidAPI
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            // Enable CORS if needed
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            // Enable CORS based on the configured policy
+            app.UseCors("AllowAnyOriginMethodHeader");
+
+            // Global Exception Handling Middleware
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    // Log the exception or perform other actions
+                    var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                    var exception = exceptionHandlerPathFeature.Error;
+                    // Log or handle the exception as needed
+
+                    // Return a JSON response with the error message
+                    context.Response.ContentType = "application/json";
+                    context.Response.StatusCode = 500; // Internal Server Error
+                    await context.Response.WriteAsync(new ErrorResponse { Message = "Internal Server Error" }.ToString());
+                });
+            });
 
             app.UseAuthorization();
 
@@ -74,5 +97,7 @@ namespace CovidAPI
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }
