@@ -73,12 +73,10 @@ public class CovidDataController : ControllerBase
 
             if (data != null && data.Any())
             {
-                // Fetch geolocation information for the first result (assuming one result for a country)
-                var geolocation = await _geolocationService.GetGeolocationInfoAsync(data.First().Country);
-
-                // Update the Geolocation property in each CovidDataDTO
+                // Fetch geolocation information for each country individually
                 foreach (var covidData in data)
                 {
+                    var geolocation = await _geolocationService.GetGeolocationInfoAsync(covidData.Country);
                     covidData.Geolocation = geolocation?.Results?.FirstOrDefault()?.Components;
                 }
 
@@ -93,7 +91,6 @@ public class CovidDataController : ControllerBase
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
-
 
     [HttpGet("year/{year}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByYear(int year)

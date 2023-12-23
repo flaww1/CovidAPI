@@ -2,7 +2,6 @@
 {
     public class CovidDataDTO
     {
-
         public int Id { get; set; }
         public string Country { get; set; }
         public string CountryCode { get; set; }
@@ -14,12 +13,12 @@
         public int TestsDone { get; set; }
         public int Population { get; set; }
         public decimal PositivityRate { get; set; }
-
         public decimal TestingRate { get; set; }
         public string TestingDataSource { get; set; }
 
         public GeolocationComponents Geolocation { get; set; }
+        public Geometry Geometry { get; set; }
+
 
     }
-
 }
