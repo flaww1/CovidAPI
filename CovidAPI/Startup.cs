@@ -11,6 +11,7 @@ using CovidAPI.Services.Rest;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Builder;
 
 namespace CovidAPI
 {
@@ -41,11 +42,12 @@ namespace CovidAPI
             services.AddControllers();
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAny",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
             });
 
             // Add Swagger for API documentation
@@ -71,6 +73,7 @@ namespace CovidAPI
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors("AllowAll"); // Add this line
 
             // Enable CORS based on the configured policy
             app.UseCors("AllowAnyOriginMethodHeader");

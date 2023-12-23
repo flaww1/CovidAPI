@@ -1,27 +1,37 @@
 ﻿using CovidAPI.Models;
 using CovidAPI.Services.Rest;
 using Newtonsoft.Json;
+using System.Diagnostics.Metrics;
+using System.Net;
+using System.Text.Json;
 
 public class GeolocationCache
 {
     private readonly Dictionary<string, GeolocationApiResponse> _cache = new Dictionary<string, GeolocationApiResponse>();
+    private readonly object _lockObject = new object(); // Add a lock object for thread safety
 
     public bool TryGetFromCache(string country, out GeolocationApiResponse geolocationResponse)
     {
-        geolocationResponse = null;
-        if (_cache.TryGetValue(country, out var cachedResponse))
+        lock (_lockObject)
         {
-            geolocationResponse = cachedResponse;
-            return true;
+            geolocationResponse = null;
+            if (_cache.TryGetValue(country, out var cachedResponse))
+            {
+                geolocationResponse = cachedResponse;
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 
     public void AddToCache(string country, GeolocationApiResponse geolocationResponse)
     {
-        if (!_cache.ContainsKey(country))
+        lock (_lockObject)
         {
-            _cache.Add(country, geolocationResponse);
+            if (!_cache.ContainsKey(country))
+            {
+                _cache.Add(country, geolocationResponse);
+            }
         }
     }
 }
@@ -50,18 +60,13 @@ public class GeolocationService : IGeolocationService
 
     public async Task<GeolocationApiResponse> GetGeolocationInfoAsync(string country)
     {
-        // Check if the information is already in the cache
-        if (_geolocationCache.TryGetFromCache(country, out var cachedResponse))
-        {
-            _logger.LogInformation($"Geolocation info for {country} found in cache.");
-            return cachedResponse;
-        }
-
         try
         {
             using (var httpClient = _httpClientFactory.CreateClient())
             {
-                var requestUrl = $"https://api.opencagedata.com/geocode/v1/json?q={country}&key={_apiKey}";
+                var encodedCountry = Uri.EscapeDataString(country);
+                var requestUrl = $"https://api.opencagedata.com/geocode/v1/json?q={encodedCountry}&key={_apiKey}";
+
                 _logger.LogInformation($"Sending request to Geolocation API: {requestUrl}");
 
                 var response = await httpClient.GetAsync(requestUrl);
@@ -77,31 +82,43 @@ public class GeolocationService : IGeolocationService
 
                         if (geolocationResponse != null && geolocationResponse.Results.Any())
                         {
+                            GeolocationResult geolocation = null;
                             foreach (var result in geolocationResponse.Results)
                             {
-                                var geometry = result.Geometry;
+                                var components = result.Components;
 
-                                if (geometry != null)
+                                if (components != null)
                                 {
-                                    var geolocation = new GeolocationComponents
+                                    geolocation = new GeolocationResult
                                     {
-                                        Country = result.Components?.Country
+                                        Components = new GeolocationComponents
+                                        {
+                                            Country = components.Country,
+                                        },
+                                        Geometry = new Geometry
+                                        {
+                                            Lat = result.Geometry.Lat,
+                                            Lng = result.Geometry.Lng
+                                        }
                                     };
 
-                                    // Access latitude and longitude via geometry object
-                                    var latitude = geometry.Lat;
-                                    var longitude = geometry.Lng;
-
-                                    // Add the response to the cache
-                                    _geolocationCache.AddToCache(country, geolocationResponse);
-
-                                    _logger.LogInformation($"Geolocation Info: {JsonConvert.SerializeObject(geolocation)}");
-
-                                    return geolocationResponse;
+                                    break;
                                 }
                             }
-                            _logger.LogWarning("Geolocation API response does not contain geometry information.");
-                        }
+
+                            if (geolocation != null)
+                            {
+                                // ...
+                                _logger.LogInformation($"Geolocation Info: {JsonConvert.SerializeObject(geolocation)}");
+
+                                return geolocationResponse;
+                            }
+                            else
+                            {
+                                _logger.LogWarning("Geolocation API response does not contain geolocation information.");
+                            }
+                        
+                    }
                         else
                         {
                             _logger.LogWarning("Geolocation API response does not contain results.");
@@ -127,6 +144,5 @@ public class GeolocationService : IGeolocationService
             return new GeolocationApiResponse { /* Add error information */ };
         }
     }
+
 }
-
-

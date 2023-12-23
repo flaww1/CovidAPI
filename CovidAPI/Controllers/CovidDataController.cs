@@ -19,10 +19,10 @@ public class CovidDataController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetAllData()
+    public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync()
     {
-        var data = await _covidDataService.GetAllDataAsync();
-        return Ok(data);
+        var data = await _covidDataService.GetAllDataAsync(includeGeolocation: true);
+        return data;
     }
 
     [HttpGet("{id}")]
@@ -78,6 +78,8 @@ public class CovidDataController : ControllerBase
                 {
                     var geolocation = await _geolocationService.GetGeolocationInfoAsync(covidData.Country);
                     covidData.Geolocation = geolocation?.Results?.FirstOrDefault()?.Components;
+                    covidData.Geometry = geolocation?.Results?.FirstOrDefault()?.Geometry;
+
                 }
 
                 return Ok(data);
@@ -102,7 +104,23 @@ public class CovidDataController : ControllerBase
     [HttpGet("week/{week}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByWeek(string week)
     {
-        var data = await _covidDataService.GetDataByWeekAsync(week);
+        var data = await _covidDataService.GetDataByWeekAsync(week, includeGeolocation: true);
         return Ok(data);
     }
+    [HttpGet("weeks")]
+    public async Task<ActionResult<IEnumerable<string>>> GetAllWeeks()
+    {
+        try
+        {
+            var weeks = await _covidDataService.GetAllWeeksAsync();
+            return Ok(weeks);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception or handle it appropriately
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+
 }

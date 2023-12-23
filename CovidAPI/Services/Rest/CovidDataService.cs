@@ -80,10 +80,50 @@ namespace CovidAPI.Services.Rest
         }
 
         // Asynchronous methods with DTOs
-        public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync() =>
-            await _context.CovidData
-                .Select(data => MapToDTO(data))
-                .ToListAsync();
+        public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var data = await _context.CovidData
+                    .Select(d => MapToDTO(d))
+                    .ToListAsync();
+
+                if (includeGeolocation && data.Any())
+                {
+                    // Fetch geolocation information for all unique countries
+                    var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
+
+                    foreach (var uniqueCountry in uniqueCountries)
+                    {
+                        // Check if the geolocation information is already in the cache
+                        if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
+                        {
+                            // If cached, update geolocation in the data
+                            UpdateGeolocationInData(data, uniqueCountry, cachedResponse);
+                        }
+                        else
+                        {
+                            // If not cached, fetch geolocation information from the service
+                            var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
+
+                            // Update geolocation in the data
+                            UpdateGeolocationInData(data, uniqueCountry, geolocationResponse);
+
+                            // Add the response to the cache
+                            _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
+                        }
+                    }
+                }
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception and return a meaningful response
+                throw new ApplicationException($"An error occurred: {ex.Message}");
+            }
+        }
+
 
         public async Task<CovidDataDTO> GetDataByIdAsync(int id) =>
             MapToDTO(await _context.CovidData.FindAsync(id));
@@ -100,39 +140,55 @@ namespace CovidAPI.Services.Rest
                 .Select(data => MapToDTO(data))
                 .ToListAsync();
 
-        public async Task<IEnumerable<CovidDataDTO>> GetDataByWeekAsync(string week)
+        public async Task<IEnumerable<CovidDataDTO>> GetDataByWeekAsync(string week, bool includeGeolocation)
         {
             try
             {
                 var data = await _context.CovidData
-                    .Where(data => data.Week == week)
-                    .Select(data => new CovidDataDTO
-                    {
-                        Id = data.Id,
-                        Country = data.Country,
-                        CountryCode = data.CountryCode,
-                        Year = data.Year,
-                        Week = data.Week,
-                        Region = data.Region,
-                        RegionName = data.RegionName,
-                        NewCases = data.NewCases,
-                        TestsDone = data.TestsDone,
-                        Population = data.Population,
-                        PositivityRate = data.PositivityRate,
-                        TestingRate = data.TestingRate,
-                        TestingDataSource = data.TestingDataSource,
-                        Geolocation = null // Default to null, as it's not provided in this method
-                    })
+                    .Where(d => d.Week == week)
+                    .Select(d => MapToDTO(d))
                     .ToListAsync();
+
+                if (includeGeolocation && data.Any())
+                {
+                    // Fetch geolocation information for the unique countries
+                    var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
+
+                    foreach (var uniqueCountry in uniqueCountries)
+                    {
+                        // Check if the geolocation information is already in the cache
+                        if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
+                        {
+                            // If cached, update geolocation in the data
+                            UpdateGeolocationInData(data, uniqueCountry, cachedResponse);
+                        }
+                        else
+                        {
+                            // If not cached, fetch geolocation information from the service
+                            var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
+
+                            // Update geolocation in the data
+                            UpdateGeolocationInData(data, uniqueCountry, geolocationResponse);
+
+                            // Add the response to the cache
+                            _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
+                        }
+                    }
+                }
 
                 return data;
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
+                // Log the exception and return a meaningful response
                 throw new ApplicationException($"An error occurred: {ex.Message}");
             }
         }
+
+
+       
+
+
 
         public async Task AddDataAsync(CovidDataDTO covidDataDTO)
         {
@@ -229,7 +285,6 @@ namespace CovidAPI.Services.Rest
             }
         }
 
-
         private void UpdateGeolocationInData(IEnumerable<CovidDataDTO> data, string country, GeolocationApiResponse geolocationResponse)
         {
             foreach (var covidData in data.Where(d => d.Country == country))
@@ -243,11 +298,12 @@ namespace CovidAPI.Services.Rest
                 // Check if a matching result was found
                 if (result != null)
                 {
-                    // Assign the Geometry object to the CovidDataDTO object
+                    // Assign the Geolocation and Geometry objects to the CovidDataDTO object
+                    covidData.Geolocation = result.Components;
                     covidData.Geometry = result.Geometry;
 
                     // Log the data after mapping
-                    _logger.LogInformation($"After Mapping: {JsonConvert.SerializeObject(covidData.Geometry)}");
+                    _logger.LogInformation($"After Mapping: {JsonConvert.SerializeObject(covidData.Geolocation)}");
                 }
                 else
                 {
@@ -256,36 +312,7 @@ namespace CovidAPI.Services.Rest
             }
         }
 
-    
 
-
-
-
-    private static CovidDataDTO MapToDTO(CovidData data)
-        {
-            if (data == null)
-            {
-                return null;
-            }
-
-            return new CovidDataDTO
-            {
-                Id = data.Id,
-                Country = data.Country,
-                CountryCode = data.CountryCode,
-                Year = data.Year,
-                Week = data.Week,
-                Region = data.Region,
-                RegionName = data.RegionName,
-                NewCases = data.NewCases,
-                TestsDone = data.TestsDone,
-                Population = data.Population,
-                PositivityRate = data.PositivityRate,
-                TestingRate = data.TestingRate,
-                TestingDataSource = data.TestingDataSource,
-                Geolocation = null // Default to null, as it's not provided in this method
-            };
-        }
 
         private CovidData MapToEntity(CovidDataDTO dataDTO, CovidData existingData = null)
         {
@@ -314,5 +341,50 @@ namespace CovidAPI.Services.Rest
 
             return existingData;
         }
+
+        private static CovidDataDTO MapToDTO(CovidData data)
+        {
+            if (data == null)
+            {
+                return null;
+            }
+
+            return new CovidDataDTO
+            {
+                Id = data.Id,
+                Country = data.Country,
+                CountryCode = data.CountryCode,
+                Year = data.Year,
+                Week = data.Week,
+                Region = data.Region,
+                RegionName = data.RegionName,
+                NewCases = data.NewCases,
+                TestsDone = data.TestsDone,
+                Population = data.Population,
+                PositivityRate = data.PositivityRate,
+                TestingRate = data.TestingRate,
+                TestingDataSource = data.TestingDataSource,
+                Geolocation = null // Default to null, as it's not provided in this method
+            };
+        }
+
+        public async Task<IEnumerable<string>> GetAllWeeksAsync()
+        {
+            try
+            {
+                var weeks = await _context.CovidData
+                    .Select(data => data.Week)
+                    .Distinct()
+                    .ToListAsync();
+
+                return weeks;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                throw new ApplicationException($"An error occurred: {ex.Message}");
+            }
+        }
+
     }
 }
