@@ -1,25 +1,32 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
+# Use the official .NET 6 SDK as a base image for the build stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+
+# Copy your project file
 COPY ["CovidAPI/CovidAPI.csproj", "CovidAPI/"]
+
+# Restore the dependencies of your project
 RUN dotnet restore "CovidAPI/CovidAPI.csproj"
+
+# Copy the rest of your app source code
 COPY . .
+
+# Change the working directory to your app's source code
 WORKDIR "/src/CovidAPI"
+
+# Build your app
 RUN dotnet build "CovidAPI.csproj" -c Release -o /app/build
 
+# Switch to a new stage for publishing
 FROM build AS publish
-RUN dotnet publish "CovidAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CovidAPI.csproj" -c Release -o /app/publish
 
-FROM base AS final
+# Use the official ASP.NET 6 runtime as a base image for the final stage
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
+
+# Copy the published output from the publish stage
 COPY --from=publish /app/publish .
+
+# Set the entry point for your app
 ENTRYPOINT ["dotnet", "CovidAPI.dll"]

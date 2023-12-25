@@ -11,7 +11,7 @@
         public string RegionName { get; set; }
         public int NewCases { get; set; }
         public int TestsDone { get; set; }
-        public int TotalTestsYear { get; set; }
+
         public int Population { get; set; }
         public double PositivityRate { get; set; }
         public double TestingRate { get; set; }
@@ -19,6 +19,7 @@
 
         // Add this property for total cases
         public int TotalCasesYear { get; set; }
+        public int TotalTestsYear { get; set; }
 
         public GeolocationComponents Geolocation { get; set; }
         public Geometry Geometry { get; set; }

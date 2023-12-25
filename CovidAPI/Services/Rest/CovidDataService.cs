@@ -194,8 +194,9 @@ namespace CovidAPI.Services.Rest
 
                 // Find the matching result in the geolocation response
                 var result = geolocationResponse.Results.FirstOrDefault(r => r.Components?.Country == country);
-                covidData.TotalTestsYear = data.Where(d => d.Country == country).Sum(d => d.TestsDone);
-                covidData.TotalCasesYear = data.Where(d => d.Country == country).Sum(d => d.NewCases);
+                covidData.TotalTestsYear = data.Where(d => d.Country == country && d.Year == covidData.Year).Sum(d => d.TestsDone);
+                covidData.TotalCasesYear = data.Where(d => d.Country == country && d.Year == covidData.Year).Sum(d => d.NewCases);
+
 
                 // Check if a matching result was found
                 if (result != null)
