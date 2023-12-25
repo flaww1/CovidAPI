@@ -12,6 +12,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
+
 
 namespace CovidAPI
 {
@@ -45,8 +47,8 @@ namespace CovidAPI
                 options.AddPolicy("AllowAll", builder =>
                 {
                     builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
                 });
             });
 
@@ -57,9 +59,13 @@ namespace CovidAPI
             });
             services.AddScoped<IGeolocationService, GeolocationService>();
             services.AddSingleton<GeolocationCache>();
-
-
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost"; // Update this value if your Redis server is not running on localhost
+                options.InstanceName = "SampleInstance";
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,5 +1,6 @@
 ﻿using CovidAPI.Models;
 using CovidAPI.Services.Rest;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using System.Diagnostics.Metrics;
 using System.Net;
@@ -7,8 +8,15 @@ using System.Text.Json;
 
 public class GeolocationCache
 {
-    private readonly Dictionary<string, GeolocationApiResponse> _cache = new Dictionary<string, GeolocationApiResponse>();
-    private readonly object _lockObject = new object(); // Add a lock object for thread safety
+    private Dictionary<string, GeolocationApiResponse> _cache { get; set; }
+    private readonly object _lockObject = new object();
+    private const string CacheFilePath = "cache.json";
+
+    public GeolocationCache()
+    {
+        _cache = new Dictionary<string, GeolocationApiResponse>();
+        LoadCacheFromFile();
+    }
 
     public bool TryGetFromCache(string country, out GeolocationApiResponse geolocationResponse)
     {
@@ -32,27 +40,45 @@ public class GeolocationCache
             if (!_cache.ContainsKey(country))
             {
                 _cache.Add(country, geolocationResponse);
-                // Log a message when adding data to the cache
                 Console.WriteLine($"Geolocation data added to cache for country: {country}");
+                SaveCacheToFile();
             }
         }
+    }
+
+    private void LoadCacheFromFile()
+    {
+        if (File.Exists(CacheFilePath))
+        {
+            var json = File.ReadAllText(CacheFilePath);
+            _cache = JsonConvert.DeserializeObject<Dictionary<string, GeolocationApiResponse>>(json);
+        }
+    }
+
+    private void SaveCacheToFile()
+    {
+        var json = JsonConvert.SerializeObject(_cache);
+        File.WriteAllText(CacheFilePath, json);
     }
 }
 
 
 public class GeolocationService : IGeolocationService
 {
+
+    private readonly IDistributedCache _distributedCache;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly string _apiKey;
     private readonly ILogger<GeolocationService> _logger;
     private readonly GeolocationCache _geolocationCache;
 
-    public GeolocationService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<GeolocationService> logger, GeolocationCache geolocationCache)
+    public GeolocationService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<GeolocationService> logger, GeolocationCache geolocationCache, IDistributedCache distributedCache)
     {
         _httpClientFactory = httpClientFactory;
         _apiKey = configuration["OpenCage:ApiKey"];
         _logger = logger;
         _geolocationCache = geolocationCache;
+        _distributedCache = distributedCache;
 
         // Validate API key
         if (string.IsNullOrWhiteSpace(_apiKey))
@@ -60,6 +86,7 @@ public class GeolocationService : IGeolocationService
             _logger.LogError("Geolocation API key is missing or invalid.");
             // Throw an exception or handle the case accordingly.
         }
+    
     }
 
     public async Task<GeolocationApiResponse> GetGeolocationInfoAsync(string country)

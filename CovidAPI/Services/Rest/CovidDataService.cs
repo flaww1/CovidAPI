@@ -194,8 +194,8 @@ namespace CovidAPI.Services.Rest
 
                 // Find the matching result in the geolocation response
                 var result = geolocationResponse.Results.FirstOrDefault(r => r.Components?.Country == country);
-                covidData.TotalTests = data.Where(d => d.Country == country).Sum(d => d.TestsDone);
-                covidData.TotalCases = data.Where(d => d.Country == country).Sum(d => d.NewCases);
+                covidData.TotalTestsYear = data.Where(d => d.Country == country).Sum(d => d.TestsDone);
+                covidData.TotalCasesYear = data.Where(d => d.Country == country).Sum(d => d.NewCases);
 
                 // Check if a matching result was found
                 if (result != null)
@@ -325,7 +325,7 @@ namespace CovidAPI.Services.Rest
                     .Select(group => new CovidDataDTO
                     {
                         Country = group.Key,
-                        TotalCases = group.Sum(d => d.NewCases),
+                        TotalCasesYear = group.Sum(d => d.NewCases),
                         Geolocation = null // Default to null, as it's not provided in this method
                     })
                     .ToListAsync();
@@ -485,7 +485,7 @@ namespace CovidAPI.Services.Rest
                     .Select(group => new CovidDataDTO
                     {
                         Country = group.Key,
-                        TotalTests = group.Sum(d => d.TestsDone), // Assuming there's a property TotalTests in CovidDataDTO
+                        TotalTestsYear = group.Sum(d => d.TestsDone), // Assuming there's a property TotalTests in CovidDataDTO
                         Geolocation = null
                     })
                     .ToListAsync();
