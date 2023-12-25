@@ -14,8 +14,8 @@
         public int NewCases { get; set; }
         public int TestsDone { get; set; }
         public int Population { get; set; }
-        public decimal TestingRate { get; set; }
-        public decimal PositivityRate { get; set; }
+        public double TestingRate { get; set; }
+        public double  PositivityRate { get; set; }
         public string? TestingDataSource{ get; set; }
 
     

@@ -23,61 +23,6 @@ namespace CovidAPI.Services.Rest
             _geolocationCache = geolocationCache;
         }
 
-        // Synchronous methods
-        public IEnumerable<CovidData> GetAllData() => _context.CovidData.ToList();
-
-        public CovidData GetDataById(int id) => _context.CovidData.Find(id);
-
-        public IEnumerable<CovidData> GetDataByCountry(string country) =>
-            _context.CovidData.Where(data => data.Country == country).ToList();
-
-        public IEnumerable<CovidData> GetDataByYear(int year) =>
-            _context.CovidData.Where(data => data.Year == year).ToList();
-
-        public IEnumerable<CovidData> GetDataByWeek(int week) =>
-            _context.CovidData.Where(data => data.Week == week.ToString()).ToList();
-
-        public void AddData(CovidData covidData)
-        {
-            _context.CovidData.Add(covidData);
-            _context.SaveChanges();
-        }
-
-        public void UpdateData(CovidData covidData)
-        {
-            _context.CovidData.Update(covidData);
-            _context.SaveChanges();
-        }
-
-        public void DeleteData(int id)
-        {
-            var covidData = _context.CovidData.Find(id);
-            if (covidData != null)
-            {
-                _context.CovidData.Remove(covidData);
-                _context.SaveChanges();
-            }
-        }
-
-        public double CalculatePositivityRate(int year, int week)
-        {
-            var dataForWeek = _context.CovidData
-                .Where(data => data.Year == year && data.Week == week.ToString())
-                .ToList();
-
-            if (dataForWeek.Any())
-            {
-                var totalTestsDone = dataForWeek.Sum(data => data.TestsDone);
-                var totalNewCases = dataForWeek.Sum(data => data.NewCases);
-
-                if (totalTestsDone > 0)
-                {
-                    return ((double)totalNewCases / totalTestsDone) * 100;
-                }
-            }
-
-            return 0; // Default to 0 if no data or tests done.
-        }
 
         // Asynchronous methods with DTOs
         public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync(bool includeGeolocation)
@@ -90,55 +35,47 @@ namespace CovidAPI.Services.Rest
 
                 if (includeGeolocation && data.Any())
                 {
-                    // Fetch geolocation information for all unique countries
-                    var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
-
-                    foreach (var uniqueCountry in uniqueCountries)
-                    {
-                        // Check if the geolocation information is already in the cache
-                        if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
-                        {
-                            // If cached, update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, cachedResponse);
-                        }
-                        else
-                        {
-                            // If not cached, fetch geolocation information from the service
-                            var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
-
-                            // Update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, geolocationResponse);
-
-                            // Add the response to the cache
-                            _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
-                        }
-                    }
+                    await FetchAndCacheGeolocationDataAsync(data);
                 }
 
                 return data;
             }
             catch (Exception ex)
             {
-                // Log the exception and return a meaningful response
-                throw new ApplicationException($"An error occurred: {ex.Message}");
+                LogAndThrowException(ex, "An error occurred while fetching all data.");
+                return Enumerable.Empty<CovidDataDTO>();
             }
         }
 
 
-        public async Task<CovidDataDTO> GetDataByIdAsync(int id) =>
-            MapToDTO(await _context.CovidData.FindAsync(id));
+        public async Task<CovidDataDTO> GetDataByIdAsync(int id, bool includeGeolocation)
+        {
+            var data = await _context.CovidData.FindAsync(id);
+            var dataDTO = MapToDTO(data);
 
-        public async Task<IEnumerable<CovidDataDTO>> GetDataByCountryAsync(string country) =>
-            await _context.CovidData
-                .Where(data => data.Country == country)
-                .Select(data => MapToDTO(data))
-                .ToListAsync();
+            if (includeGeolocation)
+            {
+                await UpdateGeolocationInDataAsync(new List<CovidDataDTO> { dataDTO });
+            }
 
-        public async Task<IEnumerable<CovidDataDTO>> GetDataByYearAsync(int year) =>
-            await _context.CovidData
+            return dataDTO;
+        }
+
+
+        public async Task<IEnumerable<CovidDataDTO>> GetDataByYearAsync(int year, bool includeGeolocation)
+        {
+            var data = await _context.CovidData
                 .Where(data => data.Year == year)
                 .Select(data => MapToDTO(data))
                 .ToListAsync();
+
+            if (includeGeolocation)
+            {
+                await UpdateGeolocationInDataAsync(data);
+            }
+
+            return data;
+        }
 
         public async Task<IEnumerable<CovidDataDTO>> GetDataByWeekAsync(string week, bool includeGeolocation)
         {
@@ -151,42 +88,20 @@ namespace CovidAPI.Services.Rest
 
                 if (includeGeolocation && data.Any())
                 {
-                    // Fetch geolocation information for the unique countries
-                    var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
-
-                    foreach (var uniqueCountry in uniqueCountries)
-                    {
-                        // Check if the geolocation information is already in the cache
-                        if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
-                        {
-                            // If cached, update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, cachedResponse);
-                        }
-                        else
-                        {
-                            // If not cached, fetch geolocation information from the service
-                            var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
-
-                            // Update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, geolocationResponse);
-
-                            // Add the response to the cache
-                            _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
-                        }
-                    }
+                    await FetchAndCacheGeolocationDataAsync(data);
                 }
 
                 return data;
             }
             catch (Exception ex)
             {
-                // Log the exception and return a meaningful response
-                throw new ApplicationException($"An error occurred: {ex.Message}");
+                LogAndThrowException(ex, $"An error occurred while fetching data for week {week}.");
+                return null; // Or return an empty list based on your error-handling strategy
             }
         }
 
 
-       
+
 
 
 
@@ -220,25 +135,6 @@ namespace CovidAPI.Services.Rest
             }
         }
 
-        public async Task<double> CalculatePositivityRateAsync(int year, string week)
-        {
-            var dataForWeek = await _context.CovidData
-                .Where(data => data.Year == year && data.Week == week)
-                .ToListAsync();
-
-            if (dataForWeek.Any())
-            {
-                var totalTestsDone = dataForWeek.Sum(data => data.TestsDone);
-                var totalNewCases = dataForWeek.Sum(data => data.NewCases);
-
-                if (totalTestsDone > 0)
-                {
-                    return ((double)totalNewCases / totalTestsDone) * 100;
-                }
-            }
-
-            return 0; // Default to 0 if no data or tests done.
-        }
 
         public async Task<IEnumerable<CovidDataDTO>> GetDataByCountryAsync(string country, bool includeGeolocation)
         {
@@ -251,41 +147,45 @@ namespace CovidAPI.Services.Rest
 
                 if (includeGeolocation && data.Any())
                 {
-                    // Fetch geolocation information for the unique countries
-                    var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
-
-                    foreach (var uniqueCountry in uniqueCountries)
-                    {
-                        // Check if the geolocation information is already in the cache
-                        if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
-                        {
-                            // If cached, update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, cachedResponse);
-                        }
-                        else
-                        {
-                            // If not cached, fetch geolocation information from the service
-                            var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
-
-                            // Update geolocation in the data
-                            UpdateGeolocationInData(data, uniqueCountry, geolocationResponse);
-
-                            // Add the response to the cache
-                            _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
-                        }
-                    }
+                    await FetchAndCacheGeolocationDataAsync(data);
                 }
 
                 return data;
             }
             catch (Exception ex)
             {
-                // Log the exception and return a meaningful response
-                throw new ApplicationException($"An error occurred: {ex.Message}");
+                LogAndThrowException(ex, $"An error occurred while fetching data for country {country}.");
+                return null; // Or return an empty list based on your error-handling strategy
             }
         }
 
-        private void UpdateGeolocationInData(IEnumerable<CovidDataDTO> data, string country, GeolocationApiResponse geolocationResponse)
+        private async Task UpdateGeolocationInDataAsync(IEnumerable<CovidDataDTO> data)
+        {
+            var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
+
+            foreach (var uniqueCountry in uniqueCountries)
+            {
+                // Check if the geolocation information is already in the cache
+                if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
+                {
+                    // If cached, update geolocation in the data
+                    await UpdateGeolocationAsync(data, uniqueCountry, cachedResponse);
+                }
+                else
+                {
+                    // If not cached, fetch geolocation information from the service
+                    var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
+
+                    // Update geolocation in the data
+                    await UpdateGeolocationAsync(data, uniqueCountry, geolocationResponse);
+
+                    // Add the response to the cache
+                    _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
+                }
+            }
+        }
+
+        private async Task UpdateGeolocationAsync(IEnumerable<CovidDataDTO> data, string country, GeolocationApiResponse geolocationResponse)
         {
             foreach (var covidData in data.Where(d => d.Country == country))
             {
@@ -294,6 +194,8 @@ namespace CovidAPI.Services.Rest
 
                 // Find the matching result in the geolocation response
                 var result = geolocationResponse.Results.FirstOrDefault(r => r.Components?.Country == country);
+                covidData.TotalTests = data.Where(d => d.Country == country).Sum(d => d.TestsDone);
+                covidData.TotalCases = data.Where(d => d.Country == country).Sum(d => d.NewCases);
 
                 // Check if a matching result was found
                 if (result != null)
@@ -386,5 +288,291 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        private async Task FetchAndCacheGeolocationDataAsync(IEnumerable<CovidDataDTO> data)
+        {
+            // Fetch geolocation information for the unique countries
+            var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
+
+            foreach (var uniqueCountry in uniqueCountries)
+            {
+                if (_geolocationCache.TryGetFromCache(uniqueCountry, out var cachedResponse))
+                {
+                    await UpdateGeolocationAsync(data, uniqueCountry, cachedResponse);
+                }
+                else
+                {
+                    var geolocationResponse = await _geolocationService.GetGeolocationInfoAsync(uniqueCountry);
+                    await UpdateGeolocationAsync(data, uniqueCountry, geolocationResponse);
+                    _geolocationCache.AddToCache(uniqueCountry, geolocationResponse);
+                }
+            }
+        }
+
+
+        private void LogAndThrowException(Exception ex, string message)
+        {
+            _logger.LogError($"{message} Error: {ex.Message}");
+            throw new ApplicationException(message);
+        }
+
+
+        public async Task<IEnumerable<CovidDataDTO>> GetTotalCasesAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var totalCasesData = await _context.CovidData
+                    .GroupBy(d => d.Country)
+                    .Select(group => new CovidDataDTO
+                    {
+                        Country = group.Key,
+                        TotalCases = group.Sum(d => d.NewCases),
+                        Geolocation = null // Default to null, as it's not provided in this method
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && totalCasesData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(totalCasesData);
+                }
+
+                return totalCasesData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching total cases data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetNewCasesAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var newCasesData = await _context.CovidData
+                    .GroupBy(d => new { d.Country, d.Week })
+                    .Select(group => new CovidDataDTO
+                    {
+                        Country = group.Key.Country,
+                        Week = group.Key.Week,
+                        NewCases = group.Sum(d => d.NewCases),
+                        Geolocation = null // Default to null, as it's not provided in this method
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && newCasesData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(newCasesData);
+                }
+
+                return newCasesData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching new cases data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+        public async Task<IEnumerable<CovidDataDTO>> GetTestingRateAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var testingRateData = await _context.CovidData
+                    .Select(d => new CovidDataDTO
+                    {
+                        Country = d.Country,
+                        TestingRate = d.TestingRate,
+                        Geolocation = null // Default to null, as it's not provided in this method
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && testingRateData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(testingRateData);
+                }
+
+                return testingRateData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching testing rate data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetPositivityRateAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var positivityRateData = await _context.CovidData
+                    .Select(d => new CovidDataDTO
+                    {
+                        Country = d.Country,
+                        PositivityRate = d.PositivityRate,
+                        Geolocation = null // Default to null, as it's not provided in this method
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && positivityRateData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(positivityRateData);
+                }
+
+                return positivityRateData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching positivity rate data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetPopulationDataAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var populationData = await _context.CovidData
+                    .Select(d => new CovidDataDTO
+                    {
+                        Country = d.Country,
+                        Population = d.Population,
+                        Geolocation = null // Default to null, as it's not provided in this method
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && populationData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(populationData);
+                }
+
+                return populationData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching population data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetComparisonsAsync(List<string> countries, bool includeGeolocation)
+        {
+            try
+            {
+                var comparisonData = await _context.CovidData
+                    .Where(d => countries.Contains(d.Country))
+                    .Select(d => MapToDTO(d))
+                    .ToListAsync();
+
+                if (includeGeolocation && comparisonData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(comparisonData);
+                }
+
+                return comparisonData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching comparison data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetTotalTestsAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var totalTestsData = await _context.CovidData
+                    .GroupBy(d => d.Country)
+                    .Select(group => new CovidDataDTO
+                    {
+                        Country = group.Key,
+                        TotalTests = group.Sum(d => d.TestsDone), // Assuming there's a property TotalTests in CovidDataDTO
+                        Geolocation = null
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && totalTestsData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(totalTestsData);
+                }
+
+                return totalTestsData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching total tests data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetGeolocationAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var geolocationData = await _context.CovidData
+                    .Select(d => new CovidDataDTO
+                    {
+                        Country = d.Country,
+                        Geolocation = null // Assuming there's a property Geolocation in CovidDataDTO
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && geolocationData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(geolocationData);
+                }
+
+                return geolocationData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching geolocation data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetTestingSourceAsync(bool includeGeolocation)
+        {
+            try
+            {
+                var testingSourceData = await _context.CovidData
+                    .Select(d => new CovidDataDTO
+                    {
+                        Country = d.Country,
+                        TestingDataSource = d.TestingDataSource,
+                        Geolocation = null
+                    })
+                    .ToListAsync();
+
+                if (includeGeolocation && testingSourceData.Any())
+                {
+                    await FetchAndCacheGeolocationDataAsync(testingSourceData);
+                }
+
+                return testingSourceData;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching testing source data.");
+                return Enumerable.Empty<CovidDataDTO>();
+            }
+        }
+
+        public async Task<string> GetTestingRateInfoAsync()
+        {
+            try
+            {
+                // not implemented
+                var testingRateInfo = "This is the testing rate information.";
+                return testingRateInfo;
+            }
+            catch (Exception ex)
+            {
+                LogAndThrowException(ex, "An error occurred while fetching testing rate information.");
+                return null;
+            }
+        }
+
     }
+
+
 }

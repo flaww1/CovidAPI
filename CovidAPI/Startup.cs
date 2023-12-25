@@ -56,7 +56,7 @@ namespace CovidAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1" });
             });
             services.AddScoped<IGeolocationService, GeolocationService>();
-            services.AddScoped<GeolocationCache>();
+            services.AddSingleton<GeolocationCache>();
 
 
         }

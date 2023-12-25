@@ -28,7 +28,7 @@ public class CovidDataController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<CovidDataDTO>> GetDataById(int id)
     {
-        var data = await _covidDataService.GetDataByIdAsync(id);
+        var data = await _covidDataService.GetDataByIdAsync(id, includeGeolocation: true);
 
         if (data == null)
         {
@@ -69,7 +69,7 @@ public class CovidDataController : ControllerBase
     {
         try
         {
-            var data = await _covidDataService.GetDataByCountryAsync(country);
+            var data = await _covidDataService.GetDataByCountryAsync(country, includeGeolocation: true);
 
             if (data != null && data.Any())
             {
@@ -97,7 +97,7 @@ public class CovidDataController : ControllerBase
     [HttpGet("year/{year}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByYear(int year)
     {
-        var data = await _covidDataService.GetDataByYearAsync(year);
+        var data = await _covidDataService.GetDataByYearAsync(year, includeGeolocation: true);
         return Ok(data);
     }
 
@@ -120,6 +120,75 @@ public class CovidDataController : ControllerBase
             // Log the exception or handle it appropriately
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
+    }
+    [HttpGet("total-cases")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTotalCases()
+    {
+        var data = await _covidDataService.GetTotalCasesAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("new-cases")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetNewCases()
+    {
+        var data = await _covidDataService.GetNewCasesAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("total-tests")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTotalTests()
+    {
+        var data = await _covidDataService.GetTotalTestsAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("testing-rate")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTestingRate()
+    {
+        var data = await _covidDataService.GetTestingRateAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("positivity-rate")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetPositivityRate()
+    {
+        var data = await _covidDataService.GetPositivityRateAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("geolocation")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetGeolocation()
+    {
+        var data = await _covidDataService.GetGeolocationAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("testing-source")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTestingSource()
+    {
+        var data = await _covidDataService.GetTestingSourceAsync(includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("compare")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetComparisons([FromQuery] List<string> countries)
+    {
+        var data = await _covidDataService.GetComparisonsAsync(countries, includeGeolocation: true);
+        return Ok(data);
+    }
+
+    [HttpGet("testing-rate-info")]
+    public async Task<ActionResult<string>> GetTestingRateInfo()
+    {
+        // Add logic to provide information about testing rate interpretation
+        return Ok("Testing rate represents...");
+    }
+
+    [HttpGet("population")]
+    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetPopulationData()
+    {
+        var data = await _covidDataService.GetPopulationDataAsync(includeGeolocation: true);
+        return Ok(data);
     }
 
 

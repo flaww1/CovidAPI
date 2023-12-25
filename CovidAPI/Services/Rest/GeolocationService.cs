@@ -18,6 +18,7 @@ public class GeolocationCache
             if (_cache.TryGetValue(country, out var cachedResponse))
             {
                 geolocationResponse = cachedResponse;
+                Console.WriteLine($"Geolocation data retrieved from cache for country: {country}");
                 return true;
             }
             return false;
@@ -31,10 +32,13 @@ public class GeolocationCache
             if (!_cache.ContainsKey(country))
             {
                 _cache.Add(country, geolocationResponse);
+                // Log a message when adding data to the cache
+                Console.WriteLine($"Geolocation data added to cache for country: {country}");
             }
         }
     }
 }
+
 
 public class GeolocationService : IGeolocationService
 {
@@ -62,6 +66,13 @@ public class GeolocationService : IGeolocationService
     {
         try
         {
+            // Check if the information is in the cache
+            if (_geolocationCache.TryGetFromCache(country, out var cachedResponse))
+            {
+                _logger.LogInformation($"Geolocation info retrieved from cache for {country}");
+                return cachedResponse;
+            }
+
             using (var httpClient = _httpClientFactory.CreateClient())
             {
                 var encodedCountry = Uri.EscapeDataString(country);
@@ -108,7 +119,9 @@ public class GeolocationService : IGeolocationService
 
                             if (geolocation != null)
                             {
-                                // ...
+                                // Cache the result
+                                _geolocationCache.AddToCache(country, geolocationResponse);
+
                                 _logger.LogInformation($"Geolocation Info: {JsonConvert.SerializeObject(geolocation)}");
 
                                 return geolocationResponse;
@@ -117,8 +130,7 @@ public class GeolocationService : IGeolocationService
                             {
                                 _logger.LogWarning("Geolocation API response does not contain geolocation information.");
                             }
-                        
-                    }
+                        }
                         else
                         {
                             _logger.LogWarning("Geolocation API response does not contain results.");
