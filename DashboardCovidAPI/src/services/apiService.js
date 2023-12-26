@@ -23,4 +23,6 @@ async function getWeekData(week) {
     }
 }
 
-export { getWeeks, getWeekData };
+
+export { getWeeks, getWeekData};
+

@@ -1,0 +1,26 @@
+/* MarkerWithPopup.css */
+.custom-marker {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    border-radius: 50%;
+
+}
+
+
+.custom-marker-green {
+    background-color: green;
+}
+
+.custom-marker-yellow {
+    background-color: yellow;
+}
+
+.custom-marker-orange {
+    background-color: orange;
+}
+
+.custom-marker-red {
+    background-color: red;
+}
