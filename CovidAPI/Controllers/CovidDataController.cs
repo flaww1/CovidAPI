@@ -177,19 +177,6 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
-    [HttpGet("testing-rate-info")]
-    public async Task<ActionResult<string>> GetTestingRateInfo()
-    {
-        // Add logic to provide information about testing rate interpretation
-        return Ok("Testing rate represents...");
-    }
-
-    [HttpGet("population")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetPopulationData()
-    {
-        var data = await _covidDataService.GetPopulationDataAsync(includeGeolocation: true);
-        return Ok(data);
-    }
 
 
 }

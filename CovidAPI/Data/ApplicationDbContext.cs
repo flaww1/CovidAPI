@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 public class ApplicationDbContext : DbContext
 {
     public DbSet<CovidData> CovidData { get; set; }
+    public DbSet<User> Users { get; set; }
+
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -14,7 +16,8 @@ public class ApplicationDbContext : DbContext
         // Specify the new table name for the CovidData entity
         modelBuilder.Entity<CovidData>().ToTable("coviddata_2022");
 
-        // Additional configurations if needed...
+        modelBuilder.Entity<User>().ToTable("users");
+
 
         base.OnModelCreating(modelBuilder);
     }
