@@ -194,9 +194,16 @@ namespace CovidAPI.Services.Rest
 
                 // Find the matching result in the geolocation response
                 var result = geolocationResponse.Results.FirstOrDefault(r => r.Components?.Country == country);
-                covidData.TotalTestsYear = data.Where(d => d.Country == country && d.Year == covidData.Year).Sum(d => d.TestsDone);
-                covidData.TotalCasesYear = data.Where(d => d.Country == country && d.Year == covidData.Year).Sum(d => d.NewCases);
 
+                // Calculate total tests and cases for the specific year
+                var yearData = data.Where(d => d.Country == country && d.Year == covidData.Year);
+                covidData.TotalTestsYear = yearData.Sum(d => d.TestsDone);
+                covidData.TotalCasesYear = yearData.Sum(d => d.NewCases);
+
+                // Calculate per capita values, using a default population of 1 if it's null
+                double population = covidData.Population; 
+                covidData.PerCapitaTests = covidData.TotalTestsYear / population;
+                covidData.PerCapitaCases = covidData.TotalCasesYear / population;
 
                 // Check if a matching result was found
                 if (result != null)
@@ -270,6 +277,7 @@ namespace CovidAPI.Services.Rest
                 Geolocation = null // Default to null, as it's not provided in this method
             };
         }
+
 
         public async Task<IEnumerable<string>> GetAllWeeksAsync()
         {
@@ -373,59 +381,9 @@ namespace CovidAPI.Services.Rest
                 return Enumerable.Empty<CovidDataDTO>();
             }
         }
-        public async Task<IEnumerable<CovidDataDTO>> GetTestingRateAsync(bool includeGeolocation)
-        {
-            try
-            {
-                var testingRateData = await _context.CovidData
-                    .Select(d => new CovidDataDTO
-                    {
-                        Country = d.Country,
-                        TestingRate = d.TestingRate,
-                        Geolocation = null // Default to null, as it's not provided in this method
-                    })
-                    .ToListAsync();
+      
 
-                if (includeGeolocation && testingRateData.Any())
-                {
-                    await FetchAndCacheGeolocationDataAsync(testingRateData);
-                }
-
-                return testingRateData;
-            }
-            catch (Exception ex)
-            {
-                LogAndThrowException(ex, "An error occurred while fetching testing rate data.");
-                return Enumerable.Empty<CovidDataDTO>();
-            }
-        }
-
-        public async Task<IEnumerable<CovidDataDTO>> GetPositivityRateAsync(bool includeGeolocation)
-        {
-            try
-            {
-                var positivityRateData = await _context.CovidData
-                    .Select(d => new CovidDataDTO
-                    {
-                        Country = d.Country,
-                        PositivityRate = d.PositivityRate,
-                        Geolocation = null // Default to null, as it's not provided in this method
-                    })
-                    .ToListAsync();
-
-                if (includeGeolocation && positivityRateData.Any())
-                {
-                    await FetchAndCacheGeolocationDataAsync(positivityRateData);
-                }
-
-                return positivityRateData;
-            }
-            catch (Exception ex)
-            {
-                LogAndThrowException(ex, "An error occurred while fetching positivity rate data.");
-                return Enumerable.Empty<CovidDataDTO>();
-            }
-        }
+       
 
         public async Task<IEnumerable<CovidDataDTO>> GetPopulationDataAsync(bool includeGeolocation)
         {
@@ -572,6 +530,74 @@ namespace CovidAPI.Services.Rest
                 return null;
             }
         }
+        public async Task<IEnumerable<CovidDataDTO>> GetTestsDoneAsync(bool includeGeolocation)
+        {
+            var testsDoneData = await _context.CovidData
+                .GroupBy(d => new { d.Country, d.Week })
+                .Select(group => new CovidDataDTO
+                {
+                    Country = group.Key.Country,
+                    Week = group.Key.Week,
+                    TestsDone = group.Sum(d => d.TestsDone),
+                    Population = group.Max(d => d.Population),
+                    Geolocation = null // Default to null, as it's not provided in this method
+                })
+                .ToListAsync();
+
+            if (includeGeolocation && testsDoneData.Any())
+            {
+                await FetchAndCacheGeolocationDataAsync(testsDoneData);
+            }
+
+            return testsDoneData;
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetPositivityRateAsync(bool includeGeolocation)
+        {
+            var positivityRateData = await _context.CovidData
+                .GroupBy(d => new { d.Country, d.Week })
+                .Select(group => new CovidDataDTO
+                {
+                    Country = group.Key.Country,
+                    Week = group.Key.Week,
+                    PositivityRate = (double)group.Sum(d => d.NewCases) / group.Sum(d => d.TestsDone),
+                    Population = group.Max(d => d.Population),
+                    Geolocation = null // Default to null, as it's not provided in this method
+                })
+                .ToListAsync();
+
+            if (includeGeolocation && positivityRateData.Any())
+            {
+                await FetchAndCacheGeolocationDataAsync(positivityRateData);
+            }
+
+            return positivityRateData;
+        }
+
+        public async Task<IEnumerable<CovidDataDTO>> GetTestingRateAsync(bool includeGeolocation)
+        {
+            var testingRateData = await _context.CovidData
+                .GroupBy(d => new { d.Country, d.Week })
+                .Select(group => new CovidDataDTO
+                {
+                    Country = group.Key.Country,
+                    Week = group.Key.Week,
+                    TestingRate = (double)group.Sum(d => d.TestsDone) / (group.Max(d => d.Population) / 100000), // Assuming population is in thousands
+                    Population = group.Max(d => d.Population),
+                    Geolocation = null // Default to null, as it's not provided in this method
+                })
+                .ToListAsync();
+
+            if (includeGeolocation && testingRateData.Any())
+            {
+                await FetchAndCacheGeolocationDataAsync(testingRateData);
+            }
+
+            return testingRateData;
+        }
+
+     
+
 
     }
 
