@@ -23,6 +23,20 @@ public class AuthController : ControllerBase
     {
         try
         {
+            // Validate request data, e.g., check if the username is provided
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            {
+                return BadRequest(new { Message = "Invalid username or password." });
+            }
+
+            // Check if the user exists
+            var user = await _userService.GetUserByUsernameAsync(request.Username);
+            if (user == null)
+            {
+                return Unauthorized(new { Message = "Invalid username or password." });
+            }
+
+            // Authenticate user credentials against your user service
             var token = await _authService.AuthenticateAsync(request.Username, request.Password);
 
             if (token == null)
@@ -34,10 +48,11 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log or handle the exception as needed
+            Console.WriteLine($"Exception in AuthController.Login: {ex}");
             return StatusCode(500, "An error occurred during login.");
         }
     }
+
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDTO request)
@@ -75,6 +90,7 @@ public class AuthController : ControllerBase
         catch (Exception ex)
         {
             // Log or handle the exception as needed
+            Console.WriteLine($"Exception in AuthController.Register: {ex}");
             return StatusCode(500, "An error occurred during registration.");
         }
     }

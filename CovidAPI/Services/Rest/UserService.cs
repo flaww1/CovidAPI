@@ -21,13 +21,33 @@ public class UserService : IUserService
 
     public async Task<User> GetUserByUsernameAsync(string username)
     {
-        return await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == username);
+        try
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+            if (user != null)
+            {
+                Console.WriteLine($"User found for username: {username}");
+            }
+            else
+            {
+                Console.WriteLine($"User not found for username: {username}");
+            }
+
+            return user;
+        }
+        catch (Exception ex)
+        {
+            // Log or handle the exception as needed
+            Console.WriteLine($"Exception in UserService.GetUserByUsernameAsync: {ex}");
+            return null;
+        }
     }
 
     public async Task<User> CreateUserAsync(User user, string password)
     {
         // Hash the password and generate a salt
-        byte[] salt;
+        string salt;
         user.PasswordHash = _passwordService.HashPassword(password, out salt);
         user.PasswordSalt = salt;
 

@@ -82,6 +82,8 @@ namespace CovidAPI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
