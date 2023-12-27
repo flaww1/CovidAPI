@@ -22,7 +22,24 @@ namespace CovidAPI.Services.Rest
             _logger = logger;
             _geolocationCache = geolocationCache;
         }
+        // Assuming you have a method in your service or repository to check data existence
+        public async Task<bool> DataExistsForCountryAndWeekAsync(string country, string week)
+        {
+            // Assuming you have a method in your repository to check if data exists
+            // You need to replace it with your actual implementation
+            var existingData = await GetDataByCountryAndWeekAsync(country, week);
 
+            // Check if data exists
+            return existingData != null;
+        }
+
+        public async Task<CovidData> GetDataByCountryAndWeekAsync(string country, string week)
+        {
+            // Assuming you have a DbContext named _context and a DbSet for CovidData
+            // Replace this with your actual DbContext and DbSet
+            return await _context.CovidData
+                .FirstOrDefaultAsync(c => c.Country == country && c.Week == week);
+        }
 
         // Asynchronous methods with DTOs
         public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync(bool includeGeolocation)

@@ -1,9 +1,8 @@
-// LoginComponent.js
-
+// Login.jsx
 import React, { useState } from 'react';
 import { login } from '../services/AuthApiService';
 
-const LoginComponent = () => {
+const Login = ({ onLogin, onClose }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -12,7 +11,7 @@ const LoginComponent = () => {
             const credentials = { username, password };
             const token = await login(credentials);
             console.log('Received token:', token);
-            // Handle successful login, such as storing the token in local storage
+            onLogin(); // Call the provided callback on successful login
         } catch (error) {
             // Handle login error (e.g., show an error message)
             console.error('Login failed:', error);
@@ -20,23 +19,16 @@ const LoginComponent = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Login</button>
+        <div className="modal">
+            <div className="modal-content">
+                <h2>Login</h2>
+                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button onClick={handleLogin}>Login</button>
+                <button onClick={onClose}>Close</button>
+            </div>
         </div>
     );
 };
 
-export default LoginComponent;
+export default Login;

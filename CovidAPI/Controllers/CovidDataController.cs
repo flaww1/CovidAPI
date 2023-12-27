@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CovidAPI.Models;
 using CovidAPI.Services.Rest;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -38,13 +39,24 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
+  //  [Authorize]
     [HttpPost]
     public async Task<ActionResult<CovidDataDTO>> AddData([FromBody] CovidDataDTO covidDataDTO)
     {
+        // Check if data already exists for the given country and week
+        if (await _covidDataService.DataExistsForCountryAndWeekAsync(covidDataDTO.Country, covidDataDTO.Week))
+        {
+            // Return a conflict response or handle it as per your application's logic
+            return Conflict($"Data already exists for {covidDataDTO.Country} in week {covidDataDTO.Week}");
+        }
+
+        // Data doesn't exist, proceed to add new data
         await _covidDataService.AddDataAsync(covidDataDTO);
+
         return CreatedAtAction(nameof(GetDataById), new { id = covidDataDTO.Id }, covidDataDTO);
     }
 
+   // [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateData(int id, [FromBody] CovidDataDTO covidDataDTO)
     {
@@ -57,6 +69,7 @@ public class CovidDataController : ControllerBase
         return NoContent();
     }
 
+   // [Authorize]
     [HttpDelete("{id}")]
     public IActionResult DeleteData(int id)
     {

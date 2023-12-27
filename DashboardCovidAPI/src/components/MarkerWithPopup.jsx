@@ -1,10 +1,16 @@
-import React from 'react';
+// MarkerWithPopup.jsx
+// MarkerWithPopup.jsx
+
+import React, { useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Modal from 'react-modal'; // Import the modal library
 import './MarkerWithPopup.css';
 
-const MarkerWithPopup = ({ data, selectedMetric }) => {
+const MarkerWithPopup = ({ data, selectedMetric, onAdd, onEdit, onDelete }) => {
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showAddModal, setShowAddModal] = useState(false);
     console.log('Data in MarkerWithPopup component:', data);
 
     const getMarkerColor = () => {
@@ -57,6 +63,16 @@ const MarkerWithPopup = ({ data, selectedMetric }) => {
 
     const markerColor = getMarkerColor();
 
+    const handleDelete = () => {
+        // Handle delete logic, you might want to call an API to delete the marker
+        onDelete(data.id);
+    };
+
+    const handleEdit = () => {
+        // Handle edit logic, you might want to open a modal or navigate to an edit page
+        onEdit(data.id);
+    };
+
     return (
         <Marker
             position={[data.geometry.lat, data.geometry.lng]}
@@ -66,30 +82,30 @@ const MarkerWithPopup = ({ data, selectedMetric }) => {
             })}
         >
             <Popup>
-            <strong>{data.country}</strong>
-            <br />
+                <strong>{data.country}</strong>
+                <br />
                 Week: {data.week}
-            <br />
+                <br />
                 New Cases: {data.newCases.toLocaleString()} {/* Format numbers */}
-            <br />
+                <br />
                 Tests Done: {data.testsDone.toLocaleString()} {/* Format numbers */}
-            <br />
+                <br />
                 Positivity Rate: {data.positivityRate.toFixed(2)}% {/* Format as percentage with two decimal places */}
-            <br />
+                <br />
                 Testing Rate: {data.testingRate.toFixed(2)} {/* Format testing rate with two decimal places */}
-            <br />
+                <br />
                 New Cases Per Capita: {data.perCapitaCases.toLocaleString()}
-            <br />
+                <br />
                 Tests Done Per Capita: {data.perCapitaTests.toLocaleString()}
-            <br />
+                <br />
                 Total Cases for the Year: {data.totalCasesYear.toLocaleString()}
-            <br />
+                <br />
                 Total Tests for the Year: {data.totalTestsYear.toLocaleString()}
-                {/* Add more fields as needed */}
-        </Popup>
-
-
-</Marker>
+                <br />
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+            </Popup>
+        </Marker>
     );
 };
 

@@ -18,14 +18,14 @@
         public string TestingDataSource { get; set; }
 
         // Add this property for total cases
-        public int TotalCasesYear { get; set; }
-        public int TotalTestsYear { get; set; }
+        public int? TotalCasesYear { get; set; }
+        public int? TotalTestsYear { get; set; }
 
 
         public double? PerCapitaCases { get; set; }
         public double? PerCapitaTests { get; set; }
 
-        public GeolocationComponents Geolocation { get; set; }
-        public Geometry Geometry { get; set; }
+        public GeolocationComponents? Geolocation { get; set; }
+        public Geometry? Geometry { get; set; }
     }
 }

@@ -34,11 +34,11 @@ const Map = ({ data, selectedWeek, selectedMetric }) => {
                         position={[entry.geometry.lat, entry.geometry.lng]}
                         data={entry}
                         selectedMetric={selectedMetric}
+                        onDelete={() => handleDelete(entry.id)} // Add onDelete callback
                     />
                 ))}
             </MapContainer>
-            <Legend selectedMetric={selectedMetric} />
-            <LineChart data={filteredData} selectedMetric={selectedMetric} />
+            {/* Existing code... */}
         </div>
     );
 };

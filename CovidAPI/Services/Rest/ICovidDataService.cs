@@ -22,8 +22,8 @@ namespace CovidAPI.Services.Rest
         Task<IEnumerable<string>> GetAllWeeksAsync();
         Task<string> GetTestingRateInfoAsync();
 
-
-
+        Task<bool> DataExistsForCountryAndWeekAsync(string country, string week);
+        Task<CovidData> GetDataByCountryAndWeekAsync(string country, string week);
         Task AddDataAsync(CovidDataDTO covidDataDTO);
         Task UpdateDataAsync(CovidDataDTO covidDataDTO);
         Task DeleteDataAsync(int id);

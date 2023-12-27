@@ -14,6 +14,8 @@ const Dashboard = () => {
     const [selectedWeek, setSelectedWeek] = useState('W01');
     const [selectedMetric, setSelectedMetric] = useState('newCases');
     const [user, setUser] = useState(null);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -65,23 +67,27 @@ const Dashboard = () => {
         setUser(null);
     };
 
+    const handleLoginClose = () => setShowLoginModal(false);
+    const handleRegisterClose = () => setShowRegisterModal(false);
+
     return (
         <div>
-            {/* {user ? (
-      <div>
-        <h1>Welcome, {user.username}!</h1>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    ) : ( */}
-            <div>
-                {/* <Login onLogin={handleLogin} />
-      <Register onRegister={handleRegister} /> */}
-            </div>
-            {/* )} */}
+            {user ? (
+                <div>
+                    <h1>Welcome, {user.username}!</h1>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            ) : (
+                <div>
+                    <button onClick={() => setShowLoginModal(true)}>Login</button>
+                    <button onClick={() => setShowRegisterModal(true)}>Register</button>
+                    {showLoginModal && <Login onClose={handleLoginClose} onLogin={handleLogin} />}
+                    {showRegisterModal && <Register onClose={handleRegisterClose} onRegister={handleRegister} />}
+                </div>
+            )}
             <h1>COVID-19 Dashboard</h1>
             <MetricSelector selectedMetric={selectedMetric} onMetricChange={handleMetricChange} />
             <WeekSelector weeks={allWeeks} selectedWeek={selectedWeek} onSelectWeek={handleWeekChange} />
-            {/* Add Subtitle component */}
             <Subtitle
                 selectedWeek={selectedWeek}
                 totalCases={covidData.reduce((sum, entry) => sum + entry[selectedMetric], 0)}
@@ -92,7 +98,6 @@ const Dashboard = () => {
             <LineChart data={covidData} selectedMetric={selectedMetric} />
         </div>
     );
-
 };
 
 export default Dashboard;
