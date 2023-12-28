@@ -6,6 +6,9 @@ using System.Diagnostics.Metrics;
 using System.Net;
 using System.Text.Json;
 
+/// <summary>
+/// Represents a cache for storing geolocation data to avoid redundant API calls.
+/// </summary>
 public class GeolocationCache
 {
     private Dictionary<string, GeolocationApiResponse> _cache { get; set; }
@@ -17,7 +20,12 @@ public class GeolocationCache
         _cache = new Dictionary<string, GeolocationApiResponse>();
         LoadCacheFromFile();
     }
-
+    /// <summary>
+    /// Tries to retrieve geolocation data from the cache for a specific country.
+    /// </summary>
+    /// <param name="country">The country for which to retrieve geolocation data.</param>
+    /// <param name="geolocationResponse">The retrieved geolocation response if successful.</param>
+    /// <returns>True if the data is successfully retrieved from the cache; otherwise, false.</returns>
     public bool TryGetFromCache(string country, out GeolocationApiResponse geolocationResponse)
     {
         lock (_lockObject)
@@ -32,7 +40,11 @@ public class GeolocationCache
             return false;
         }
     }
-
+    /// <summary>
+    /// Adds geolocation data to the cache for a specific country.
+    /// </summary>
+    /// <param name="country">The country for which to add geolocation data to the cache.</param>
+    /// <param name="geolocationResponse">The geolocation response to be added to the cache.</param>
     public void AddToCache(string country, GeolocationApiResponse geolocationResponse)
     {
         lock (_lockObject)
@@ -45,7 +57,9 @@ public class GeolocationCache
             }
         }
     }
-
+    /// <summary>
+    /// Loads geolocation data from a file into the cache if the file exists.
+    /// </summary>
     private void LoadCacheFromFile()
     {
         if (File.Exists(CacheFilePath))
@@ -54,7 +68,9 @@ public class GeolocationCache
             _cache = JsonConvert.DeserializeObject<Dictionary<string, GeolocationApiResponse>>(json);
         }
     }
-
+    /// <summary>
+    /// Saves the current geolocation cache to a file in JSON format.
+    /// </summary>
     private void SaveCacheToFile()
     {
         var json = JsonConvert.SerializeObject(_cache);
@@ -62,7 +78,9 @@ public class GeolocationCache
     }
 }
 
-
+/// <summary>
+/// Represents a service for retrieving geolocation information for a specific country.
+/// </summary>
 public class GeolocationService : IGeolocationService
 {
 
@@ -88,7 +106,11 @@ public class GeolocationService : IGeolocationService
         }
     
     }
-
+    /// <summary>
+    /// Retrieves geolocation information asynchronously for a specific country.
+    /// </summary>
+    /// <param name="country">The country for which to retrieve geolocation information.</param>
+    /// <returns>An asynchronous task that returns the geolocation response.</returns>
     public async Task<GeolocationApiResponse> GetGeolocationInfoAsync(string country)
     {
         try

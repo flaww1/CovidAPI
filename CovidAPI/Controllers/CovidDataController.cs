@@ -5,6 +5,9 @@ using CovidAPI.Services.Rest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+/// <summary>
+/// Controller for COVID-19 data-related operations.
+/// </summary>
 [ApiController]
 [Route("api/coviddata")]
 public class CovidDataController : ControllerBase
@@ -13,12 +16,23 @@ public class CovidDataController : ControllerBase
 
     private readonly ICovidDataService _covidDataService;
 
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CovidDataController"/> class.
+    /// </summary>
+    /// <param name="covidDataService">The COVID-19 data service.</param>
+    /// <param name="geolocationService">The geolocation service.</param>
     public CovidDataController(ICovidDataService covidDataService, IGeolocationService geolocationService)
     {
         _covidDataService = covidDataService;
         _geolocationService = geolocationService;
     }
 
+
+    /// <summary>
+    /// Gets all COVID-19 data asynchronously.
+    /// </summary>
+    /// <returns>Returns a collection of COVID-19 data.</returns>
     [HttpGet]
     public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync()
     {
@@ -26,6 +40,11 @@ public class CovidDataController : ControllerBase
         return data;
     }
 
+    // <summary>
+    /// Gets COVID-19 data by ID asynchronously.
+    /// </summary>
+    /// <param name="id">The ID of the COVID-19 data.</param>
+    /// <returns>Returns COVID-19 data with the specified ID.</returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<CovidDataDTO>> GetDataById(int id)
     {
@@ -39,6 +58,12 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
+
+    /// <summary>
+    /// Adds new COVID-19 data.
+    /// </summary>
+    /// <param name="covidDataDTO">The COVID-19 data to add.</param>
+    /// <returns>Returns the added COVID-19 data.</returns>
   //  [Authorize]
     [HttpPost]
     public async Task<ActionResult<CovidDataDTO>> AddData([FromBody] CovidDataDTO covidDataDTO)
@@ -56,6 +81,12 @@ public class CovidDataController : ControllerBase
         return CreatedAtAction(nameof(GetDataById), new { id = covidDataDTO.Id }, covidDataDTO);
     }
 
+    /// <summary>
+    /// Updates COVID-19 data by ID.
+    /// </summary>
+    /// <param name="id">The ID of the COVID-19 data to update.</param>
+    /// <param name="covidDataDTO">The updated COVID-19 data.</param>
+    /// <returns>Returns no content if the update is successful.</returns>
     // [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateData(int id, [FromBody] CovidDataDTO covidDataDTO)
@@ -69,7 +100,11 @@ public class CovidDataController : ControllerBase
         return NoContent();
     }
 
-
+    /// <summary>
+    /// Deletes COVID-19 data by ID.
+    /// </summary>
+    /// <param name="id">The ID of the COVID-19 data to delete.</param>
+    /// <returns>Returns no content if the deletion is successful.</returns>
     // [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteData(int id)
@@ -78,6 +113,11 @@ public class CovidDataController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Gets COVID-19 data by country.
+    /// </summary>
+    /// <param name="country">The name of the country.</param>
+    /// <returns>Returns COVID-19 data for the specified country.</returns>
     [HttpGet("country/{country}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByCountry(string country)
     {
@@ -108,6 +148,11 @@ public class CovidDataController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Gets COVID-19 data by year.
+    /// </summary>
+    /// <param name="year">The year for which to retrieve data.</param>
+    /// <returns>Returns COVID-19 data for the specified year.</returns>
     [HttpGet("year/{year}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByYear(int year)
     {
@@ -115,12 +160,22 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
+    /// <summary>
+    /// Gets COVID-19 data by week.
+    /// </summary>
+    /// <param name="week">The week for which to retrieve data.</param>
+    /// <returns>Returns COVID-19 data for the specified week.</returns>
     [HttpGet("week/{week}")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetDataByWeek(string week)
     {
         var data = await _covidDataService.GetDataByWeekAsync(week, includeGeolocation: true);
         return Ok(data);
     }
+
+    /// <summary>
+    /// Gets all available weeks for COVID-19 data.
+    /// </summary>
+    /// <returns>Returns a collection of all available weeks.</returns>
     [HttpGet("weeks")]
     public async Task<ActionResult<IEnumerable<string>>> GetAllWeeks()
     {
@@ -135,6 +190,11 @@ public class CovidDataController : ControllerBase
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
+
+    /// <summary>
+    /// Gets total COVID-19 cases.
+    /// </summary>
+    /// <returns>Returns total COVID-19 cases.</returns>
     [HttpGet("total-cases")]
     public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTotalCases()
     {
@@ -142,55 +202,12 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
-    [HttpGet("new-cases")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetNewCases()
-    {
-        var data = await _covidDataService.GetNewCasesAsync(includeGeolocation: true);
-        return Ok(data);
-    }
 
-    [HttpGet("total-tests")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTotalTests()
-    {
-        var data = await _covidDataService.GetTotalTestsAsync(includeGeolocation: true);
-        return Ok(data);
-    }
 
-    [HttpGet("testing-rate")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTestingRate()
-    {
-        var data = await _covidDataService.GetTestingRateAsync(includeGeolocation: true);
-        return Ok(data);
-    }
-
-    [HttpGet("positivity-rate")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetPositivityRate()
-    {
-        var data = await _covidDataService.GetPositivityRateAsync(includeGeolocation: true);
-        return Ok(data);
-    }
-
-    [HttpGet("geolocation")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetGeolocation()
-    {
-        var data = await _covidDataService.GetGeolocationAsync(includeGeolocation: true);
-        return Ok(data);
-    }
-
-    [HttpGet("testing-source")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetTestingSource()
-    {
-        var data = await _covidDataService.GetTestingSourceAsync(includeGeolocation: true);
-        return Ok(data);
-    }
-
-    [HttpGet("compare")]
-    public async Task<ActionResult<IEnumerable<CovidDataDTO>>> GetComparisons([FromQuery] List<string> countries)
-    {
-        var data = await _covidDataService.GetComparisonsAsync(countries, includeGeolocation: true);
-        return Ok(data);
-    }
-
+    /// <summary>
+    /// Gets a list of all countries with available COVID-19 data.
+    /// </summary>
+    /// <returns>Returns a list of all countries with available COVID-19 data.</returns>
     [HttpGet("countries")]
     public async Task<ActionResult<IEnumerable<string>>> GetAllCountries()
     {

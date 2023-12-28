@@ -19,14 +19,30 @@ using Microsoft.OpenApi.Models;
 
 namespace CovidAPI
 {
+
+   /// <summary>
+   /// Configures the application services and requests during startup.
+   /// </summary>
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration settings.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        /// <summary>
+        /// Gets the configuration settings.
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Configures the services used by the application.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -50,9 +66,22 @@ namespace CovidAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1", Description = "Covid-19 Testing Data API with Geolocation Integration",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Flávio Pereira",
+                        Email = "a21110@alunos.ipca.pt",
+                    },
+                });
+                var appEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                var xmlFile = $"{AppDomain.CurrentDomain.FriendlyName}.xml";
+                var xmlPath = Path.Combine(appEnvironment == Environments.Development ? AppContext.BaseDirectory : "app", xmlFile);
+
+                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+
             });
 
+       
             services.AddScoped<IGeolocationService, GeolocationService>();
             services.AddSingleton<GeolocationCache>();
             services.AddStackExchangeRedisCache(options =>
@@ -89,8 +118,14 @@ namespace CovidAPI
             services.AddScoped<IAuthService, AuthService>();
             services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
+
         }
 
+        /// <summary>
+        /// Configures the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">The application builder.</param>
+        /// <param name="env">The hosting environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -124,8 +159,15 @@ namespace CovidAPI
             {
                 endpoints.MapControllers();
             });
+
+
         }
 
+
+        /// <summary>
+        /// Configures logging services for the application.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
         public void ConfigureLogging(IServiceCollection services)
         {
             services.AddLogging(builder =>
