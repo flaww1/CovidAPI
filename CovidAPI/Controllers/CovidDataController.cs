@@ -56,7 +56,7 @@ public class CovidDataController : ControllerBase
         return CreatedAtAction(nameof(GetDataById), new { id = covidDataDTO.Id }, covidDataDTO);
     }
 
-   // [Authorize]
+    // [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateData(int id, [FromBody] CovidDataDTO covidDataDTO)
     {
@@ -69,11 +69,12 @@ public class CovidDataController : ControllerBase
         return NoContent();
     }
 
-   // [Authorize]
+
+    // [Authorize]
     [HttpDelete("{id}")]
-    public IActionResult DeleteData(int id)
+    public async Task<IActionResult> DeleteData(int id)
     {
-        _covidDataService.DeleteDataAsync(id);
+        await _covidDataService.DeleteDataAsync(id);
         return NoContent();
     }
 

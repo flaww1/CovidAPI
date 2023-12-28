@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CovidAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace CovidAPI.Services.Rest
@@ -14,13 +15,15 @@ namespace CovidAPI.Services.Rest
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CovidDataService> _logger;
         private readonly GeolocationCache _geolocationCache;
+        private readonly IOptions<DbContextOptions<ApplicationDbContext>> _dbContextOptions;
 
-        public CovidDataService(ApplicationDbContext context, IGeolocationService geolocationService, ILogger<CovidDataService> logger, GeolocationCache geolocationCache)
+        public CovidDataService(ApplicationDbContext context, IGeolocationService geolocationService, ILogger<CovidDataService> logger, GeolocationCache geolocationCache, IOptions<DbContextOptions<ApplicationDbContext>> dbContextOptions)
         {
             _context = context;
             _geolocationService = geolocationService;
             _logger = logger;
             _geolocationCache = geolocationCache;
+            _dbContextOptions = dbContextOptions;
         }
         // Assuming you have a method in your service or repository to check data existence
         public async Task<bool> DataExistsForCountryAndWeekAsync(string country, string week)
@@ -151,6 +154,8 @@ namespace CovidAPI.Services.Rest
                 await _context.SaveChangesAsync();
             }
         }
+
+
 
 
         public async Task<IEnumerable<CovidDataDTO>> GetDataByCountryAsync(string country, bool includeGeolocation)

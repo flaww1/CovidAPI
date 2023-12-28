@@ -5,24 +5,36 @@ const LineChart = ({ data, selectedMetric }) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
-        if (!chartRef.current) return;
+        if (!chartRef.current || !data.length) return;
 
         const ctx = chartRef.current.getContext('2d');
 
-        // Create the line chart
-        const lineChart = new Chart(ctx, {
+        if (chartRef.current.chart) {
+            chartRef.current.chart.destroy();
+        }
+
+        const uniqueWeeks = [...new Set(data.map(entry => entry.week))];
+        const datasets = [];
+
+        const metricData = {
+            label: selectedMetric,
+            data: uniqueWeeks.map((week, index) => {
+                const weekEntries = data.filter(entry => entry.week === week);
+                const totalMetric = weekEntries.reduce((sum, entry) => sum + entry[selectedMetric], 0);
+                return index > 0 ? totalMetric + metricData.data[index - 1] : totalMetric;
+            }),
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            fill: false,
+        };
+
+        datasets.push(metricData);
+
+        chartRef.current.chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: data.map(entry => entry.week),
-                datasets: [
-                    {
-                        label: selectedMetric, // Use selected metric as the label
-                        data: data.map(entry => entry[selectedMetric]), // Use selected metric data
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                        fill: false,
-                    },
-                ],
+                labels: uniqueWeeks,
+                datasets,
             },
             options: {
                 scales: {
@@ -36,16 +48,11 @@ const LineChart = ({ data, selectedMetric }) => {
                 },
             },
         });
-
-        // Cleanup the chart on component unmount
-        return () => {
-            lineChart.destroy();
-        };
     }, [data, selectedMetric]);
 
     return (
         <div>
-            <h2>{selectedMetric} Chart</h2>
+            <h2>{selectedMetric} History Chart</h2>
             <canvas ref={chartRef} width="400" height="200"></canvas>
         </div>
     );

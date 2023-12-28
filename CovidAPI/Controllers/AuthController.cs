@@ -94,4 +94,21 @@ public class AuthController : ControllerBase
             return StatusCode(500, "An error occurred during registration.");
         }
     }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        try
+        {
+
+            return Ok(new { Message = "Logout successful" });
+        }
+        catch (Exception ex)
+        {
+            // Log or handle the exception as needed
+            Console.WriteLine($"Exception in AuthController.Logout: {ex}");
+            return StatusCode(500, "An error occurred during logout.");
+        }
+    }
+
 }

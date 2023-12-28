@@ -15,6 +15,10 @@ async function register(user) {
 }
 
 async function login(credentials) {
+    if (!credentials || !credentials.username || !credentials.password) {
+        throw new Error('Missing username or password');
+    }
+
     try {
         const response = await axios.post(`${BASE_URL}/login`, credentials);
         return response.data; // Depending on your API response format
@@ -24,4 +28,15 @@ async function login(credentials) {
     }
 }
 
-export { register, login };
+
+async function logout() {
+    try {
+        const response = await axios.post(`${BASE_URL}/logout`);
+        return response.data; // Depending on your API response format
+    } catch (error) {
+        console.error('Error logging out:', error);
+        throw error;
+    }
+}
+
+export { register, login, logout };

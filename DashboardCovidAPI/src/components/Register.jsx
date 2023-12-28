@@ -1,18 +1,18 @@
-// Register.jsx
 import React, { useState } from 'react';
 import { register } from '../services/AuthApiService';
-
+import * as S from './styles'; // Import your styled components
 const Register = ({ onRegister, onClose }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
 
     const handleRegister = async () => {
         try {
             // Basic validation
             if (!username || !password || password !== confirmPassword) {
                 // Handle validation error (e.g., show an error message)
-                console.error('Invalid registration data');
+                setError('Passwords do not match. Please check your input.');
                 return;
             }
 
@@ -24,10 +24,13 @@ const Register = ({ onRegister, onClose }) => {
         } catch (error) {
             // Handle registration error (e.g., show an error message)
             console.error('Registration failed:', error);
+            setError('An error occurred during registration. Please try again later.');
         }
     };
 
     return (
+        <S.Modal>
+            <S.ModalContent>
         <div className="modal">
             <div className="modal-content">
                 <h2>Register</h2>
@@ -41,8 +44,12 @@ const Register = ({ onRegister, onClose }) => {
                 />
                 <button onClick={handleRegister}>Register</button>
                 <button onClick={onClose}>Close</button>
+
+                {error && <p className="error-message">{error}</p>}
             </div>
         </div>
+</S.ModalContent>
+</S.Modal>
     );
 };
 

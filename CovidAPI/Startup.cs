@@ -1,4 +1,5 @@
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using CovidAPI.Models;
 using CovidAPI.Services;
@@ -74,12 +75,14 @@ namespace CovidAPI
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["JwtSettings:Issuer"],
-                    ValidAudience = Configuration["JwtSettings:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSettings:Secret"]))
+                    ValidIssuer = Configuration["Jwt:Issuer"] ?? "default_issuer",
+                    ValidAudience = Configuration["Jwt:Audience"] ?? "default_audience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"] ?? "default_secret"))
+
                 };
             });
 
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPasswordService, PasswordService>();
@@ -114,7 +117,7 @@ namespace CovidAPI
                 });
             });
 
-            app.UseAuthentication(); // Add this line
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
