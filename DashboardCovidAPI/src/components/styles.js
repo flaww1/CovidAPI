@@ -100,7 +100,7 @@ export const ErrorMessage = styled.p`
     margin-top: 5px;
 `;
 
-export const WeekSelectorContainer = styled.div`
+export const SelectorContainer = styled.div`
     display: flex;
 
     align-items: center;
@@ -176,6 +176,9 @@ export const CustomMarker = styled.div`
    background-color: red;
  }
 `;
+
+
+
 
 
 // Add more styled components as needed

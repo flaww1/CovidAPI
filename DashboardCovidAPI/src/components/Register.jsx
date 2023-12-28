@@ -29,27 +29,30 @@ const Register = ({ onRegister, onClose }) => {
     };
 
     return (
-        <S.Modal>
-            <S.ModalContent>
-        <div className="modal">
-            <div className="modal-content">
-                <h2>Register</h2>
-                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                <button onClick={handleRegister}>Register</button>
-                <button onClick={onClose}>Close</button>
+        <S.ModalContentWrapper className="modal">
+            <S.ModalHeading>Register</S.ModalHeading>
 
-                {error && <p className="error-message">{error}</p>}
-            </div>
-        </div>
-</S.ModalContent>
-</S.Modal>
+            <S.ModalLabel>Username:</S.ModalLabel>
+            <S.ModalInput type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+
+            <S.ModalLabel>Password:</S.ModalLabel>
+            <S.ModalInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+            <S.ModalLabel>Confirm Password:</S.ModalLabel>
+            <S.ModalInput
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+
+            <S.ModalButtonWrapper>
+                <S.ModalCancelButton onClick={onClose}>Close</S.ModalCancelButton>
+                <S.ModalAddButton onClick={handleRegister}>Register</S.ModalAddButton>
+            </S.ModalButtonWrapper>
+
+            {error && <S.ErrorMessage className="error-message">{error}</S.ErrorMessage>}
+        </S.ModalContentWrapper>
     );
 };
 

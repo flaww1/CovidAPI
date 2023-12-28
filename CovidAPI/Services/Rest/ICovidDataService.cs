@@ -21,7 +21,7 @@ namespace CovidAPI.Services.Rest
         Task<IEnumerable<CovidDataDTO>> GetPopulationDataAsync(bool includeGeolocation);
         Task<IEnumerable<string>> GetAllWeeksAsync();
         Task<string> GetTestingRateInfoAsync();
-
+        Task<IEnumerable<string>> GetAllCountriesAsync();
         Task<bool> DataExistsForCountryAndWeekAsync(string country, string week);
         Task<CovidData> GetDataByCountryAndWeekAsync(string country, string week);
         Task AddDataAsync(CovidDataDTO covidDataDTO);

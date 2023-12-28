@@ -68,4 +68,24 @@ async function addMarkerData(newMarkerData) {
     }
 }
 
-export { getWeeks, getWeekData, updateMarkerData, deleteMarkerData, fetchDataForMarkerId, addMarkerData };
+async function getCountryData(countryName) {
+    try {
+        const response = await axios.get(`${BASE_URL}/country/${countryName}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching country data:', error);
+        throw error;
+    }
+}
+
+async function getAllCountries() {
+    try {
+        const response = await axios.get(`${BASE_URL}/countries`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching countries:', error);
+        throw error;
+    }
+}
+
+export { getWeeks, getWeekData, updateMarkerData, deleteMarkerData, fetchDataForMarkerId, addMarkerData, getCountryData, getAllCountries };

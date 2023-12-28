@@ -8,7 +8,7 @@ const WeekSelector = ({ weeks, selectedWeek, onSelectWeek }) => {
     };
 
     return (
-        <S.WeekSelectorContainer>
+        <S.SelectorContainer>
         <div>
             <label htmlFor="weekSelector">Select Week:</label>
             <select id="weekSelector" value={selectedWeek} onChange={handleWeekChange}>
@@ -19,7 +19,7 @@ const WeekSelector = ({ weeks, selectedWeek, onSelectWeek }) => {
                 ))}
             </select>
         </div>
-        </S.WeekSelectorContainer>
+        </S.SelectorContainer>
     );
 };
 

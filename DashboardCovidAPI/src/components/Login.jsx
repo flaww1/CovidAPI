@@ -31,26 +31,28 @@ const Login = ({ onLogin, onClose }) => {
     };
 
     return (
+        <S.ModalContentWrapper className="modal">
+            <S.ModalHeading>Login</S.ModalHeading>
+            <S.ModalLabel>Username:</S.ModalLabel>
+            <S.ModalInput type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
 
-        <div className="modal">
-            <div className="modal-content">
-                <h2>Login</h2>
-                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button onClick={handleLogin}>Login</button>
-                <button onClick={onClose}>Close</button>
+            <S.ModalLabel>Password:</S.ModalLabel>
+            <S.ModalInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-                {error && <p className="error-message">{error}</p>}
+            <S.ModalButtonWrapper>
+                <S.ModalCancelButton onClick={onClose}>Close</S.ModalCancelButton>
+                <S.ModalAddButton onClick={handleLogin}>Login</S.ModalAddButton>
+            </S.ModalButtonWrapper>
 
-                <p>
-                    Don't have an account?{' '}
-                    <Link to="/register" onClick={onClose}>
-                        Register here
-                    </Link>
-                </p>
-            </div>
-        </div>
+            {error && <S.ErrorMessage className="error-message">{error}</S.ErrorMessage>}
+
+            <p>
+                Don't have an account?{' '}
+                <Link to="/register" onClick={onClose}>
+                    Register here
+                </Link>
+            </p>
+        </S.ModalContentWrapper>
     );
 };
-
 export default Login;

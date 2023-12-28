@@ -617,8 +617,25 @@ namespace CovidAPI.Services.Rest
 
             return testingRateData;
         }
+        public async Task<IEnumerable<string>> GetAllCountriesAsync()
+        {
+            try
+            {
+                var countries = await _context.CovidData
+                    .Select(data => data.Country)
+                    .Distinct()
+                    .ToListAsync();
 
-     
+                return countries;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                throw new ApplicationException($"An error occurred while fetching countries: {ex.Message}");
+            }
+        }
+
+
 
 
     }

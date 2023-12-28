@@ -191,6 +191,27 @@ public class CovidDataController : ControllerBase
         return Ok(data);
     }
 
+    [HttpGet("countries")]
+    public async Task<ActionResult<IEnumerable<string>>> GetAllCountries()
+    {
+        try
+        {
+            var countries = await _covidDataService.GetAllCountriesAsync();
+
+            if (countries != null && countries.Any())
+            {
+                return Ok(countries);
+            }
+
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception or handle it appropriately
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
 
 
 }
