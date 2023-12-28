@@ -7,12 +7,22 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Service responsible for user authentication and JWT token generation.
+/// </summary>
 public class AuthService : IAuthService
 {
     private readonly IUserService _userService;
     private readonly IConfiguration _configuration;
     private readonly IPasswordService _passwordService;
 
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthService"/> class.
+    /// </summary>
+    /// <param name="userService">The user service.</param>
+    /// <param name="configuration">The configuration.</param>
+    /// <param name="passwordService">The password service.</param>
     public AuthService(IUserService userService, IConfiguration configuration, IPasswordService passwordService)
     {
         _userService = userService;
@@ -21,6 +31,12 @@ public class AuthService : IAuthService
 
     }
 
+    /// <summary>
+    /// Authenticates a user based on the provided username and password.
+    /// </summary>
+    /// <param name="username">The username of the user.</param>
+    /// <param name="password">The password of the user.</param>
+    /// <returns>The JWT token if authentication is successful; otherwise, null.</returns>
     public async Task<string> AuthenticateAsync(string username, string password)
     {
         try
@@ -56,6 +72,11 @@ public class AuthService : IAuthService
         }
     }
 
+    /// <summary>
+    /// Generates a JWT token for the specified user.
+    /// </summary>
+    /// <param name="user">The user for whom the token should be generated.</param>
+    /// <returns>The generated JWT token.</returns>
     public async Task<string> GenerateTokenAsync(User user)
     {
         try

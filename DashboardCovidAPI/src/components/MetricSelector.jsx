@@ -1,22 +1,28 @@
-// MetricSelector.jsx
 import React from 'react';
+import * as S from './styles'; // Import your styled components
 
 const MetricSelector = ({ selectedMetric, onMetricChange }) => {
-    const metrics = ['newCases', 'testsDone', 'positivityRate', 'testingRate']; // Add more metrics as needed
+    const metrics = {
+        newCases: 'New Cases',
+        testsDone: 'Tests Done',
+        positivityRate: 'Positivity Rate',
+        testingRate: 'Testing Rate'
+    };
 
     return (
-        <div>
-            <label>Select Metric:</label>
-            <select value={selectedMetric} onChange={(e) => onMetricChange(e.target.value)}>
-                {metrics.map((metric) => (
-                    <option key={metric} value={metric}>
-                        {metric}
-                    </option>
-                ))}
-            </select>
-        </div>
+        <S.SelectorContainer>
+            <div>
+                <label>Select Metric:</label>
+                <select value={selectedMetric} onChange={(e) => onMetricChange(e.target.value)}>
+                    {Object.entries(metrics).map(([metricKey, metricLabel]) => (
+                        <option key={metricKey} value={metricKey}>
+                            {metricLabel}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </S.SelectorContainer>
     );
 };
-
 
 export default MetricSelector;

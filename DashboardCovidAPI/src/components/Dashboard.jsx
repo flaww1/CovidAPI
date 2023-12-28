@@ -1,19 +1,132 @@
-import React, { useEffect, useState } from 'react';
-import Login from './Login';
-import Register from './Register';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
+
 import Map from './Map';
-import { getWeeks, getWeekData } from '../services/ApiService';
+import { getWeeks, getWeekData, getCountryData, getAllCountries } from '../services/ApiService';
 import MetricSelector from './MetricSelector';
-import LineChart from './LineChart';
+import CustomLineChart from './CustomLineChart';
 import WeekSelector from './WeekSelector';
 import Subtitle from './Subtitle';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
+import LogoutButton from './LogoutButton';
+import { useUser, UserProvider } from './UserContext.jsx';
+import CountrySelector from './CountrySelector';
+
+import * as S from './styles'; // Import your styled components
 
 const Dashboard = () => {
     const [covidData, setCovidData] = useState([]);
+    const [countryCovidData, setCountryCovidData] = useState([]); // New state for country-specific data
     const [allWeeks, setAllWeeks] = useState([]);
     const [selectedWeek, setSelectedWeek] = useState('W01');
     const [selectedMetric, setSelectedMetric] = useState('newCases');
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useUser();
+    const [showLogin, setShowLogin] = useState(false);
+    const [showRegister, setShowRegister] = useState(false);
+
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState('');
+
+    const [markersData, setMarkersData] = useState([]);
+    const localStorageKey = 'markersData';
+
+    useEffect(() => {
+        const storedData = localStorage.getItem(localStorageKey);
+
+        if (storedData) {
+            setMarkersData(JSON.parse(storedData));
+            setCovidData(JSON.parse(storedData));
+        } else {
+            fetchData();
+        }
+
+        const storedUser = localStorage.getItem('user');
+
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, [setUser]);
+
+    const fetchData = async () => {
+        try {
+            const weeks = await getWeeks();
+            const sortedWeeks = weeks.sort();
+
+            const data = await getWeekData(selectedWeek);
+
+            // Filter out duplicate weeks from the data
+            const uniqueData = data.filter((entry, index, self) =>
+                index === self.findIndex((e) => e.week === entry.week)
+            );
+
+            setAllWeeks(sortedWeeks);
+            setMarkersData(uniqueData);
+            setCovidData(uniqueData);
+
+            localStorage.setItem(localStorageKey, JSON.stringify(uniqueData));
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const countryList = await getAllCountries();
+                setCountries(countryList);
+                if (countryList.length > 0) {
+                    setSelectedCountry(countryList[0]);
+                }
+            } catch (error) {
+                console.error('Error fetching countries:', error);
+            }
+        };
+
+        fetchCountries();
+    }, []);
+
+    const handleCountryChange = async (country) => {
+        if (country) {
+            setSelectedCountry(country);
+
+            try {
+                const countryMetrics = await getCountryData(country);
+                setCountryCovidData(countryMetrics); // Store country-specific data in the new state
+            } catch (error) {
+                console.error('Error fetching data for the country:', error);
+            }
+        }
+    };
+
+    const handleUpdateData = (updatedData) => {
+        setMarkersData((prevMarkersData) =>
+            prevMarkersData.map((marker) => (marker.id === updatedData.id ? updatedData : marker))
+        );
+
+        setCovidData((prevCovidData) =>
+            prevCovidData.map((entry) => (entry.id === updatedData.id ? updatedData : entry))
+        );
+
+        localStorage.setItem(localStorageKey, JSON.stringify(markersData));
+    };
+
+    const openLoginModal = () => {
+        setShowLogin(true);
+    };
+
+    const closeLoginModal = () => {
+        setShowLogin(false);
+    };
+
+    const openRegisterModal = () => {
+        setShowRegister(true);
+    };
+
+    const closeRegisterModal = () => {
+        setShowRegister(false);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,59 +153,50 @@ const Dashboard = () => {
         setSelectedMetric(metric);
     };
 
-    const handleLogin = async (credentials) => {
-        // Call your backend API for login
-        try {
-            // Simulate a successful login for now
-            setUser({ username: credentials.username });
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
-    };
-
-    const handleRegister = async (credentials) => {
-        // Call your backend API for registration
-        try {
-            // Simulate a successful registration and login for now
-            setUser({ username: credentials.username });
-        } catch (error) {
-            console.error('Registration failed:', error);
-        }
+    const handleLogin = (userData) => {
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
     };
 
     const handleLogout = () => {
-        // Handle logout logic, clear user data, etc.
         setUser(null);
+        localStorage.removeItem('user');
     };
 
     return (
-        <div>
-            {/* {user ? (
-      <div>
-        <h1>Welcome, {user.username}!</h1>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    ) : ( */}
+        <S.DashboardContainer>
             <div>
-                {/* <Login onLogin={handleLogin} />
-      <Register onRegister={handleRegister} /> */}
-            </div>
-            {/* )} */}
-            <h1>COVID-19 Dashboard</h1>
-            <MetricSelector selectedMetric={selectedMetric} onMetricChange={handleMetricChange} />
-            <WeekSelector weeks={allWeeks} selectedWeek={selectedWeek} onSelectWeek={handleWeekChange} />
-            {/* Add Subtitle component */}
-            <Subtitle
-                selectedWeek={selectedWeek}
-                totalCases={covidData.reduce((sum, entry) => sum + entry[selectedMetric], 0)}
-                totalTests={covidData.reduce((sum, entry) => sum + entry.testsDone, 0)}
-                selectedMetric={selectedMetric}
-            />
-            <Map data={covidData} selectedWeek={selectedWeek} selectedMetric={selectedMetric} />
-            <LineChart data={covidData} selectedMetric={selectedMetric} />
-        </div>
-    );
+                {user ? (
+                    <div>
+                        <h1>Welcome!</h1>
+                        <LogoutButton />
+                    </div>
+                ) : (
+                    <div>
+                        <S.Button onClick={openLoginModal}>Login</S.Button>
+                        <S.Button onClick={openRegisterModal}>Register</S.Button>
+                        {showLogin && <LoginPage onLogin={handleLogin} onClose={closeLoginModal} />}
+                        {showRegister && <RegisterPage onClose={closeRegisterModal} />}
+                    </div>
+                )}
+                {user && (
+                    <div>
+                        <h1>COVID-19 Dashboard</h1>
+                        <Outlet />
+                        <WeekSelector weeks={allWeeks} selectedWeek={selectedWeek} onSelectWeek={handleWeekChange} />
+                        <Subtitle selectedWeek={selectedWeek} data={covidData} />
 
+
+                        <Map data={covidData} selectedWeek={selectedWeek} selectedMetric={selectedMetric} onUpdateData={handleUpdateData} />
+                        <CountrySelector onSelectCountry={handleCountryChange} />
+                        <MetricSelector selectedMetric={selectedMetric} onMetricChange={handleMetricChange} />
+
+                        <CustomLineChart data={countryCovidData} selectedMetric={selectedMetric} />
+                    </div>
+                )}
+            </div>
+        </S.DashboardContainer>
+    );
 };
 
 export default Dashboard;

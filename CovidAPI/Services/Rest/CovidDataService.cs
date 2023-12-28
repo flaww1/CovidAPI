@@ -4,27 +4,68 @@ using System.Linq;
 using System.Threading.Tasks;
 using CovidAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace CovidAPI.Services.Rest
 {
+
+    /// <summary>
+    /// Service responsible for handling COVID-19 data operations, including fetching, updating, and deleting data.
+    /// </summary>
     public class CovidDataService : ICovidDataService
     {
         private readonly IGeolocationService _geolocationService;
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CovidDataService> _logger;
         private readonly GeolocationCache _geolocationCache;
+        private readonly IOptions<DbContextOptions<ApplicationDbContext>> _dbContextOptions;
 
-        public CovidDataService(ApplicationDbContext context, IGeolocationService geolocationService, ILogger<CovidDataService> logger, GeolocationCache geolocationCache)
+        public CovidDataService(ApplicationDbContext context, IGeolocationService geolocationService, ILogger<CovidDataService> logger, GeolocationCache geolocationCache, IOptions<DbContextOptions<ApplicationDbContext>> dbContextOptions)
         {
             _context = context;
             _geolocationService = geolocationService;
             _logger = logger;
             _geolocationCache = geolocationCache;
+            _dbContextOptions = dbContextOptions;
+        }
+
+        /// <summary>
+        /// Checks if data exists for a specific country and week.
+        /// </summary>
+        /// <param name="country">The country for which to check data.</param>
+        /// <param name="week">The week for which to check data.</param>
+        /// <returns>True if data exists; otherwise, false.</returns>       
+        public async Task<bool> DataExistsForCountryAndWeekAsync(string country, string week)
+        {
+            // Assuming you have a method in your repository to check if data exists
+            // You need to replace it with your actual implementation
+            var existingData = await GetDataByCountryAndWeekAsync(country, week);
+
+            // Check if data exists
+            return existingData != null;
         }
 
 
-        // Asynchronous methods with DTOs
+        // <summary>
+        /// Retrieves COVID-19 data for a specific country and week.
+        /// </summary>
+        /// <param name="country">The country for which to retrieve data.</param>
+        /// <param name="week">The week for which to retrieve data.</param>
+        /// <returns>The COVID-19 data for the specified country and week.</returns>
+        public async Task<CovidData> GetDataByCountryAndWeekAsync(string country, string week)
+        {
+            // Assuming you have a DbContext named _context and a DbSet for CovidData
+            // Replace this with your actual DbContext and DbSet
+            return await _context.CovidData
+                .FirstOrDefaultAsync(c => c.Country == country && c.Week == week);
+        }
+
+        /// <summary>
+        /// Retrieves all COVID-19 data as DTOs, optionally including geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">Specifies whether to include geolocation information.</param>
+        /// <returns>A list of COVID-19 data DTOs.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetAllDataAsync(bool includeGeolocation)
         {
             try
@@ -46,8 +87,12 @@ namespace CovidAPI.Services.Rest
                 return Enumerable.Empty<CovidDataDTO>();
             }
         }
-
-
+        /// <summary>
+        /// Retrieves COVID-19 data for a specific ID.
+        /// </summary>
+        /// <param name="id">The ID of the COVID-19 data to retrieve.</param>
+        /// <param name="includeGeolocation">Specifies whether to include geolocation information.</param>
+        /// <returns>The COVID-19 data DTO for the specified ID.</returns>
         public async Task<CovidDataDTO> GetDataByIdAsync(int id, bool includeGeolocation)
         {
             var data = await _context.CovidData.FindAsync(id);
@@ -60,8 +105,12 @@ namespace CovidAPI.Services.Rest
 
             return dataDTO;
         }
-
-
+        /// <summary>
+        /// Retrieves COVID-19 data for a specific year, optionally including geolocation information.
+        /// </summary>
+        /// <param name="year">The year for which to retrieve data.</param>
+        /// <param name="includeGeolocation">Specifies whether to include geolocation information.</param>
+        /// <returns>A list of COVID-19 data DTOs for the specified year.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetDataByYearAsync(int year, bool includeGeolocation)
         {
             var data = await _context.CovidData
@@ -77,6 +126,12 @@ namespace CovidAPI.Services.Rest
             return data;
         }
 
+        /// <summary>
+        /// Retrieves COVID-19 data for a specific week, optionally including geolocation information.
+        /// </summary>
+        /// <param name="week">The week for which to retrieve data.</param>
+        /// <param name="includeGeolocation">Specifies whether to include geolocation information.</param>
+        /// <returns>A list of COVID-19 data DTOs for the specified week.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetDataByWeekAsync(string week, bool includeGeolocation)
         {
             try
@@ -104,13 +159,20 @@ namespace CovidAPI.Services.Rest
 
 
 
-
+        /// <summary>
+        /// Adds COVID-19 data to the database.
+        /// </summary>
+        /// <param name="covidDataDTO">The COVID-19 data DTO to add.</param>
         public async Task AddDataAsync(CovidDataDTO covidDataDTO)
         {
             _context.CovidData.Add(MapToEntity(covidDataDTO));
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Updates existing COVID-19 data in the database.
+        /// </summary>
+        /// <param name="covidDataDTO">The COVID-19 data DTO with updated information.</param>
         public async Task UpdateDataAsync(CovidDataDTO covidDataDTO)
         {
             var existingData = await _context.CovidData.FindAsync(covidDataDTO.Id);
@@ -125,6 +187,10 @@ namespace CovidAPI.Services.Rest
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Deletes COVID-19 data from the database by ID.
+        /// </summary>
+        /// <param name="id">The ID of the COVID-19 data to delete.</param>
         public async Task DeleteDataAsync(int id)
         {
             var covidData = await _context.CovidData.FindAsync(id);
@@ -136,6 +202,13 @@ namespace CovidAPI.Services.Rest
         }
 
 
+
+        /// <summary>
+        /// Retrieves COVID-19 data for a specific country, optionally including geolocation information.
+        /// </summary>
+        /// <param name="country">The country for which to retrieve data.</param>
+        /// <param name="includeGeolocation">Specifies whether to include geolocation information.</param>
+        /// <returns>A list of COVID-19 data DTOs for the specified country.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetDataByCountryAsync(string country, bool includeGeolocation)
         {
             try
@@ -158,7 +231,11 @@ namespace CovidAPI.Services.Rest
                 return null; // Or return an empty list based on your error-handling strategy
             }
         }
-
+        /// <summary>
+        /// Updates geolocation information in the provided collection of CovidDataDTO objects based on the country.
+        /// </summary>
+        /// <param name="data">The collection of CovidDataDTO objects.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         private async Task UpdateGeolocationInDataAsync(IEnumerable<CovidDataDTO> data)
         {
             var uniqueCountries = data.Select(d => d.Country).Distinct().ToList();
@@ -185,6 +262,13 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Updates geolocation information in the provided CovidDataDTO objects based on the given GeolocationApiResponse.
+        /// </summary>
+        /// <param name="data">The collection of CovidDataDTO objects to be updated with geolocation information.</param>
+        /// <param name="country">The country for which geolocation information is being updated.</param>
+        /// <param name="geolocationResponse">The GeolocationApiResponse containing the geolocation information.</param>
+        /// <returns>Task representing the asynchronous operation.</returns>
         private async Task UpdateGeolocationAsync(IEnumerable<CovidDataDTO> data, string country, GeolocationApiResponse geolocationResponse)
         {
             foreach (var covidData in data.Where(d => d.Country == country))
@@ -223,7 +307,12 @@ namespace CovidAPI.Services.Rest
         }
 
 
-
+        /// <summary>
+        /// Maps a CovidDataDTO object to a CovidData entity. If an existingData object is provided, it will be updated; otherwise, a new CovidData entity will be created.
+        /// </summary>
+        /// <param name="dataDTO">The CovidDataDTO object to be mapped to a CovidData entity.</param>
+        /// <param name="existingData">The existing CovidData entity to be updated. If null, a new entity will be created.</param>
+        /// <returns>The mapped CovidData entity.</returns>
         private CovidData MapToEntity(CovidDataDTO dataDTO, CovidData existingData = null)
         {
             if (dataDTO == null)
@@ -252,6 +341,11 @@ namespace CovidAPI.Services.Rest
             return existingData;
         }
 
+        /// <summary>
+        /// Maps a CovidData entity to a CovidDataDTO object.
+        /// </summary>
+        /// <param name="data">The CovidData entity to be mapped to a CovidDataDTO object.</param>
+        /// <returns>The mapped CovidDataDTO object.</returns>
         private static CovidDataDTO MapToDTO(CovidData data)
         {
             if (data == null)
@@ -278,7 +372,10 @@ namespace CovidAPI.Services.Rest
             };
         }
 
-
+        /// <summary>
+        /// Retrieves a list of unique weeks available in the CovidData records.
+        /// </summary>
+        /// <returns>An asynchronous task that returns a collection of unique week values.</returns>
         public async Task<IEnumerable<string>> GetAllWeeksAsync()
         {
             try
@@ -297,6 +394,12 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Fetches geolocation data for the unique countries in the provided CovidDataDTO collection,
+        /// updates the geolocation information in the data, and caches the responses.
+        /// </summary>
+        /// <param name="data">The collection of CovidDataDTO objects for which to fetch geolocation data.</param>
+        /// <returns>An asynchronous task representing the geolocation data fetching and updating process.</returns>
         private async Task FetchAndCacheGeolocationDataAsync(IEnumerable<CovidDataDTO> data)
         {
             // Fetch geolocation information for the unique countries
@@ -324,7 +427,11 @@ namespace CovidAPI.Services.Rest
             throw new ApplicationException(message);
         }
 
-
+        /// <summary>
+        /// Retrieves total cases data by grouping CovidData records by country and calculating the sum of new cases for each country.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing total cases data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetTotalCasesAsync(bool includeGeolocation)
         {
             try
@@ -353,6 +460,11 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves new cases data by grouping CovidData records by country and week, calculating the sum of new cases for each country and week.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing new cases data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetNewCasesAsync(bool includeGeolocation)
         {
             try
@@ -381,10 +493,14 @@ namespace CovidAPI.Services.Rest
                 return Enumerable.Empty<CovidDataDTO>();
             }
         }
-      
 
-       
 
+
+        /// <summary>
+        /// Retrieves population data, including the country and population, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing population data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetPopulationDataAsync(bool includeGeolocation)
         {
             try
@@ -412,6 +528,12 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves comparison data for specified countries, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="countries">A list of country names for which to fetch comparison data.</param>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing comparison data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetComparisonsAsync(List<string> countries, bool includeGeolocation)
         {
             try
@@ -435,6 +557,11 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves total tests data, including the country and total tests for the specific year, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing total tests data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetTotalTestsAsync(bool includeGeolocation)
         {
             try
@@ -463,6 +590,11 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves geolocation data, including the country and geolocation information, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing geolocation data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetGeolocationAsync(bool includeGeolocation)
         {
             try
@@ -489,6 +621,11 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves testing source data, including the country, testing data source, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing testing source data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetTestingSourceAsync(bool includeGeolocation)
         {
             try
@@ -516,6 +653,10 @@ namespace CovidAPI.Services.Rest
             }
         }
 
+        /// <summary>
+        /// Retrieves testing rate information.
+        /// </summary>
+        /// <returns>An asynchronous task that returns a string representing testing rate information.</returns>
         public async Task<string> GetTestingRateInfoAsync()
         {
             try
@@ -530,6 +671,12 @@ namespace CovidAPI.Services.Rest
                 return null;
             }
         }
+
+        /// <summary>
+        /// Retrieves tests done data, including the country, week, tests done, population, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing tests done data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetTestsDoneAsync(bool includeGeolocation)
         {
             var testsDoneData = await _context.CovidData
@@ -552,6 +699,11 @@ namespace CovidAPI.Services.Rest
             return testsDoneData;
         }
 
+        /// <summary>
+        /// Retrieves positivity rate data, including the country, week, positivity rate, population, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing positivity rate data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetPositivityRateAsync(bool includeGeolocation)
         {
             var positivityRateData = await _context.CovidData
@@ -574,6 +726,11 @@ namespace CovidAPI.Services.Rest
             return positivityRateData;
         }
 
+        /// <summary>
+        /// Retrieves testing rate data, including the country, week, testing rate, population, with an option to include geolocation information.
+        /// </summary>
+        /// <param name="includeGeolocation">A flag indicating whether to include geolocation data in the results.</param>
+        /// <returns>An asynchronous task that returns a collection of CovidDataDTO objects representing testing rate data.</returns>
         public async Task<IEnumerable<CovidDataDTO>> GetTestingRateAsync(bool includeGeolocation)
         {
             var testingRateData = await _context.CovidData
@@ -596,7 +753,29 @@ namespace CovidAPI.Services.Rest
             return testingRateData;
         }
 
-     
+        /// <summary>
+        /// Retrieves a list of all countries.
+        /// </summary>
+        /// <returns>An asynchronous task that returns a collection of strings representing all countries.</returns>
+        public async Task<IEnumerable<string>> GetAllCountriesAsync()
+        {
+            try
+            {
+                var countries = await _context.CovidData
+                    .Select(data => data.Country)
+                    .Distinct()
+                    .ToListAsync();
+
+                return countries;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                throw new ApplicationException($"An error occurred while fetching countries: {ex.Message}");
+            }
+        }
+
+
 
 
     }
