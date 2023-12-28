@@ -1,5 +1,6 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Text;
 using CovidAPI.Models;
 using CovidAPI.Services;
@@ -66,22 +67,24 @@ namespace CovidAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1", Description = "Covid-19 Testing Data API with Geolocation Integration",
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CovidAPI",
+                    Description = "Covid-19 Testing Data API with Geolocation Integration",
                     Contact = new OpenApiContact
                     {
                         Name = "Flávio Pereira",
                         Email = "a21110@alunos.ipca.pt",
                     },
                 });
-                var appEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                var xmlFile = $"{AppDomain.CurrentDomain.FriendlyName}.xml";
-                var xmlPath = Path.Combine(appEnvironment == Environments.Development ? AppContext.BaseDirectory : "app", xmlFile);
 
-                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
-
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
-       
+
             services.AddScoped<IGeolocationService, GeolocationService>();
             services.AddSingleton<GeolocationCache>();
             services.AddStackExchangeRedisCache(options =>
@@ -128,12 +131,20 @@ namespace CovidAPI
         /// <param name="env">The hosting environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+        
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CovidAPI v1"));
-            }
+                app.UseSwagger(c =>
+                {
+                    c.SerializeAsV2 = true;
+                });
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Covid API V1");
+                    c.RoutePrefix = "swagger";  // Set the root path for Swagger UI
+                });
+
+            
 
             app.UseHttpsRedirection();
             app.UseRouting();
