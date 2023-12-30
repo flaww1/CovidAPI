@@ -23,7 +23,7 @@ Adding to the Covid Services, integration with the OpenCage Geocoding API improv
 To prevent too many API calls a Cache was also implemented.
 
 
-### 3. Dashboard 
+### 4. Dashboard 
 
 A Dashboard serves as the central hub for exploring the collected data. This interface offers a visual representation of key metrics and trends, providing users with an efficient and accessible means of interacting with the information.
 
