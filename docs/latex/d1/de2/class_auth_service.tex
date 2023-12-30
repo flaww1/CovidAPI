@@ -1,0 +1,131 @@
+\doxysection{Auth\+Service Class Reference}
+\label{class_auth_service}\index{AuthService@{AuthService}}
+
+
+Service responsible for user authentication and JWT token generation.  
+
+
+
+
+Inheritance diagram for Auth\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{d7/db1/class_auth_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Auth\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{d2/db4/class_auth_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Auth\+Service} (\textbf{ IUser\+Service} user\+Service, IConfiguration configuration, \textbf{ IPassword\+Service} password\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxyref{Auth\+Service}{p.}{d1/de2/class_auth_service} class. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \textbf{ Authenticate\+Async} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Authenticates a user based on the provided username and password. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \textbf{ Generate\+Token\+Async} (\textbf{ User} user)
+\begin{DoxyCompactList}\small\item\em Generates a JWT token for the specified user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service responsible for user authentication and JWT token generation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_auth_service_a1a0f56f4dad453a81defd566246e6a55} 
+\index{AuthService@{AuthService}!AuthService@{AuthService}}
+\index{AuthService@{AuthService}!AuthService@{AuthService}}
+\doxysubsubsection{AuthService()}
+{\footnotesize\ttfamily Auth\+Service.\+Auth\+Service (\begin{DoxyParamCaption}\item[{\textbf{ IUser\+Service}}]{user\+Service,  }\item[{IConfiguration}]{configuration,  }\item[{\textbf{ IPassword\+Service}}]{password\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxyref{Auth\+Service}{p.}{d1/de2/class_auth_service} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Service} & The user service.\\
+\hline
+{\em configuration} & The configuration.\\
+\hline
+{\em password\+Service} & The password service.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_auth_service_a685f216879dc2790016b9016de632e20} 
+\index{AuthService@{AuthService}!AuthenticateAsync@{AuthenticateAsync}}
+\index{AuthenticateAsync@{AuthenticateAsync}!AuthService@{AuthService}}
+\doxysubsubsection{AuthenticateAsync()}
+{\footnotesize\ttfamily async Task$<$ string $>$ Auth\+Service.\+Authenticate\+Async (\begin{DoxyParamCaption}\item[{string}]{username,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Authenticates a user based on the provided username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user.\\
+\hline
+{\em password} & The password of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The JWT token if authentication is successful; otherwise, null.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IAuth\+Service} \doxyref{}{p.}{d1/d3b/interface_i_auth_service_a3425f1dc9282ebed33db663789eaa3c9}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/de2/class_auth_service_a685f216879dc2790016b9016de632e20_cgraph}
+\end{center}
+\end{figure}
+\label{class_auth_service_ac2572b1e248c4bc17f27347d61765fbf} 
+\index{AuthService@{AuthService}!GenerateTokenAsync@{GenerateTokenAsync}}
+\index{GenerateTokenAsync@{GenerateTokenAsync}!AuthService@{AuthService}}
+\doxysubsubsection{GenerateTokenAsync()}
+{\footnotesize\ttfamily async Task$<$ string $>$ Auth\+Service.\+Generate\+Token\+Async (\begin{DoxyParamCaption}\item[{\textbf{ User}}]{user }\end{DoxyParamCaption})}
+
+
+
+Generates a JWT token for the specified user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user for whom the token should be generated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The generated JWT token.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IAuth\+Service} \doxyref{}{p.}{d1/d3b/interface_i_auth_service_ad4803f5457417d5ac13ff8dafe9a9a7f}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/de2/class_auth_service_ac2572b1e248c4bc17f27347d61765fbf_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ Auth\+Service.\+cs}\end{DoxyCompactItemize}

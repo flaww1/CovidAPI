@@ -1,0 +1,259 @@
+\doxysection{Covid\+API.\+Models.\+Covid\+Data\+DTO Class Reference}
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o}\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+
+
+Represents a Data Transfer Object (DTO) for presenting Covid-\/19 data.  
+
+
+
+
+Collaboration diagram for Covid\+API.\+Models.\+Covid\+Data\+DTO\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{d2/dd2/class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ Id}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the unique identifier for the Covid-\/19 data. \end{DoxyCompactList}\item 
+string \textbf{ Country}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the name of the country where the data belongs. \end{DoxyCompactList}\item 
+string \textbf{ Country\+Code}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the country code for the data. \end{DoxyCompactList}\item 
+int \textbf{ Year}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the year for which the data is recorded. \end{DoxyCompactList}\item 
+string \textbf{ Week}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the week within the year for which the data is recorded. \end{DoxyCompactList}\item 
+string \textbf{ Region}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the region where the data is recorded. \end{DoxyCompactList}\item 
+string \textbf{ Region\+Name}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the name of the region where the data is recorded. \end{DoxyCompactList}\item 
+int \textbf{ New\+Cases}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the number of new cases reported. \end{DoxyCompactList}\item 
+int \textbf{ Tests\+Done}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the number of tests conducted. \end{DoxyCompactList}\item 
+int \textbf{ Population}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the population of the region. \end{DoxyCompactList}\item 
+double \textbf{ Positivity\+Rate}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the positivity rate of the tests conducted. \end{DoxyCompactList}\item 
+double \textbf{ Testing\+Rate}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the rate of testing. \end{DoxyCompactList}\item 
+string \textbf{ Testing\+Data\+Source}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the source of testing data. \end{DoxyCompactList}\item 
+int? \textbf{ Total\+Cases\+Year}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the total cases reported in a specific year. \end{DoxyCompactList}\item 
+int? \textbf{ Total\+Tests\+Year}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the total tests conducted in a specific year. \end{DoxyCompactList}\item 
+double? \textbf{ Per\+Capita\+Cases}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the per capita cases (cases per population) for the data. \end{DoxyCompactList}\item 
+double? \textbf{ Per\+Capita\+Tests}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the per capita tests (tests per population) for the data. \end{DoxyCompactList}\item 
+\textbf{ Geolocation\+Components}? \textbf{ Geolocation}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the geolocation information for the data. \end{DoxyCompactList}\item 
+\textbf{ Geometry}? \textbf{ Geometry}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the geometric information for the data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a Data Transfer Object (DTO) for presenting Covid-\/19 data. 
+
+\doxysubsection{Property Documentation}
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a1b079d8ee1b96dc56a051bc0600ebf18} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Country@{Country}}
+\index{Country@{Country}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Country}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Country\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the name of the country where the data belongs. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_aec4a6fc346313addab40698b183a553b} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!CountryCode@{CountryCode}}
+\index{CountryCode@{CountryCode}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{CountryCode}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Country\+Code\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the country code for the data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a2173b8d3eba13e2cab88a6eebd9a2962} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Geolocation@{Geolocation}}
+\index{Geolocation@{Geolocation}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Geolocation}
+{\footnotesize\ttfamily \textbf{ Geolocation\+Components}? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Geolocation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the geolocation information for the data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_ab13cedcd3f2288502833fbf2863c41f0} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Geometry@{Geometry}}
+\index{Geometry@{Geometry}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Geometry}
+{\footnotesize\ttfamily \textbf{ Geometry}? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Geometry\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the geometric information for the data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a6d7e71ab2d93bd54c9754625b0409a47} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Id@{Id}}
+\index{Id@{Id}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Id}
+{\footnotesize\ttfamily int Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the unique identifier for the Covid-\/19 data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a5c1e806352c58edaf8568f859478b630} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!NewCases@{NewCases}}
+\index{NewCases@{NewCases}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{NewCases}
+{\footnotesize\ttfamily int Covid\+API.\+Models.\+Covid\+Data\+DTO.\+New\+Cases\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the number of new cases reported. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_abc855aa1c2641e811f9757982a781fc7} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!PerCapitaCases@{PerCapitaCases}}
+\index{PerCapitaCases@{PerCapitaCases}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{PerCapitaCases}
+{\footnotesize\ttfamily double? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Per\+Capita\+Cases\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the per capita cases (cases per population) for the data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_ad53a8acd68c0b14181e802326d6b3bd4} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!PerCapitaTests@{PerCapitaTests}}
+\index{PerCapitaTests@{PerCapitaTests}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{PerCapitaTests}
+{\footnotesize\ttfamily double? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Per\+Capita\+Tests\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the per capita tests (tests per population) for the data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a9d84461efeab6e07628e5f844597ca66} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Population@{Population}}
+\index{Population@{Population}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Population}
+{\footnotesize\ttfamily int Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Population\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the population of the region. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a54140a751f3f779957189dc5c5dca382} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!PositivityRate@{PositivityRate}}
+\index{PositivityRate@{PositivityRate}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{PositivityRate}
+{\footnotesize\ttfamily double Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Positivity\+Rate\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the positivity rate of the tests conducted. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a4fbc45a44703849f3e97f3e4905f205b} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Region@{Region}}
+\index{Region@{Region}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Region}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Region\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the region where the data is recorded. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a6b8aef6cc0fdd122c2082ad8b23805d8} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!RegionName@{RegionName}}
+\index{RegionName@{RegionName}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{RegionName}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Region\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the name of the region where the data is recorded. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a4f1bb92f9fd66cf39e9552585723bdb0} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!TestingDataSource@{TestingDataSource}}
+\index{TestingDataSource@{TestingDataSource}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{TestingDataSource}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Testing\+Data\+Source\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the source of testing data. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_aa2ae08cd4dce0becefeddb5abc7cfb8b} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!TestingRate@{TestingRate}}
+\index{TestingRate@{TestingRate}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{TestingRate}
+{\footnotesize\ttfamily double Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Testing\+Rate\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the rate of testing. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a32fafc827d85d2e307f56797c503e3cb} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!TestsDone@{TestsDone}}
+\index{TestsDone@{TestsDone}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{TestsDone}
+{\footnotesize\ttfamily int Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Tests\+Done\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the number of tests conducted. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a03e5483a31308a4582c0b296e06bebe2} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!TotalCasesYear@{TotalCasesYear}}
+\index{TotalCasesYear@{TotalCasesYear}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{TotalCasesYear}
+{\footnotesize\ttfamily int? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Total\+Cases\+Year\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the total cases reported in a specific year. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_aaff260547d3700f33fc5f619afe8b354} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!TotalTestsYear@{TotalTestsYear}}
+\index{TotalTestsYear@{TotalTestsYear}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{TotalTestsYear}
+{\footnotesize\ttfamily int? Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Total\+Tests\+Year\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the total tests conducted in a specific year. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a14bf4967a1d523de1098f3f51c522a90} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Week@{Week}}
+\index{Week@{Week}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Week}
+{\footnotesize\ttfamily string Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Week\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the week within the year for which the data is recorded. 
+
+\label{class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o_a3e28f44dad2fb7a3efc93fdb322950a5} 
+\index{CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}!Year@{Year}}
+\index{Year@{Year}!CovidAPI.Models.CovidDataDTO@{CovidAPI.Models.CovidDataDTO}}
+\doxysubsubsection{Year}
+{\footnotesize\ttfamily int Covid\+API.\+Models.\+Covid\+Data\+DTO.\+Year\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the year for which the data is recorded. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Models/\textbf{ Covid\+Data\+DTO.\+cs}\end{DoxyCompactItemize}

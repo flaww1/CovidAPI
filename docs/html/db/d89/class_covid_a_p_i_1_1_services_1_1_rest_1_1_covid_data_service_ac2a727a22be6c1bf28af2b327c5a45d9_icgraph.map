@@ -1,0 +1,5 @@
+<map id="CovidAPI.Services.Rest.CovidDataService.GetDataByCountryAndWeekAsync" name="CovidAPI.Services.Rest.CovidDataService.GetDataByCountryAndWeekAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="276,5,502,64"/>
+<area shape="rect" id="Node000002" href="$db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service.html#a113917807157020b5509aed3142ec207" title="Checks if data exists for a specific country and week." alt="" coords="5,5,228,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,37,228,37,228,32,260,32"/>
+</map>

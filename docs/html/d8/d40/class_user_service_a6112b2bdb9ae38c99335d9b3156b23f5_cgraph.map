@@ -1,0 +1,5 @@
+<map id="UserService.AuthenticateAsync" name="UserService.AuthenticateAsync">
+<area shape="rect" id="Node000001" title="Authenticates a user based on the provided username and password." alt="" coords="5,5,173,48"/>
+<area shape="rect" id="Node000002" href="$d8/d40/class_user_service.html#a2af721951988b54c22ba2839cb39b69e" title="Gets a user by their username." alt="" coords="221,5,438,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,24,205,24,205,29,173,29"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="UserService" name="UserService">
+<area shape="rect" id="Node000001" title="Service for user&#45;related operations, including authentication and user retrieval." alt="" coords="5,187,197,341"/>
+<area shape="rect" id="Node000002" href="$dd/d85/interface_i_user_service.html" title="Represents a service for managing user&#45;related operations." alt="" coords="5,5,197,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,154,104,187,99,187,99,154"/>
+</map>

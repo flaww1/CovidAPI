@@ -1,0 +1,5 @@
+<map id="AuthService" name="AuthService">
+<area shape="rect" id="Node000001" title="Service responsible for user authentication and JWT token generation." alt="" coords="5,144,161,256"/>
+<area shape="rect" id="Node000002" href="$d1/d3b/interface_i_auth_service.html" title="Defines authentication service methods." alt="" coords="5,5,161,96"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,111,86,144,81,144,81,111"/>
+</map>

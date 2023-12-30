@@ -1,0 +1,5 @@
+<map id="CovidDataController" name="CovidDataController">
+<area shape="rect" id="Node000001" title="Controller for COVID&#45;19 data&#45;related operations." alt="" coords="5,123,149,427"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="29,5,126,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,90,80,123,75,123,75,90"/>
+</map>

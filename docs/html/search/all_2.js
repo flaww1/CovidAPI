@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['components_0',['Components',['../d5/dfc/class_geolocation_result.html#ac33f0e53d6602ddfb5172eabf438a729',1,'GeolocationResult']]],
+  ['configuration_1',['Configuration',['../db/d8e/class_covid_a_p_i_1_1_startup.html#a95979e01c5c81e7594ff7b4eee23bb39',1,'CovidAPI::Startup']]],
+  ['configure_2',['Configure',['../db/d8e/class_covid_a_p_i_1_1_startup.html#a54c3e5c2659569d33b84216a7989c79e',1,'CovidAPI::Startup']]],
+  ['configurelogging_3',['ConfigureLogging',['../db/d8e/class_covid_a_p_i_1_1_startup.html#a7266747e3460b5dd5ff224c1d7f01d97',1,'CovidAPI::Startup']]],
+  ['configureservices_4',['ConfigureServices',['../db/d8e/class_covid_a_p_i_1_1_startup.html#a011e86638c4b3b4674ad16b8775b99a1',1,'CovidAPI::Startup']]],
+  ['country_5',['country',['../d5/d96/class_covid_a_p_i_1_1_models_1_1_covid_data.html#ac1e7d83fbba3ae84234d151334e46cc7',1,'CovidAPI.Models.CovidData.Country'],['../d8/dd7/class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o.html#a1b079d8ee1b96dc56a051bc0600ebf18',1,'CovidAPI.Models.CovidDataDTO.Country'],['../df/dc6/class_geolocation_components.html#a574f5dbef9976b7718b5d4d34b6be5d1',1,'GeolocationComponents.Country']]],
+  ['countrycode_6',['countrycode',['../d5/d96/class_covid_a_p_i_1_1_models_1_1_covid_data.html#ab5c16726e263cf1ac6f6ce9c8b9c8bc4',1,'CovidAPI.Models.CovidData.CountryCode'],['../d8/dd7/class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o.html#aec4a6fc346313addab40698b183a553b',1,'CovidAPI.Models.CovidDataDTO.CountryCode']]],
+  ['covidapi_7',['CovidAPI',['../dd/d38/namespace_covid_a_p_i.html',1,'']]],
+  ['covidapi_2eassemblyinfo_2ecs_8',['covidapi.assemblyinfo.cs',['../dc/dc9/_debug_2net6_80_2_covid_a_p_i_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../d2/dc7/_release_2net6_80_2_covid_a_p_i_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['covidapi_2eglobalusings_2eg_2ecs_9',['covidapi.globalusings.g.cs',['../d7/dd8/_debug_2net6_80_2_covid_a_p_i_8_global_usings_8g_8cs.html',1,'(Global Namespace)'],['../d0/d82/_release_2net6_80_2_covid_a_p_i_8_global_usings_8g_8cs.html',1,'(Global Namespace)']]],
+  ['covidapi_2emvcapplicationpartsassemblyinfo_2ecs_10',['covidapi.mvcapplicationpartsassemblyinfo.cs',['../d5/d15/_debug_2net6_80_2_covid_a_p_i_8_mvc_application_parts_assembly_info_8cs.html',1,'(Global Namespace)'],['../de/da0/_release_2net6_80_2_covid_a_p_i_8_mvc_application_parts_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['covidapi_3a_3amodels_11',['Models',['../d4/de7/namespace_covid_a_p_i_1_1_models.html',1,'CovidAPI']]],
+  ['covidapi_3a_3aservices_12',['Services',['../de/d60/namespace_covid_a_p_i_1_1_services.html',1,'CovidAPI']]],
+  ['covidapi_3a_3aservices_3a_3arest_13',['Rest',['../d9/d25/namespace_covid_a_p_i_1_1_services_1_1_rest.html',1,'CovidAPI::Services']]],
+  ['coviddata_14',['coviddata',['../d5/d96/class_covid_a_p_i_1_1_models_1_1_covid_data.html',1,'CovidAPI.Models.CovidData'],['../d5/d6c/class_application_db_context.html#a292684fb2d4d4081954b62815310fa02',1,'ApplicationDbContext.CovidData']]],
+  ['coviddata_2ecs_15',['CovidData.cs',['../dc/d07/_covid_data_8cs.html',1,'']]],
+  ['coviddatacontroller_16',['coviddatacontroller',['../d7/dcf/class_covid_data_controller.html',1,'CovidDataController'],['../d7/dcf/class_covid_data_controller.html#a6126f54d10d49e3a48be9f6182759123',1,'CovidDataController.CovidDataController()']]],
+  ['coviddatacontroller_2ecs_17',['CovidDataController.cs',['../d0/d17/_covid_data_controller_8cs.html',1,'']]],
+  ['coviddatadto_18',['CovidDataDTO',['../d8/dd7/class_covid_a_p_i_1_1_models_1_1_covid_data_d_t_o.html',1,'CovidAPI::Models']]],
+  ['coviddatadto_2ecs_19',['CovidDataDTO.cs',['../df/d09/_covid_data_d_t_o_8cs.html',1,'']]],
+  ['coviddataservice_20',['coviddataservice',['../db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service.html',1,'CovidAPI.Services.Rest.CovidDataService'],['../db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service.html#ab16f7a4c708ab834a7251b5ac11e5ea3',1,'CovidAPI.Services.Rest.CovidDataService.CovidDataService()']]],
+  ['coviddataservice_2ecs_21',['CovidDataService.cs',['../d5/d13/_covid_data_service_8cs.html',1,'']]],
+  ['createhostbuilder_22',['CreateHostBuilder',['../d3/d8a/class_program.html#aee8a9fe97f246861a8d4153906e8b0b1',1,'Program']]],
+  ['createuserasync_23',['createuserasync',['../dd/d85/interface_i_user_service.html#adfc9bbb686a85c9e5a83178e048313d7',1,'IUserService.CreateUserAsync()'],['../d8/d40/class_user_service.html#a3adb982646347b6ba52703410838997b',1,'UserService.CreateUserAsync()']]]
+];

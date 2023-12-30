@@ -1,0 +1,291 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Namespace Index}{1}{}%
+\contentsline {section}{\numberline {1.1}Package List}{1}{}%
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{}%
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{}%
+\contentsline {chapter}{\numberline {3}Class Index}{5}{}%
+\contentsline {section}{\numberline {3.1}Class List}{5}{}%
+\contentsline {chapter}{\numberline {4}File Index}{7}{}%
+\contentsline {section}{\numberline {4.1}File List}{7}{}%
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{}%
+\contentsline {section}{\numberline {5.1}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API Namespace Reference}{9}{}%
+\contentsline {section}{\numberline {5.2}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models Namespace Reference}{9}{}%
+\contentsline {section}{\numberline {5.3}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Services Namespace Reference}{10}{}%
+\contentsline {section}{\numberline {5.4}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Services.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest Namespace Reference}{10}{}%
+\contentsline {chapter}{\numberline {6}Class Documentation}{11}{}%
+\contentsline {section}{\numberline {6.1}Application\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Db\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Context Class Reference}{11}{}%
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{12}{}%
+\contentsline {subsection}{\numberline {6.1.2}Constructor \& Destructor Documentation}{12}{}%
+\contentsline {subsubsection}{\numberline {6.1.2.1}ApplicationDbContext()}{12}{}%
+\contentsline {subsection}{\numberline {6.1.3}Member Function Documentation}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.3.1}OnModelCreating()}{13}{}%
+\contentsline {subsection}{\numberline {6.1.4}Property Documentation}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.4.1}CovidData}{13}{}%
+\contentsline {subsubsection}{\numberline {6.1.4.2}Users}{13}{}%
+\contentsline {section}{\numberline {6.2}Auth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{13}{}%
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{15}{}%
+\contentsline {subsection}{\numberline {6.2.2}Constructor \& Destructor Documentation}{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}AuthController()}{15}{}%
+\contentsline {subsection}{\numberline {6.2.3}Member Function Documentation}{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.3.1}Login()}{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.3.2}Logout()}{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.3.3}Register()}{16}{}%
+\contentsline {section}{\numberline {6.3}Auth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{16}{}%
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{17}{}%
+\contentsline {subsection}{\numberline {6.3.2}Constructor \& Destructor Documentation}{17}{}%
+\contentsline {subsubsection}{\numberline {6.3.2.1}AuthService()}{17}{}%
+\contentsline {subsection}{\numberline {6.3.3}Member Function Documentation}{18}{}%
+\contentsline {subsubsection}{\numberline {6.3.3.1}AuthenticateAsync()}{18}{}%
+\contentsline {subsubsection}{\numberline {6.3.3.2}GenerateTokenAsync()}{18}{}%
+\contentsline {section}{\numberline {6.4}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data Class Reference}{19}{}%
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{21}{}%
+\contentsline {subsection}{\numberline {6.4.2}Property Documentation}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.1}Country}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.2}CountryCode}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.3}Id}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.4}NewCases}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.5}Population}{21}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.6}PositivityRate}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.7}Region}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.8}RegionName}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.9}TestingDataSource}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.10}TestingRate}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.11}TestsDone}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.12}Week}{22}{}%
+\contentsline {subsubsection}{\numberline {6.4.2.13}Year}{23}{}%
+\contentsline {section}{\numberline {6.5}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{23}{}%
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{25}{}%
+\contentsline {subsection}{\numberline {6.5.2}Constructor \& Destructor Documentation}{25}{}%
+\contentsline {subsubsection}{\numberline {6.5.2.1}CovidDataController()}{25}{}%
+\contentsline {subsection}{\numberline {6.5.3}Member Function Documentation}{25}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.1}AddData()}{25}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.2}DeleteData()}{26}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.3}GetAllCountries()}{26}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.4}GetAllDataAsync()}{26}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.5}GetAllWeeks()}{27}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.6}GetDataByCountry()}{27}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.7}GetDataById()}{27}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.8}GetDataByWeek()}{28}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.9}GetDataByYear()}{28}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.10}GetTotalCases()}{28}{}%
+\contentsline {subsubsection}{\numberline {6.5.3.11}UpdateData()}{28}{}%
+\contentsline {section}{\numberline {6.6}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO Class Reference}{29}{}%
+\contentsline {subsection}{\numberline {6.6.1}Detailed Description}{30}{}%
+\contentsline {subsection}{\numberline {6.6.2}Property Documentation}{30}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.1}Country}{30}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.2}CountryCode}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.3}Geolocation}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.4}Geometry}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.5}Id}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.6}NewCases}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.7}PerCapitaCases}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.8}PerCapitaTests}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.9}Population}{31}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.10}PositivityRate}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.11}Region}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.12}RegionName}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.13}TestingDataSource}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.14}TestingRate}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.15}TestsDone}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.16}TotalCasesYear}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.17}TotalTestsYear}{32}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.18}Week}{33}{}%
+\contentsline {subsubsection}{\numberline {6.6.2.19}Year}{33}{}%
+\contentsline {section}{\numberline {6.7}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Services.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{33}{}%
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{37}{}%
+\contentsline {subsection}{\numberline {6.7.2}Constructor \& Destructor Documentation}{37}{}%
+\contentsline {subsubsection}{\numberline {6.7.2.1}CovidDataService()}{37}{}%
+\contentsline {subsection}{\numberline {6.7.3}Member Function Documentation}{37}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.1}AddDataAsync()}{37}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.2}DataExistsForCountryAndWeekAsync()}{37}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.3}DeleteDataAsync()}{38}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.4}GetAllCountriesAsync()}{38}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.5}GetAllDataAsync()}{38}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.6}GetAllWeeksAsync()}{39}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.7}GetComparisonsAsync()}{39}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.8}GetDataByCountryAndWeekAsync()}{39}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.9}GetDataByCountryAsync()}{41}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.10}GetDataByIdAsync()}{41}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.11}GetDataByWeekAsync()}{42}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.12}GetDataByYearAsync()}{42}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.13}GetGeolocationAsync()}{43}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.14}GetNewCasesAsync()}{43}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.15}GetPopulationDataAsync()}{43}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.16}GetPositivityRateAsync()}{44}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.17}GetTestingRateAsync()}{44}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.18}GetTestingRateInfoAsync()}{45}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.19}GetTestingSourceAsync()}{45}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.20}GetTestsDoneAsync()}{45}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.21}GetTotalCasesAsync()}{46}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.22}GetTotalTestsAsync()}{46}{}%
+\contentsline {subsubsection}{\numberline {6.7.3.23}UpdateDataAsync()}{46}{}%
+\contentsline {section}{\numberline {6.8}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Error\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response Class Reference}{47}{}%
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{47}{}%
+\contentsline {subsection}{\numberline {6.8.2}Member Function Documentation}{48}{}%
+\contentsline {subsubsection}{\numberline {6.8.2.1}ToString()}{48}{}%
+\contentsline {subsection}{\numberline {6.8.3}Property Documentation}{48}{}%
+\contentsline {subsubsection}{\numberline {6.8.3.1}ErrorCode}{48}{}%
+\contentsline {subsubsection}{\numberline {6.8.3.2}Message}{48}{}%
+\contentsline {section}{\numberline {6.9}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Api\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response Class Reference}{49}{}%
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{49}{}%
+\contentsline {subsection}{\numberline {6.9.2}Property Documentation}{49}{}%
+\contentsline {subsubsection}{\numberline {6.9.2.1}Results}{49}{}%
+\contentsline {section}{\numberline {6.10}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cache Class Reference}{50}{}%
+\contentsline {subsection}{\numberline {6.10.1}Detailed Description}{50}{}%
+\contentsline {subsection}{\numberline {6.10.2}Constructor \& Destructor Documentation}{50}{}%
+\contentsline {subsubsection}{\numberline {6.10.2.1}GeolocationCache()}{50}{}%
+\contentsline {subsection}{\numberline {6.10.3}Member Function Documentation}{50}{}%
+\contentsline {subsubsection}{\numberline {6.10.3.1}AddToCache()}{50}{}%
+\contentsline {subsubsection}{\numberline {6.10.3.2}TryGetFromCache()}{51}{}%
+\contentsline {section}{\numberline {6.11}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Components Class Reference}{51}{}%
+\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{52}{}%
+\contentsline {subsection}{\numberline {6.11.2}Property Documentation}{52}{}%
+\contentsline {subsubsection}{\numberline {6.11.2.1}Country}{52}{}%
+\contentsline {section}{\numberline {6.12}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Result Class Reference}{52}{}%
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{52}{}%
+\contentsline {subsection}{\numberline {6.12.2}Property Documentation}{53}{}%
+\contentsline {subsubsection}{\numberline {6.12.2.1}Components}{53}{}%
+\contentsline {subsubsection}{\numberline {6.12.2.2}Geometry}{53}{}%
+\contentsline {section}{\numberline {6.13}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{53}{}%
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{54}{}%
+\contentsline {subsection}{\numberline {6.13.2}Constructor \& Destructor Documentation}{54}{}%
+\contentsline {subsubsection}{\numberline {6.13.2.1}GeolocationService()}{54}{}%
+\contentsline {subsection}{\numberline {6.13.3}Member Function Documentation}{54}{}%
+\contentsline {subsubsection}{\numberline {6.13.3.1}GetGeolocationInfoAsync()}{54}{}%
+\contentsline {section}{\numberline {6.14}Geometry Class Reference}{55}{}%
+\contentsline {subsection}{\numberline {6.14.1}Detailed Description}{55}{}%
+\contentsline {subsection}{\numberline {6.14.2}Property Documentation}{56}{}%
+\contentsline {subsubsection}{\numberline {6.14.2.1}Lat}{56}{}%
+\contentsline {subsubsection}{\numberline {6.14.2.2}Lng}{56}{}%
+\contentsline {section}{\numberline {6.15}IAuth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Interface Reference}{56}{}%
+\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{57}{}%
+\contentsline {subsection}{\numberline {6.15.2}Member Function Documentation}{57}{}%
+\contentsline {subsubsection}{\numberline {6.15.2.1}AuthenticateAsync()}{57}{}%
+\contentsline {subsubsection}{\numberline {6.15.2.2}GenerateTokenAsync()}{58}{}%
+\contentsline {section}{\numberline {6.16}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Services.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ICovid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Interface Reference}{58}{}%
+\contentsline {subsection}{\numberline {6.16.1}Detailed Description}{61}{}%
+\contentsline {subsection}{\numberline {6.16.2}Member Function Documentation}{61}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.1}AddDataAsync()}{61}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.2}DataExistsForCountryAndWeekAsync()}{62}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.3}DeleteDataAsync()}{62}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.4}GetAllCountriesAsync()}{62}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.5}GetAllDataAsync()}{63}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.6}GetAllWeeksAsync()}{63}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.7}GetComparisonsAsync()}{63}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.8}GetDataByCountryAndWeekAsync()}{64}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.9}GetDataByCountryAsync()}{64}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.10}GetDataByIdAsync()}{64}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.11}GetDataByWeekAsync()}{65}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.12}GetDataByYearAsync()}{65}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.13}GetGeolocationAsync()}{66}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.14}GetNewCasesAsync()}{66}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.15}GetPopulationDataAsync()}{66}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.16}GetPositivityRateAsync()}{68}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.17}GetTestingRateAsync()}{68}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.18}GetTestingRateInfoAsync()}{69}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.19}GetTestingSourceAsync()}{69}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.20}GetTotalCasesAsync()}{69}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.21}GetTotalTestsAsync()}{70}{}%
+\contentsline {subsubsection}{\numberline {6.16.2.22}UpdateDataAsync()}{70}{}%
+\contentsline {section}{\numberline {6.17}IGeolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Interface Reference}{70}{}%
+\contentsline {subsection}{\numberline {6.17.1}Detailed Description}{71}{}%
+\contentsline {subsection}{\numberline {6.17.2}Member Function Documentation}{71}{}%
+\contentsline {subsubsection}{\numberline {6.17.2.1}GetGeolocationInfoAsync()}{71}{}%
+\contentsline {section}{\numberline {6.18}IPassword\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Interface Reference}{72}{}%
+\contentsline {subsection}{\numberline {6.18.1}Detailed Description}{73}{}%
+\contentsline {subsection}{\numberline {6.18.2}Member Function Documentation}{73}{}%
+\contentsline {subsubsection}{\numberline {6.18.2.1}GenerateSalt()}{73}{}%
+\contentsline {subsubsection}{\numberline {6.18.2.2}HashPassword()}{73}{}%
+\contentsline {subsubsection}{\numberline {6.18.2.3}VerifyPassword()}{74}{}%
+\contentsline {section}{\numberline {6.19}IUser\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Interface Reference}{74}{}%
+\contentsline {subsection}{\numberline {6.19.1}Detailed Description}{76}{}%
+\contentsline {subsection}{\numberline {6.19.2}Member Function Documentation}{76}{}%
+\contentsline {subsubsection}{\numberline {6.19.2.1}AuthenticateAsync()}{76}{}%
+\contentsline {subsubsection}{\numberline {6.19.2.2}CreateUserAsync()}{76}{}%
+\contentsline {subsubsection}{\numberline {6.19.2.3}GetUserByIdAsync()}{77}{}%
+\contentsline {subsubsection}{\numberline {6.19.2.4}GetUserByUsernameAsync()}{77}{}%
+\contentsline {section}{\numberline {6.20}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Jwt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings Class Reference}{78}{}%
+\contentsline {subsection}{\numberline {6.20.1}Detailed Description}{78}{}%
+\contentsline {subsection}{\numberline {6.20.2}Property Documentation}{78}{}%
+\contentsline {subsubsection}{\numberline {6.20.2.1}Audience}{78}{}%
+\contentsline {subsubsection}{\numberline {6.20.2.2}Issuer}{78}{}%
+\contentsline {subsubsection}{\numberline {6.20.2.3}Secret}{79}{}%
+\contentsline {section}{\numberline {6.21}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Login\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Request\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO Class Reference}{79}{}%
+\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{79}{}%
+\contentsline {subsection}{\numberline {6.21.2}Property Documentation}{79}{}%
+\contentsline {subsubsection}{\numberline {6.21.2.1}Password}{79}{}%
+\contentsline {subsubsection}{\numberline {6.21.2.2}Username}{80}{}%
+\contentsline {section}{\numberline {6.22}Password\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{80}{}%
+\contentsline {subsection}{\numberline {6.22.1}Detailed Description}{81}{}%
+\contentsline {subsection}{\numberline {6.22.2}Member Function Documentation}{81}{}%
+\contentsline {subsubsection}{\numberline {6.22.2.1}GenerateSalt()}{81}{}%
+\contentsline {subsubsection}{\numberline {6.22.2.2}HashPassword()}{82}{}%
+\contentsline {subsubsection}{\numberline {6.22.2.3}VerifyPassword()}{82}{}%
+\contentsline {section}{\numberline {6.23}Program Class Reference}{82}{}%
+\contentsline {subsection}{\numberline {6.23.1}Detailed Description}{83}{}%
+\contentsline {subsection}{\numberline {6.23.2}Member Function Documentation}{83}{}%
+\contentsline {subsubsection}{\numberline {6.23.2.1}CreateHostBuilder()}{83}{}%
+\contentsline {subsubsection}{\numberline {6.23.2.2}Main()}{84}{}%
+\contentsline {section}{\numberline {6.24}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Register\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Request\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO Class Reference}{84}{}%
+\contentsline {subsection}{\numberline {6.24.1}Detailed Description}{85}{}%
+\contentsline {subsection}{\numberline {6.24.2}Property Documentation}{85}{}%
+\contentsline {subsubsection}{\numberline {6.24.2.1}Password}{85}{}%
+\contentsline {subsubsection}{\numberline {6.24.2.2}Username}{85}{}%
+\contentsline {section}{\numberline {6.25}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Startup Class Reference}{86}{}%
+\contentsline {subsection}{\numberline {6.25.1}Detailed Description}{86}{}%
+\contentsline {subsection}{\numberline {6.25.2}Constructor \& Destructor Documentation}{86}{}%
+\contentsline {subsubsection}{\numberline {6.25.2.1}Startup()}{86}{}%
+\contentsline {subsection}{\numberline {6.25.3}Member Function Documentation}{87}{}%
+\contentsline {subsubsection}{\numberline {6.25.3.1}Configure()}{87}{}%
+\contentsline {subsubsection}{\numberline {6.25.3.2}ConfigureLogging()}{87}{}%
+\contentsline {subsubsection}{\numberline {6.25.3.3}ConfigureServices()}{87}{}%
+\contentsline {subsection}{\numberline {6.25.4}Property Documentation}{89}{}%
+\contentsline {subsubsection}{\numberline {6.25.4.1}Configuration}{89}{}%
+\contentsline {section}{\numberline {6.26}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User Class Reference}{89}{}%
+\contentsline {subsection}{\numberline {6.26.1}Detailed Description}{90}{}%
+\contentsline {subsection}{\numberline {6.26.2}Property Documentation}{90}{}%
+\contentsline {subsubsection}{\numberline {6.26.2.1}Id}{90}{}%
+\contentsline {subsubsection}{\numberline {6.26.2.2}PasswordHash}{90}{}%
+\contentsline {subsubsection}{\numberline {6.26.2.3}PasswordSalt}{90}{}%
+\contentsline {subsubsection}{\numberline {6.26.2.4}Username}{90}{}%
+\contentsline {section}{\numberline {6.27}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{91}{}%
+\contentsline {subsection}{\numberline {6.27.1}Detailed Description}{92}{}%
+\contentsline {subsection}{\numberline {6.27.2}Constructor \& Destructor Documentation}{93}{}%
+\contentsline {subsubsection}{\numberline {6.27.2.1}UserService()}{93}{}%
+\contentsline {subsection}{\numberline {6.27.3}Member Function Documentation}{93}{}%
+\contentsline {subsubsection}{\numberline {6.27.3.1}AuthenticateAsync()}{93}{}%
+\contentsline {subsubsection}{\numberline {6.27.3.2}CreateUserAsync()}{94}{}%
+\contentsline {subsubsection}{\numberline {6.27.3.3}GetUserByIdAsync()}{94}{}%
+\contentsline {subsubsection}{\numberline {6.27.3.4}GetUserByUsernameAsync()}{94}{}%
+\contentsline {chapter}{\numberline {7}File Documentation}{97}{}%
+\contentsline {section}{\numberline {7.1}Controllers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Auth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.cs File Reference}{97}{}%
+\contentsline {section}{\numberline {7.2}Controllers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.cs File Reference}{97}{}%
+\contentsline {section}{\numberline {7.3}Data/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Application\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Db\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Context.cs File Reference}{97}{}%
+\contentsline {section}{\numberline {7.4}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data.cs File Reference}{97}{}%
+\contentsline {section}{\numberline {7.5}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO.cs File Reference}{98}{}%
+\contentsline {section}{\numberline {7.6}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Error\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response.cs File Reference}{98}{}%
+\contentsline {section}{\numberline {7.7}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Api\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response.cs File Reference}{98}{}%
+\contentsline {section}{\numberline {7.8}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Jwt\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings.cs File Reference}{99}{}%
+\contentsline {section}{\numberline {7.9}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Login\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Request\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO.cs File Reference}{99}{}%
+\contentsline {section}{\numberline {7.10}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Register\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Request\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DTO.cs File Reference}{99}{}%
+\contentsline {section}{\numberline {7.11}Models/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User.cs File Reference}{99}{}%
+\contentsline {section}{\numberline {7.12}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Debug/net6.0/.NETCore\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}App,Version=v6.0.Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Attributes.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.13}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Release/net6.0/.NETCore\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}App,Version=v6.0.Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Attributes.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.14}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Debug/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.15}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Release/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.16}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Debug/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Global\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Usings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}g.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.17}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Release/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Global\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Usings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}g.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.18}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Debug/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Mvc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Application\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parts\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.19}obj/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Release/net6.0/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}API.Mvc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Application\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parts\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Assembly\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.20}Program.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.21}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Auth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{100}{}%
+\contentsline {section}{\numberline {7.22}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Covid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{101}{}%
+\contentsline {section}{\numberline {7.23}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Geolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{101}{}%
+\contentsline {section}{\numberline {7.24}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IAuth\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{101}{}%
+\contentsline {section}{\numberline {7.25}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ICovid\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{101}{}%
+\contentsline {section}{\numberline {7.26}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IGeolocation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{102}{}%
+\contentsline {section}{\numberline {7.27}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IPassword\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{102}{}%
+\contentsline {section}{\numberline {7.28}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IUser\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{102}{}%
+\contentsline {section}{\numberline {7.29}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Password\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{102}{}%
+\contentsline {section}{\numberline {7.30}Services/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rest/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.cs File Reference}{102}{}%
+\contentsline {section}{\numberline {7.31}Startup.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cs File Reference}{102}{}%

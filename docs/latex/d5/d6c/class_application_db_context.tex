@@ -1,0 +1,111 @@
+\doxysection{Application\+Db\+Context Class Reference}
+\label{class_application_db_context}\index{ApplicationDbContext@{ApplicationDbContext}}
+
+
+Represents the database context for the application, providing access to data entities.  
+
+
+
+
+Inheritance diagram for Application\+Db\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{dc/ddd/class_application_db_context__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Application\+Db\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{d2/d23/class_application_db_context__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Application\+Db\+Context} (Db\+Context\+Options$<$ \textbf{ Application\+Db\+Context} $>$ options)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxyref{Application\+Db\+Context}{p.}{d5/d6c/class_application_db_context} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \textbf{ On\+Model\+Creating} (Model\+Builder model\+Builder)
+\begin{DoxyCompactList}\small\item\em Configures the model for the database context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Db\+Set$<$ \textbf{ Covid\+Data} $>$ \textbf{ Covid\+Data}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Db\+Set for Covid\+Data entities in the database. \end{DoxyCompactList}\item 
+Db\+Set$<$ \textbf{ User} $>$ \textbf{ Users}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Db\+Set for User entities in the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the database context for the application, providing access to data entities. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_application_db_context_a893d3189a54c107bbda26c990e4f27d1} 
+\index{ApplicationDbContext@{ApplicationDbContext}!ApplicationDbContext@{ApplicationDbContext}}
+\index{ApplicationDbContext@{ApplicationDbContext}!ApplicationDbContext@{ApplicationDbContext}}
+\doxysubsubsection{ApplicationDbContext()}
+{\footnotesize\ttfamily Application\+Db\+Context.\+Application\+Db\+Context (\begin{DoxyParamCaption}\item[{Db\+Context\+Options$<$ \textbf{ Application\+Db\+Context} $>$}]{options }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxyref{Application\+Db\+Context}{p.}{d5/d6c/class_application_db_context} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options for configuring the Db\+Context.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_application_db_context_a902272f64aab7ed55f97bc040f4befc8} 
+\index{ApplicationDbContext@{ApplicationDbContext}!OnModelCreating@{OnModelCreating}}
+\index{OnModelCreating@{OnModelCreating}!ApplicationDbContext@{ApplicationDbContext}}
+\doxysubsubsection{OnModelCreating()}
+{\footnotesize\ttfamily override void Application\+Db\+Context.\+On\+Model\+Creating (\begin{DoxyParamCaption}\item[{Model\+Builder}]{model\+Builder }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Configures the model for the database context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+Builder} & The builder used to construct the model for the Db\+Context.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\label{class_application_db_context_a292684fb2d4d4081954b62815310fa02} 
+\index{ApplicationDbContext@{ApplicationDbContext}!CovidData@{CovidData}}
+\index{CovidData@{CovidData}!ApplicationDbContext@{ApplicationDbContext}}
+\doxysubsubsection{CovidData}
+{\footnotesize\ttfamily Db\+Set$<$\textbf{ Covid\+Data}$>$ Application\+Db\+Context.\+Covid\+Data\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Db\+Set for Covid\+Data entities in the database. 
+
+\label{class_application_db_context_a497ee711f46a942aba6d307dfb2e9f99} 
+\index{ApplicationDbContext@{ApplicationDbContext}!Users@{Users}}
+\index{Users@{Users}!ApplicationDbContext@{ApplicationDbContext}}
+\doxysubsubsection{Users}
+{\footnotesize\ttfamily Db\+Set$<$\textbf{ User}$>$ Application\+Db\+Context.\+Users\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Db\+Set for User entities in the database. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Data/\textbf{ Application\+Db\+Context.\+cs}\end{DoxyCompactItemize}

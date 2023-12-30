@@ -1,0 +1,3 @@
+<map id="GeolocationCache" name="GeolocationCache">
+<area shape="rect" id="Node000001" title="Represents a cache for storing geolocation data to avoid redundant API calls." alt="" coords="5,5,143,117"/>
+</map>

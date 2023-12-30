@@ -1,0 +1,5 @@
+<map id="IGeolocationService" name="IGeolocationService">
+<area shape="rect" id="Node000001" title="Represents a service for retrieving geolocation information related to COVID&#45;19 data." alt="" coords="5,5,184,75"/>
+<area shape="rect" id="Node000002" href="$df/d37/class_geolocation_service.html" title="Represents a service for retrieving geolocation information for a specific country." alt="" coords="5,123,184,213"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,89,97,123,92,123,92,89"/>
+</map>

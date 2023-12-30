@@ -1,0 +1,279 @@
+\doxysection{Covid\+Data\+Controller Class Reference}
+\label{class_covid_data_controller}\index{CovidDataController@{CovidDataController}}
+
+
+Controller for COVID-\/19 data-\/related operations.  
+
+
+
+
+Inheritance diagram for Covid\+Data\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{d5/d5b/class_covid_data_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Covid\+Data\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{d4/d18/class_covid_data_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Covid\+Data\+Controller} (\textbf{ ICovid\+Data\+Service} covid\+Data\+Service, \textbf{ IGeolocation\+Service} geolocation\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxyref{Covid\+Data\+Controller}{p.}{d7/dcf/class_covid_data_controller} class. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+All\+Data\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gets all COVID-\/19 data asynchronously. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Data\+By\+Id} (int id)
+\item 
+async Task$<$ Action\+Result$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Add\+Data} ([From\+Body] \textbf{ Covid\+Data\+DTO} covid\+Data\+DTO)
+\begin{DoxyCompactList}\small\item\em Adds new COVID-\/19 data. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Update\+Data} (int id, [From\+Body] \textbf{ Covid\+Data\+DTO} covid\+Data\+DTO)
+\begin{DoxyCompactList}\small\item\em Updates COVID-\/19 data by ID. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Delete\+Data} (int id)
+\begin{DoxyCompactList}\small\item\em Deletes COVID-\/19 data by ID. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ \textbf{ Get\+Data\+By\+Country} (string country)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data by country. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ \textbf{ Get\+Data\+By\+Year} (int year)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data by year. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ \textbf{ Get\+Data\+By\+Week} (string week)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data by week. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ string $>$ $>$ $>$ \textbf{ Get\+All\+Weeks} ()
+\begin{DoxyCompactList}\small\item\em Gets all available weeks for COVID-\/19 data. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ \textbf{ Get\+Total\+Cases} ()
+\begin{DoxyCompactList}\small\item\em Gets total COVID-\/19 cases. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ string $>$ $>$ $>$ \textbf{ Get\+All\+Countries} ()
+\begin{DoxyCompactList}\small\item\em Gets a list of all countries with available COVID-\/19 data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for COVID-\/19 data-\/related operations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_covid_data_controller_a6126f54d10d49e3a48be9f6182759123} 
+\index{CovidDataController@{CovidDataController}!CovidDataController@{CovidDataController}}
+\index{CovidDataController@{CovidDataController}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{CovidDataController()}
+{\footnotesize\ttfamily Covid\+Data\+Controller.\+Covid\+Data\+Controller (\begin{DoxyParamCaption}\item[{\textbf{ ICovid\+Data\+Service}}]{covid\+Data\+Service,  }\item[{\textbf{ IGeolocation\+Service}}]{geolocation\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxyref{Covid\+Data\+Controller}{p.}{d7/dcf/class_covid_data_controller} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em covid\+Data\+Service} & The COVID-\/19 data service.\\
+\hline
+{\em geolocation\+Service} & The geolocation service.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_covid_data_controller_a34c1cf73a3fa20638f2454998cde8b11} 
+\index{CovidDataController@{CovidDataController}!AddData@{AddData}}
+\index{AddData@{AddData}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{AddData()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+Data\+Controller.\+Add\+Data (\begin{DoxyParamCaption}\item[{[\+From\+Body] \textbf{ Covid\+Data\+DTO}}]{covid\+Data\+DTO }\end{DoxyParamCaption})}
+
+
+
+Adds new COVID-\/19 data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em covid\+Data\+DTO} & The COVID-\/19 data to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the added COVID-\/19 data.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/dcf/class_covid_data_controller_a34c1cf73a3fa20638f2454998cde8b11_cgraph}
+\end{center}
+\end{figure}
+\label{class_covid_data_controller_a0c1a163018816819b2cd9649bf5c1b66} 
+\index{CovidDataController@{CovidDataController}!DeleteData@{DeleteData}}
+\index{DeleteData@{DeleteData}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{DeleteData()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Covid\+Data\+Controller.\+Delete\+Data (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Deletes COVID-\/19 data by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the COVID-\/19 data to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns no content if the deletion is successful.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a5d6b16c7062ee8883fb7156678d82db7} 
+\index{CovidDataController@{CovidDataController}!GetAllCountries@{GetAllCountries}}
+\index{GetAllCountries@{GetAllCountries}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetAllCountries()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ string $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+All\+Countries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a list of all countries with available COVID-\/19 data. 
+
+\begin{DoxyReturn}{Returns}
+Returns a list of all countries with available COVID-\/19 data.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a5bbdfbdb4716abeeb7685a24dbfa4412} 
+\index{CovidDataController@{CovidDataController}!GetAllDataAsync@{GetAllDataAsync}}
+\index{GetAllDataAsync@{GetAllDataAsync}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetAllDataAsync()}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+Data\+Controller.\+Get\+All\+Data\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all COVID-\/19 data asynchronously. 
+
+\begin{DoxyReturn}{Returns}
+Returns a collection of COVID-\/19 data.
+\end{DoxyReturn}
+\label{class_covid_data_controller_ab6d8e0c82320d8dbb742e3d34d3890ab} 
+\index{CovidDataController@{CovidDataController}!GetAllWeeks@{GetAllWeeks}}
+\index{GetAllWeeks@{GetAllWeeks}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetAllWeeks()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ string $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+All\+Weeks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all available weeks for COVID-\/19 data. 
+
+\begin{DoxyReturn}{Returns}
+Returns a collection of all available weeks.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a1882c6f64b097a6dc340878062505a55} 
+\index{CovidDataController@{CovidDataController}!GetDataByCountry@{GetDataByCountry}}
+\index{GetDataByCountry@{GetDataByCountry}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetDataByCountry()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+Data\+By\+Country (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data by country. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The name of the country.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns COVID-\/19 data for the specified country.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a0177accf50d477aa363ad1bdfe2f9831} 
+\index{CovidDataController@{CovidDataController}!GetDataById@{GetDataById}}
+\index{GetDataById@{GetDataById}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetDataById()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+Data\+Controller.\+Get\+Data\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+Gets COVID-\/19 data by ID asynchronously.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the COVID-\/19 data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns COVID-\/19 data with the specified ID.
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/dcf/class_covid_data_controller_a0177accf50d477aa363ad1bdfe2f9831_icgraph}
+\end{center}
+\end{figure}
+\label{class_covid_data_controller_a81a9034dbb40bd3fe0cc42e3cd358989} 
+\index{CovidDataController@{CovidDataController}!GetDataByWeek@{GetDataByWeek}}
+\index{GetDataByWeek@{GetDataByWeek}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetDataByWeek()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+Data\+By\+Week (\begin{DoxyParamCaption}\item[{string}]{week }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data by week. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em week} & The week for which to retrieve data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns COVID-\/19 data for the specified week.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a36305e8618c087ad6d8e6162676e674b} 
+\index{CovidDataController@{CovidDataController}!GetDataByYear@{GetDataByYear}}
+\index{GetDataByYear@{GetDataByYear}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetDataByYear()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+Data\+By\+Year (\begin{DoxyParamCaption}\item[{int}]{year }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data by year. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & The year for which to retrieve data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns COVID-\/19 data for the specified year.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a7c2d99c588e5d203f0f69644048be598} 
+\index{CovidDataController@{CovidDataController}!GetTotalCases@{GetTotalCases}}
+\index{GetTotalCases@{GetTotalCases}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{GetTotalCases()}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ $>$ Covid\+Data\+Controller.\+Get\+Total\+Cases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets total COVID-\/19 cases. 
+
+\begin{DoxyReturn}{Returns}
+Returns total COVID-\/19 cases.
+\end{DoxyReturn}
+\label{class_covid_data_controller_a600b74224c38110830bf626e0c2e30c4} 
+\index{CovidDataController@{CovidDataController}!UpdateData@{UpdateData}}
+\index{UpdateData@{UpdateData}!CovidDataController@{CovidDataController}}
+\doxysubsubsection{UpdateData()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Covid\+Data\+Controller.\+Update\+Data (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{[\+From\+Body] \textbf{ Covid\+Data\+DTO}}]{covid\+Data\+DTO }\end{DoxyParamCaption})}
+
+
+
+Updates COVID-\/19 data by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the COVID-\/19 data to update.\\
+\hline
+{\em covid\+Data\+DTO} & The updated COVID-\/19 data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns no content if the update is successful.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controllers/\textbf{ Covid\+Data\+Controller.\+cs}\end{DoxyCompactItemize}

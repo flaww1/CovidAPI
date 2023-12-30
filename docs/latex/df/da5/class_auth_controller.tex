@@ -1,0 +1,118 @@
+\doxysection{Auth\+Controller Class Reference}
+\label{class_auth_controller}\index{AuthController@{AuthController}}
+
+
+Controller for authentication-\/related operations.  
+
+
+
+
+Inheritance diagram for Auth\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{d2/d7e/class_auth_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Auth\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{d1/d6f/class_auth_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Auth\+Controller} (\textbf{ IAuth\+Service} auth\+Service, \textbf{ IUser\+Service} user\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxyref{Auth\+Controller}{p.}{df/da5/class_auth_controller} class. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Login} ([From\+Body] \textbf{ Login\+Request\+DTO} request)
+\begin{DoxyCompactList}\small\item\em Logs in a user. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Register} ([From\+Body] \textbf{ Register\+Request\+DTO} request)
+\begin{DoxyCompactList}\small\item\em Registers a new user. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \textbf{ Logout} ()
+\begin{DoxyCompactList}\small\item\em Logs out the currently authenticated user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for authentication-\/related operations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_auth_controller_a69bdd68f979d43c18339c5029544f10c} 
+\index{AuthController@{AuthController}!AuthController@{AuthController}}
+\index{AuthController@{AuthController}!AuthController@{AuthController}}
+\doxysubsubsection{AuthController()}
+{\footnotesize\ttfamily Auth\+Controller.\+Auth\+Controller (\begin{DoxyParamCaption}\item[{\textbf{ IAuth\+Service}}]{auth\+Service,  }\item[{\textbf{ IUser\+Service}}]{user\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxyref{Auth\+Controller}{p.}{df/da5/class_auth_controller} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em auth\+Service} & The authentication service.\\
+\hline
+{\em user\+Service} & The user service.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_auth_controller_a67f0523ce3b386e408534116dbfbcb77} 
+\index{AuthController@{AuthController}!Login@{Login}}
+\index{Login@{Login}!AuthController@{AuthController}}
+\doxysubsubsection{Login()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Auth\+Controller.\+Login (\begin{DoxyParamCaption}\item[{[\+From\+Body] \textbf{ Login\+Request\+DTO}}]{request }\end{DoxyParamCaption})}
+
+
+
+Logs in a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & The login request.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a JWT token if login is successful.
+\end{DoxyReturn}
+\label{class_auth_controller_a10ac143e9c2b1ed76b5acb5cb761cd0c} 
+\index{AuthController@{AuthController}!Logout@{Logout}}
+\index{Logout@{Logout}!AuthController@{AuthController}}
+\doxysubsubsection{Logout()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Auth\+Controller.\+Logout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Logs out the currently authenticated user. 
+
+\begin{DoxyReturn}{Returns}
+Returns a success message upon successful logout.
+\end{DoxyReturn}
+\label{class_auth_controller_aa96901ea9fc0fc0d02cb8fe7818159ec} 
+\index{AuthController@{AuthController}!Register@{Register}}
+\index{Register@{Register}!AuthController@{AuthController}}
+\doxysubsubsection{Register()}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Auth\+Controller.\+Register (\begin{DoxyParamCaption}\item[{[\+From\+Body] \textbf{ Register\+Request\+DTO}}]{request }\end{DoxyParamCaption})}
+
+
+
+Registers a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & The registration request.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a success message and JWT token if registration is successful.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controllers/\textbf{ Auth\+Controller.\+cs}\end{DoxyCompactItemize}

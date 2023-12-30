@@ -1,0 +1,76 @@
+\doxysection{Geolocation\+Service Class Reference}
+\label{class_geolocation_service}\index{GeolocationService@{GeolocationService}}
+
+
+Represents a service for retrieving geolocation information for a specific country.  
+
+
+
+
+Inheritance diagram for Geolocation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{dd/d9e/class_geolocation_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Geolocation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{d4/d33/class_geolocation_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Geolocation\+Service} (IHttp\+Client\+Factory http\+Client\+Factory, IConfiguration configuration, ILogger$<$ \textbf{ Geolocation\+Service} $>$ logger, \textbf{ Geolocation\+Cache} geolocation\+Cache, IDistributed\+Cache distributed\+Cache)
+\item 
+async Task$<$ \textbf{ Geolocation\+Api\+Response} $>$ \textbf{ Get\+Geolocation\+Info\+Async} (string country)
+\begin{DoxyCompactList}\small\item\em Retrieves geolocation information asynchronously for a specific country. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a service for retrieving geolocation information for a specific country. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_geolocation_service_abcee44f05891e5d6273229c7f5b8f47e} 
+\index{GeolocationService@{GeolocationService}!GeolocationService@{GeolocationService}}
+\index{GeolocationService@{GeolocationService}!GeolocationService@{GeolocationService}}
+\doxysubsubsection{GeolocationService()}
+{\footnotesize\ttfamily Geolocation\+Service.\+Geolocation\+Service (\begin{DoxyParamCaption}\item[{IHttp\+Client\+Factory}]{http\+Client\+Factory,  }\item[{IConfiguration}]{configuration,  }\item[{ILogger$<$ \textbf{ Geolocation\+Service} $>$}]{logger,  }\item[{\textbf{ Geolocation\+Cache}}]{geolocation\+Cache,  }\item[{IDistributed\+Cache}]{distributed\+Cache }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_geolocation_service_a3c891773fc2ac30b62c0221551f763df} 
+\index{GeolocationService@{GeolocationService}!GetGeolocationInfoAsync@{GetGeolocationInfoAsync}}
+\index{GetGeolocationInfoAsync@{GetGeolocationInfoAsync}!GeolocationService@{GeolocationService}}
+\doxysubsubsection{GetGeolocationInfoAsync()}
+{\footnotesize\ttfamily async Task$<$ \textbf{ Geolocation\+Api\+Response} $>$ Geolocation\+Service.\+Get\+Geolocation\+Info\+Async (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Retrieves geolocation information asynchronously for a specific country. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The country for which to retrieve geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An asynchronous task that returns the geolocation response.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IGeolocation\+Service} \doxyref{}{p.}{dd/d97/interface_i_geolocation_service_a2aee1e0a691133fd3f67d09e09376f25}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ Geolocation\+Service.\+cs}\end{DoxyCompactItemize}

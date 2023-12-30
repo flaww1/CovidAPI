@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d7/df9/interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service.html" title="Defines methods for retrieving and managing COVID&#45;19 data." alt="" coords="5,5,201,48"/>
+<area shape="rect" id="Node000001" href="$db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service.html" title="Service responsible for handling COVID&#45;19 data operations, including fetching, updating,..." alt="" coords="249,5,441,48"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="216,24,248,24,248,29,216,29"/>
+</map>

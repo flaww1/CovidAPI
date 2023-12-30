@@ -1,0 +1,5 @@
+<map id="AuthService.GenerateTokenAsync" name="AuthService.GenerateTokenAsync">
+<area shape="rect" id="Node000001" title="Generates a JWT token for the specified user." alt="" coords="221,5,403,48"/>
+<area shape="rect" id="Node000002" href="$d1/de2/class_auth_service.html#a685f216879dc2790016b9016de632e20" title="Authenticates a user based on the provided username and password." alt="" coords="5,5,173,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,29,173,29,173,24,205,24"/>
+</map>

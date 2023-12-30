@@ -1,0 +1,179 @@
+\doxysection{User\+Service Class Reference}
+\label{class_user_service}\index{UserService@{UserService}}
+
+
+Service for user-\/related operations, including authentication and user retrieval.  
+
+
+
+
+Inheritance diagram for User\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d7/d1c/class_user_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for User\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d5/d83/class_user_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ User\+Service} (\textbf{ Application\+Db\+Context} db\+Context, \textbf{ IPassword\+Service} password\+Service)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxyref{User\+Service}{p.}{d8/d40/class_user_service} class. \end{DoxyCompactList}\item 
+async Task$<$ \textbf{ User} $>$ \textbf{ Get\+User\+By\+Id\+Async} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Gets a user by their unique identifier. \end{DoxyCompactList}\item 
+async Task$<$ \textbf{ User} $>$ \textbf{ Get\+User\+By\+Username\+Async} (string username)
+\begin{DoxyCompactList}\small\item\em Gets a user by their username. \end{DoxyCompactList}\item 
+async Task$<$ \textbf{ User} $>$ \textbf{ Create\+User\+Async} (\textbf{ User} user, string password)
+\begin{DoxyCompactList}\small\item\em Creates a new user with the provided information, including password hashing and salting. \end{DoxyCompactList}\item 
+async Task$<$ \textbf{ User} $>$ \textbf{ Authenticate\+Async} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Authenticates a user based on the provided username and password. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service for user-\/related operations, including authentication and user retrieval. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_user_service_a90bad08080650a6019eeec9fdd702880} 
+\index{UserService@{UserService}!UserService@{UserService}}
+\index{UserService@{UserService}!UserService@{UserService}}
+\doxysubsubsection{UserService()}
+{\footnotesize\ttfamily User\+Service.\+User\+Service (\begin{DoxyParamCaption}\item[{\textbf{ Application\+Db\+Context}}]{db\+Context,  }\item[{\textbf{ IPassword\+Service}}]{password\+Service }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxyref{User\+Service}{p.}{d8/d40/class_user_service} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Context} & The application database context.\\
+\hline
+{\em password\+Service} & The password service for hashing and verification.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_user_service_a6112b2bdb9ae38c99335d9b3156b23f5} 
+\index{UserService@{UserService}!AuthenticateAsync@{AuthenticateAsync}}
+\index{AuthenticateAsync@{AuthenticateAsync}!UserService@{UserService}}
+\doxysubsubsection{AuthenticateAsync()}
+{\footnotesize\ttfamily async Task$<$ \textbf{ User} $>$ User\+Service.\+Authenticate\+Async (\begin{DoxyParamCaption}\item[{string}]{username,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Authenticates a user based on the provided username and password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user.\\
+\hline
+{\em password} & The password to be verified.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task representing the asynchronous operation, returning the authenticated user if successful; otherwise, null.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IUser\+Service} \doxyref{}{p.}{dd/d85/interface_i_user_service_a1a6809951f68f44c49eaa3f82ded9782}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d40/class_user_service_a6112b2bdb9ae38c99335d9b3156b23f5_cgraph}
+\end{center}
+\end{figure}
+\label{class_user_service_a3adb982646347b6ba52703410838997b} 
+\index{UserService@{UserService}!CreateUserAsync@{CreateUserAsync}}
+\index{CreateUserAsync@{CreateUserAsync}!UserService@{UserService}}
+\doxysubsubsection{CreateUserAsync()}
+{\footnotesize\ttfamily async Task$<$ \textbf{ User} $>$ User\+Service.\+Create\+User\+Async (\begin{DoxyParamCaption}\item[{\textbf{ User}}]{user,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Creates a new user with the provided information, including password hashing and salting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user information.\\
+\hline
+{\em password} & The plaintext password to be hashed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task representing the asynchronous operation, returning the created user.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IUser\+Service} \doxyref{}{p.}{dd/d85/interface_i_user_service_adfc9bbb686a85c9e5a83178e048313d7}.
+
+\label{class_user_service_a0d793ce23cda5dd96ea83cb77ec6c230} 
+\index{UserService@{UserService}!GetUserByIdAsync@{GetUserByIdAsync}}
+\index{GetUserByIdAsync@{GetUserByIdAsync}!UserService@{UserService}}
+\doxysubsubsection{GetUserByIdAsync()}
+{\footnotesize\ttfamily async Task$<$ \textbf{ User} $>$ User\+Service.\+Get\+User\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{user\+Id }\end{DoxyParamCaption})}
+
+
+
+Gets a user by their unique identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & The user\textquotesingle{}s unique identifier.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task representing the asynchronous operation, returning the user if found; otherwise, null.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IUser\+Service} \doxyref{}{p.}{dd/d85/interface_i_user_service_a7dee3107cdb392aa2f440c323cf8d2de}.
+
+\label{class_user_service_a2af721951988b54c22ba2839cb39b69e} 
+\index{UserService@{UserService}!GetUserByUsernameAsync@{GetUserByUsernameAsync}}
+\index{GetUserByUsernameAsync@{GetUserByUsernameAsync}!UserService@{UserService}}
+\doxysubsubsection{GetUserByUsernameAsync()}
+{\footnotesize\ttfamily async Task$<$ \textbf{ User} $>$ User\+Service.\+Get\+User\+By\+Username\+Async (\begin{DoxyParamCaption}\item[{string}]{username }\end{DoxyParamCaption})}
+
+
+
+Gets a user by their username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task representing the asynchronous operation, returning the user if found; otherwise, null.
+\end{DoxyReturn}
+
+
+Implements \textbf{ IUser\+Service} \doxyref{}{p.}{dd/d85/interface_i_user_service_a776f985f8f0a0fd688c81405558952ab}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d40/class_user_service_a2af721951988b54c22ba2839cb39b69e_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ User\+Service.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,141 @@
+\doxysection{IUser\+Service Interface Reference}
+\label{interface_i_user_service}\index{IUserService@{IUserService}}
+
+
+Represents a service for managing user-\/related operations.  
+
+
+
+
+Inheritance diagram for IUser\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d2/d59/interface_i_user_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for IUser\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{de/d84/interface_i_user_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ \textbf{ User} $>$ \textbf{ Get\+User\+By\+Id\+Async} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a user by their unique identifier asynchronously. \end{DoxyCompactList}\item 
+Task$<$ \textbf{ User} $>$ \textbf{ Get\+User\+By\+Username\+Async} (string username)
+\begin{DoxyCompactList}\small\item\em Retrieves a user by their username asynchronously. \end{DoxyCompactList}\item 
+Task$<$ \textbf{ User} $>$ \textbf{ Create\+User\+Async} (\textbf{ User} user, string password)
+\begin{DoxyCompactList}\small\item\em Creates a new user asynchronously and associates the provided password. \end{DoxyCompactList}\item 
+Task$<$ \textbf{ User} $>$ \textbf{ Authenticate\+Async} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Authenticates a user by verifying the provided username and password asynchronously. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a service for managing user-\/related operations. 
+
+\doxysubsection{Member Function Documentation}
+\label{interface_i_user_service_a1a6809951f68f44c49eaa3f82ded9782} 
+\index{IUserService@{IUserService}!AuthenticateAsync@{AuthenticateAsync}}
+\index{AuthenticateAsync@{AuthenticateAsync}!IUserService@{IUserService}}
+\doxysubsubsection{AuthenticateAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ User} $>$ IUser\+Service.\+Authenticate\+Async (\begin{DoxyParamCaption}\item[{string}]{username,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Authenticates a user by verifying the provided username and password asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user.\\
+\hline
+{\em password} & The password to be verified.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous authentication operation. If authentication is successful, the task holds the authenticated user information; otherwise, it returns null. 
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ User\+Service} \doxyref{}{p.}{d8/d40/class_user_service_a6112b2bdb9ae38c99335d9b3156b23f5}.
+
+\label{interface_i_user_service_adfc9bbb686a85c9e5a83178e048313d7} 
+\index{IUserService@{IUserService}!CreateUserAsync@{CreateUserAsync}}
+\index{CreateUserAsync@{CreateUserAsync}!IUserService@{IUserService}}
+\doxysubsubsection{CreateUserAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ User} $>$ IUser\+Service.\+Create\+User\+Async (\begin{DoxyParamCaption}\item[{\textbf{ User}}]{user,  }\item[{string}]{password }\end{DoxyParamCaption})}
+
+
+
+Creates a new user asynchronously and associates the provided password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user information to be created.\\
+\hline
+{\em password} & The password to be associated with the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation and holds the created user information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ User\+Service} \doxyref{}{p.}{d8/d40/class_user_service_a3adb982646347b6ba52703410838997b}.
+
+\label{interface_i_user_service_a7dee3107cdb392aa2f440c323cf8d2de} 
+\index{IUserService@{IUserService}!GetUserByIdAsync@{GetUserByIdAsync}}
+\index{GetUserByIdAsync@{GetUserByIdAsync}!IUserService@{IUserService}}
+\doxysubsubsection{GetUserByIdAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ User} $>$ IUser\+Service.\+Get\+User\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{user\+Id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a user by their unique identifier asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & The unique identifier of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation and holds the user information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ User\+Service} \doxyref{}{p.}{d8/d40/class_user_service_a0d793ce23cda5dd96ea83cb77ec6c230}.
+
+\label{interface_i_user_service_a776f985f8f0a0fd688c81405558952ab} 
+\index{IUserService@{IUserService}!GetUserByUsernameAsync@{GetUserByUsernameAsync}}
+\index{GetUserByUsernameAsync@{GetUserByUsernameAsync}!IUserService@{IUserService}}
+\doxysubsubsection{GetUserByUsernameAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ User} $>$ IUser\+Service.\+Get\+User\+By\+Username\+Async (\begin{DoxyParamCaption}\item[{string}]{username }\end{DoxyParamCaption})}
+
+
+
+Retrieves a user by their username asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation and holds the user information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ User\+Service} \doxyref{}{p.}{d8/d40/class_user_service_a2af721951988b54c22ba2839cb39b69e}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ IUser\+Service.\+cs}\end{DoxyCompactItemize}

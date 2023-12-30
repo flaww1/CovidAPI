@@ -1,0 +1,65 @@
+\doxysection{IGeolocation\+Service Interface Reference}
+\label{interface_i_geolocation_service}\index{IGeolocationService@{IGeolocationService}}
+
+
+Represents a service for retrieving geolocation information related to COVID-\/19 data.  
+
+
+
+
+Inheritance diagram for IGeolocation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{dd/d02/interface_i_geolocation_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for IGeolocation\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{d3/d54/interface_i_geolocation_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ \textbf{ Geolocation\+Api\+Response} $>$ \textbf{ Get\+Geolocation\+Info\+Async} (string country)
+\begin{DoxyCompactList}\small\item\em Gets geolocation information asynchronously for the specified country. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a service for retrieving geolocation information related to COVID-\/19 data. 
+
+\doxysubsection{Member Function Documentation}
+\label{interface_i_geolocation_service_a2aee1e0a691133fd3f67d09e09376f25} 
+\index{IGeolocationService@{IGeolocationService}!GetGeolocationInfoAsync@{GetGeolocationInfoAsync}}
+\index{GetGeolocationInfoAsync@{GetGeolocationInfoAsync}!IGeolocationService@{IGeolocationService}}
+\doxysubsubsection{GetGeolocationInfoAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ Geolocation\+Api\+Response} $>$ IGeolocation\+Service.\+Get\+Geolocation\+Info\+Async (\begin{DoxyParamCaption}\item[{string}]{country }\end{DoxyParamCaption})}
+
+
+
+Gets geolocation information asynchronously for the specified country. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The name of the country for which geolocation information is requested.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result is a \doxyref{Geolocation\+Api\+Response}{p.}{d3/d27/class_geolocation_api_response} object.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Geolocation\+Service} \doxyref{}{p.}{df/d37/class_geolocation_service_a3c891773fc2ac30b62c0221551f763df}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ IGeolocation\+Service.\+cs}\end{DoxyCompactItemize}

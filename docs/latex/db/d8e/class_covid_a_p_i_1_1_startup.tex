@@ -1,0 +1,130 @@
+\doxysection{Covid\+API.\+Startup Class Reference}
+\label{class_covid_a_p_i_1_1_startup}\index{CovidAPI.Startup@{CovidAPI.Startup}}
+
+
+Configures the application services and requests during startup.  
+
+
+
+
+Collaboration diagram for Covid\+API.\+Startup\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{db/df5/class_covid_a_p_i_1_1_startup__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Startup} (IConfiguration configuration)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Startup class. \end{DoxyCompactList}\item 
+void \textbf{ Configure\+Services} (IService\+Collection services)
+\begin{DoxyCompactList}\small\item\em Configures the services used by the application. \end{DoxyCompactList}\item 
+void \textbf{ Configure} (IApplication\+Builder app, IWeb\+Host\+Environment env)
+\begin{DoxyCompactList}\small\item\em Configures the HTTP request pipeline. \end{DoxyCompactList}\item 
+void \textbf{ Configure\+Logging} (IService\+Collection services)
+\begin{DoxyCompactList}\small\item\em Configures logging services for the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+IConfiguration \textbf{ Configuration}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em Gets the configuration settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configures the application services and requests during startup. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_covid_a_p_i_1_1_startup_a42b62507141b70043c740cf20b794f7b} 
+\index{CovidAPI.Startup@{CovidAPI.Startup}!Startup@{Startup}}
+\index{Startup@{Startup}!CovidAPI.Startup@{CovidAPI.Startup}}
+\doxysubsubsection{Startup()}
+{\footnotesize\ttfamily Covid\+API.\+Startup.\+Startup (\begin{DoxyParamCaption}\item[{IConfiguration}]{configuration }\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the Startup class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em configuration} & The configuration settings.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_covid_a_p_i_1_1_startup_a54c3e5c2659569d33b84216a7989c79e} 
+\index{CovidAPI.Startup@{CovidAPI.Startup}!Configure@{Configure}}
+\index{Configure@{Configure}!CovidAPI.Startup@{CovidAPI.Startup}}
+\doxysubsubsection{Configure()}
+{\footnotesize\ttfamily void Covid\+API.\+Startup.\+Configure (\begin{DoxyParamCaption}\item[{IApplication\+Builder}]{app,  }\item[{IWeb\+Host\+Environment}]{env }\end{DoxyParamCaption})}
+
+
+
+Configures the HTTP request pipeline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em app} & The application builder.\\
+\hline
+{\em env} & The hosting environment.\\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d8e/class_covid_a_p_i_1_1_startup_a54c3e5c2659569d33b84216a7989c79e_cgraph}
+\end{center}
+\end{figure}
+\label{class_covid_a_p_i_1_1_startup_a7266747e3460b5dd5ff224c1d7f01d97} 
+\index{CovidAPI.Startup@{CovidAPI.Startup}!ConfigureLogging@{ConfigureLogging}}
+\index{ConfigureLogging@{ConfigureLogging}!CovidAPI.Startup@{CovidAPI.Startup}}
+\doxysubsubsection{ConfigureLogging()}
+{\footnotesize\ttfamily void Covid\+API.\+Startup.\+Configure\+Logging (\begin{DoxyParamCaption}\item[{IService\+Collection}]{services }\end{DoxyParamCaption})}
+
+
+
+Configures logging services for the application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em services} & The service collection.\\
+\hline
+\end{DoxyParams}
+\label{class_covid_a_p_i_1_1_startup_a011e86638c4b3b4674ad16b8775b99a1} 
+\index{CovidAPI.Startup@{CovidAPI.Startup}!ConfigureServices@{ConfigureServices}}
+\index{ConfigureServices@{ConfigureServices}!CovidAPI.Startup@{CovidAPI.Startup}}
+\doxysubsubsection{ConfigureServices()}
+{\footnotesize\ttfamily void Covid\+API.\+Startup.\+Configure\+Services (\begin{DoxyParamCaption}\item[{IService\+Collection}]{services }\end{DoxyParamCaption})}
+
+
+
+Configures the services used by the application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em services} & The service collection.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\label{class_covid_a_p_i_1_1_startup_a95979e01c5c81e7594ff7b4eee23bb39} 
+\index{CovidAPI.Startup@{CovidAPI.Startup}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CovidAPI.Startup@{CovidAPI.Startup}}
+\doxysubsubsection{Configuration}
+{\footnotesize\ttfamily IConfiguration Covid\+API.\+Startup.\+Configuration\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the configuration settings. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ Startup.\+cs}\end{DoxyCompactItemize}

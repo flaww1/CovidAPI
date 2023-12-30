@@ -1,0 +1,5 @@
+<map id="CovidAPI.Startup.Configure" name="CovidAPI.Startup.Configure">
+<area shape="rect" id="Node000001" title="Configures the HTTP request pipeline." alt="" coords="5,13,183,40"/>
+<area shape="rect" id="Node000002" href="$d4/d7b/class_covid_a_p_i_1_1_models_1_1_error_response.html#a004e089eb55c71e3eed1f991b529114b" title="Converts the object to its equivalent JSON representation." alt="" coords="231,5,444,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,24,215,24,215,29,183,29"/>
+</map>

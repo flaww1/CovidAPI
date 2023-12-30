@@ -1,0 +1,5 @@
+<map id="CovidAPI.Services.Rest.CovidDataService" name="CovidAPI.Services.Rest.CovidDataService">
+<area shape="rect" id="Node000001" title="Service responsible for handling COVID&#45;19 data operations, including fetching, updating,..." alt="" coords="5,336,240,651"/>
+<area shape="rect" id="Node000002" href="$d7/df9/interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service.html" title="Defines methods for retrieving and managing COVID&#45;19 data." alt="" coords="39,5,207,288"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,303,125,336,120,336,120,303"/>
+</map>

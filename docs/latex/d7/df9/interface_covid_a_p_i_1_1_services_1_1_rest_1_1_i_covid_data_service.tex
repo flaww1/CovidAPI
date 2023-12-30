@@ -1,0 +1,568 @@
+\doxysection{Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service Interface Reference}
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service}\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+
+
+Defines methods for retrieving and managing COVID-\/19 data.  
+
+
+
+
+Inheritance diagram for Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dc/de1/interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{d7/db4/interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+All\+Data\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets all COVID-\/19 data. \end{DoxyCompactList}\item 
+Task$<$ \textbf{ Covid\+Data\+DTO} $>$ \textbf{ Get\+Data\+By\+Id\+Async} (int id, bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data by identifier. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Data\+By\+Year\+Async} (int year, bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for a specific year. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Data\+By\+Week\+Async} (string week, bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for a specific week. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Total\+Cases\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets the total COVID-\/19 cases. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+New\+Cases\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for new cases. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Total\+Tests\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets the total COVID-\/19 tests. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Testing\+Rate\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets the COVID-\/19 testing rate. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Positivity\+Rate\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets the COVID-\/19 positivity rate. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Geolocation\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 geolocation data. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Testing\+Source\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 testing source data. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Comparisons\+Async} (List$<$ string $>$ countries, bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for specified countries and includes geolocation information if requested. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Population\+Data\+Async} (bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 population data. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ string $>$ $>$ \textbf{ Get\+All\+Weeks\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gets a collection of all distinct weeks for COVID-\/19 data. \end{DoxyCompactList}\item 
+Task$<$ string $>$ \textbf{ Get\+Testing\+Rate\+Info\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gets information about COVID-\/19 testing rates. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ string $>$ $>$ \textbf{ Get\+All\+Countries\+Async} ()
+\begin{DoxyCompactList}\small\item\em Gets a collection of all distinct countries for COVID-\/19 data. \end{DoxyCompactList}\item 
+Task$<$ bool $>$ \textbf{ Data\+Exists\+For\+Country\+And\+Week\+Async} (string country, string week)
+\begin{DoxyCompactList}\small\item\em Checks whether COVID-\/19 data exists for a specific country and week. \end{DoxyCompactList}\item 
+Task$<$ \textbf{ Covid\+Data} $>$ \textbf{ Get\+Data\+By\+Country\+And\+Week\+Async} (string country, string week)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for a specific country and week. \end{DoxyCompactList}\item 
+Task \textbf{ Add\+Data\+Async} (\textbf{ Covid\+Data\+DTO} covid\+Data\+DTO)
+\begin{DoxyCompactList}\small\item\em Adds new COVID-\/19 data using the provided data transfer object (DTO). \end{DoxyCompactList}\item 
+Task \textbf{ Update\+Data\+Async} (\textbf{ Covid\+Data\+DTO} covid\+Data\+DTO)
+\begin{DoxyCompactList}\small\item\em Updates existing COVID-\/19 data using the provided data transfer object (DTO). \end{DoxyCompactList}\item 
+Task \textbf{ Delete\+Data\+Async} (int id)
+\begin{DoxyCompactList}\small\item\em Deletes COVID-\/19 data with the specified identifier. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ \textbf{ Get\+Data\+By\+Country\+Async} (string country, bool include\+Geolocation)
+\begin{DoxyCompactList}\small\item\em Gets COVID-\/19 data for a specific country with an option to include geolocation information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines methods for retrieving and managing COVID-\/19 data. 
+
+\doxysubsection{Member Function Documentation}
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a5aea4231ba47f42f4a37167f35584f62} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!AddDataAsync@{AddDataAsync}}
+\index{AddDataAsync@{AddDataAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{AddDataAsync()}
+{\footnotesize\ttfamily Task Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Add\+Data\+Async (\begin{DoxyParamCaption}\item[{\textbf{ Covid\+Data\+DTO}}]{covid\+Data\+DTO }\end{DoxyParamCaption})}
+
+
+
+Adds new COVID-\/19 data using the provided data transfer object (DTO). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em covid\+Data\+DTO} & The data transfer object containing COVID-\/19 data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_ae2d41b4ba4a0f904aa3d1f8061e008ad}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_aa2f40fe0339df83847403c2d3d15bfac} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!DataExistsForCountryAndWeekAsync@{DataExistsForCountryAndWeekAsync}}
+\index{DataExistsForCountryAndWeekAsync@{DataExistsForCountryAndWeekAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{DataExistsForCountryAndWeekAsync()}
+{\footnotesize\ttfamily Task$<$ bool $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Data\+Exists\+For\+Country\+And\+Week\+Async (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{week }\end{DoxyParamCaption})}
+
+
+
+Checks whether COVID-\/19 data exists for a specific country and week. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The name of the country.\\
+\hline
+{\em week} & The week for which data existence is checked.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result is a boolean indicating whether data exists.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a113917807157020b5509aed3142ec207}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a1df53f98032b24d7d4f11e447da44229} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!DeleteDataAsync@{DeleteDataAsync}}
+\index{DeleteDataAsync@{DeleteDataAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{DeleteDataAsync()}
+{\footnotesize\ttfamily Task Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Delete\+Data\+Async (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Deletes COVID-\/19 data with the specified identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The unique identifier of the COVID-\/19 data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a972f97f78c3c715c874114c3b80129e6}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a8e7dbcf4c3d34a7195f65b3d3075da60} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetAllCountriesAsync@{GetAllCountriesAsync}}
+\index{GetAllCountriesAsync@{GetAllCountriesAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetAllCountriesAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ string $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+All\+Countries\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a collection of all distinct countries for COVID-\/19 data. 
+
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of strings representing distinct countries.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a39e793286a634a88dcc58ad7fd17ccf8}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a1f8632f707bfb59c5e1d955fb2ad3f67} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetAllDataAsync@{GetAllDataAsync}}
+\index{GetAllDataAsync@{GetAllDataAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetAllDataAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+All\+Data\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets all COVID-\/19 data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a82131e5cf426e45b2d583a61cb7cb2d6}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a278f9bd8335dd917c5e01afe65658494} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetAllWeeksAsync@{GetAllWeeksAsync}}
+\index{GetAllWeeksAsync@{GetAllWeeksAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetAllWeeksAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ string $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+All\+Weeks\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a collection of all distinct weeks for COVID-\/19 data. 
+
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of strings representing distinct weeks.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a3d7b532e30de9508e8719f880aad692d}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a695273033728759ded692e982066785b} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetComparisonsAsync@{GetComparisonsAsync}}
+\index{GetComparisonsAsync@{GetComparisonsAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetComparisonsAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Comparisons\+Async (\begin{DoxyParamCaption}\item[{List$<$ string $>$}]{countries,  }\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for specified countries and includes geolocation information if requested. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em countries} & A list of country names to retrieve data for.\\
+\hline
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data for the specified countries.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a73b76e38a861ffcb6255a166b74fb598}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a3690cf8c1fd81903b4f0a0d25c6cbbe0} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetDataByCountryAndWeekAsync@{GetDataByCountryAndWeekAsync}}
+\index{GetDataByCountryAndWeekAsync@{GetDataByCountryAndWeekAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetDataByCountryAndWeekAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ Covid\+Data} $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Data\+By\+Country\+And\+Week\+Async (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{string}]{week }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for a specific country and week. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The name of the country.\\
+\hline
+{\em week} & The week for which data is retrieved.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a Covid\+Data object.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_ac2a727a22be6c1bf28af2b327c5a45d9}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a327816c27033cdfd0c08e95914cff3a6} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetDataByCountryAsync@{GetDataByCountryAsync}}
+\index{GetDataByCountryAsync@{GetDataByCountryAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetDataByCountryAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Data\+By\+Country\+Async (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for a specific country with an option to include geolocation information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The name of the country.\\
+\hline
+{\em include\+Geolocation} & A flag indicating whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result is a collection of Covid\+Data\+DTO objects.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a8d3684b494d76667ed4d3696bfc47d4d}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a62a0044ee5bd0753a1caf447d3ac24a7} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetDataByIdAsync@{GetDataByIdAsync}}
+\index{GetDataByIdAsync@{GetDataByIdAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetDataByIdAsync()}
+{\footnotesize\ttfamily Task$<$ \textbf{ Covid\+Data\+DTO} $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Data\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data by identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The identifier of the COVID-\/19 data.\\
+\hline
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains the COVID-\/19 data with the specified identifier.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_af11dbf64f5335ea367eda46f47a6c1cc}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a45d5a29ea929d6547101c01d12285964} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetDataByWeekAsync@{GetDataByWeekAsync}}
+\index{GetDataByWeekAsync@{GetDataByWeekAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetDataByWeekAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Data\+By\+Week\+Async (\begin{DoxyParamCaption}\item[{string}]{week,  }\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for a specific week. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em week} & The week for which to retrieve COVID-\/19 data.\\
+\hline
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data for the specified week.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_afd765b197388ee795104645981c608c8}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_af0b5ca8334bdf39151ae029ef6d6a7bc} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetDataByYearAsync@{GetDataByYearAsync}}
+\index{GetDataByYearAsync@{GetDataByYearAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetDataByYearAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Data\+By\+Year\+Async (\begin{DoxyParamCaption}\item[{int}]{year,  }\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for a specific year. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & The year for which to retrieve COVID-\/19 data.\\
+\hline
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data for the specified year.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_ac958267d12eb594266effe465a7c4392}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a25535cf3ceed3bf47b8afc139bc839e4} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetGeolocationAsync@{GetGeolocationAsync}}
+\index{GetGeolocationAsync@{GetGeolocationAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetGeolocationAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Geolocation\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 geolocation data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data with geolocation information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_ab2fbb79bb4083b599e00cf5b6653d239}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a007b51de47bf1c724b1a86f84a0b4afd} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetNewCasesAsync@{GetNewCasesAsync}}
+\index{GetNewCasesAsync@{GetNewCasesAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetNewCasesAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+New\+Cases\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 data for new cases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data representing new cases.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a5b64e0ec5da7699780cb0b9ee2acf7cd}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a93250af6d9e75a20dde687c69b798116} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetPopulationDataAsync@{GetPopulationDataAsync}}
+\index{GetPopulationDataAsync@{GetPopulationDataAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetPopulationDataAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Population\+Data\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 population data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data with population information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a499081f80014dd12a8af7090937a87e8}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_ae18599c3ec2a6f002b1e7c596269e3a7} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetPositivityRateAsync@{GetPositivityRateAsync}}
+\index{GetPositivityRateAsync@{GetPositivityRateAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetPositivityRateAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Positivity\+Rate\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets the COVID-\/19 positivity rate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data representing the positivity rate.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a5a39e1dc0694026ee8ebc82c5fecfa78}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a43d85f83a939fb6dd0b86402b4468688} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetTestingRateAsync@{GetTestingRateAsync}}
+\index{GetTestingRateAsync@{GetTestingRateAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetTestingRateAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Testing\+Rate\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets the COVID-\/19 testing rate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data representing the testing rate.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_aa16bc55073c9debec0ed132892d3b0b3}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_abdf0cf143d10231f376db85f68612be8} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetTestingRateInfoAsync@{GetTestingRateInfoAsync}}
+\index{GetTestingRateInfoAsync@{GetTestingRateInfoAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetTestingRateInfoAsync()}
+{\footnotesize\ttfamily Task$<$ string $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Testing\+Rate\+Info\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets information about COVID-\/19 testing rates. 
+
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a string with information about testing rates.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a6bdfc3fe4f7ec2e5f155e3ffd660f83c}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_acc031d11f3dab8e907bc509467d6929a} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetTestingSourceAsync@{GetTestingSourceAsync}}
+\index{GetTestingSourceAsync@{GetTestingSourceAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetTestingSourceAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Testing\+Source\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets COVID-\/19 testing source data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data with testing source information.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a6599beddd776a3b7517047d25a341d6f}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a7597bd6b707b0ab197fb6c99fac86535} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetTotalCasesAsync@{GetTotalCasesAsync}}
+\index{GetTotalCasesAsync@{GetTotalCasesAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetTotalCasesAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Total\+Cases\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets the total COVID-\/19 cases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data representing the total cases.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a4ce1744d8656d58ec2bd710fbf69e625}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_ad8b4ec3bfae425ca09bcf846058fe10e} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!GetTotalTestsAsync@{GetTotalTestsAsync}}
+\index{GetTotalTestsAsync@{GetTotalTestsAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{GetTotalTestsAsync()}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \textbf{ Covid\+Data\+DTO} $>$ $>$ Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Get\+Total\+Tests\+Async (\begin{DoxyParamCaption}\item[{bool}]{include\+Geolocation }\end{DoxyParamCaption})}
+
+
+
+Gets the total COVID-\/19 tests. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em include\+Geolocation} & Indicates whether to include geolocation information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains a collection of COVID-\/19 data representing the total tests.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a2e73142e25c205a0adf18b82ab78787a}.
+
+\label{interface_covid_a_p_i_1_1_services_1_1_rest_1_1_i_covid_data_service_a1458effab2c87c9552d0919ecdbc406f} 
+\index{CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}!UpdateDataAsync@{UpdateDataAsync}}
+\index{UpdateDataAsync@{UpdateDataAsync}!CovidAPI.Services.Rest.ICovidDataService@{CovidAPI.Services.Rest.ICovidDataService}}
+\doxysubsubsection{UpdateDataAsync()}
+{\footnotesize\ttfamily Task Covid\+API.\+Services.\+Rest.\+ICovid\+Data\+Service.\+Update\+Data\+Async (\begin{DoxyParamCaption}\item[{\textbf{ Covid\+Data\+DTO}}]{covid\+Data\+DTO }\end{DoxyParamCaption})}
+
+
+
+Updates existing COVID-\/19 data using the provided data transfer object (DTO). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em covid\+Data\+DTO} & The data transfer object containing updated COVID-\/19 data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation.
+\end{DoxyReturn}
+
+
+Implemented in \textbf{ Covid\+API.\+Services.\+Rest.\+Covid\+Data\+Service} \doxyref{}{p.}{db/d89/class_covid_a_p_i_1_1_services_1_1_rest_1_1_covid_data_service_a3b06c52eea303820e2a7b75ed9636854}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ ICovid\+Data\+Service.\+cs}\end{DoxyCompactItemize}

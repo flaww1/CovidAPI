@@ -1,0 +1,83 @@
+\doxysection{Geolocation\+Cache Class Reference}
+\label{class_geolocation_cache}\index{GeolocationCache@{GeolocationCache}}
+
+
+Represents a cache for storing geolocation data to avoid redundant API calls.  
+
+
+
+
+Collaboration diagram for Geolocation\+Cache\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{d1/dae/class_geolocation_cache__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Geolocation\+Cache} ()
+\item 
+bool \textbf{ Try\+Get\+From\+Cache} (string country, out \textbf{ Geolocation\+Api\+Response} geolocation\+Response)
+\begin{DoxyCompactList}\small\item\em Tries to retrieve geolocation data from the cache for a specific country. \end{DoxyCompactList}\item 
+void \textbf{ Add\+To\+Cache} (string country, \textbf{ Geolocation\+Api\+Response} geolocation\+Response)
+\begin{DoxyCompactList}\small\item\em Adds geolocation data to the cache for a specific country. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a cache for storing geolocation data to avoid redundant API calls. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_geolocation_cache_a5d8ec9c56a808cb96a66206c85e0b57b} 
+\index{GeolocationCache@{GeolocationCache}!GeolocationCache@{GeolocationCache}}
+\index{GeolocationCache@{GeolocationCache}!GeolocationCache@{GeolocationCache}}
+\doxysubsubsection{GeolocationCache()}
+{\footnotesize\ttfamily Geolocation\+Cache.\+Geolocation\+Cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_geolocation_cache_ac2ac613d09aaad4b7beedbaec325f777} 
+\index{GeolocationCache@{GeolocationCache}!AddToCache@{AddToCache}}
+\index{AddToCache@{AddToCache}!GeolocationCache@{GeolocationCache}}
+\doxysubsubsection{AddToCache()}
+{\footnotesize\ttfamily void Geolocation\+Cache.\+Add\+To\+Cache (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{\textbf{ Geolocation\+Api\+Response}}]{geolocation\+Response }\end{DoxyParamCaption})}
+
+
+
+Adds geolocation data to the cache for a specific country. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The country for which to add geolocation data to the cache.\\
+\hline
+{\em geolocation\+Response} & The geolocation response to be added to the cache.\\
+\hline
+\end{DoxyParams}
+\label{class_geolocation_cache_a0f8ffba8313d2e0d74d10c2cc89d46b4} 
+\index{GeolocationCache@{GeolocationCache}!TryGetFromCache@{TryGetFromCache}}
+\index{TryGetFromCache@{TryGetFromCache}!GeolocationCache@{GeolocationCache}}
+\doxysubsubsection{TryGetFromCache()}
+{\footnotesize\ttfamily bool Geolocation\+Cache.\+Try\+Get\+From\+Cache (\begin{DoxyParamCaption}\item[{string}]{country,  }\item[{out \textbf{ Geolocation\+Api\+Response}}]{geolocation\+Response }\end{DoxyParamCaption})}
+
+
+
+Tries to retrieve geolocation data from the cache for a specific country. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em country} & The country for which to retrieve geolocation data.\\
+\hline
+{\em geolocation\+Response} & The retrieved geolocation response if successful.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the data is successfully retrieved from the cache; otherwise, false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/\+Rest/\textbf{ Geolocation\+Service.\+cs}\end{DoxyCompactItemize}

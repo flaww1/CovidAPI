@@ -1,0 +1,5 @@
+<map id="ApplicationDbContext" name="ApplicationDbContext">
+<area shape="rect" id="Node000001" title="Represents the database context for the application, providing access to data entities." alt="" coords="5,123,161,235"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,120,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,90,86,123,81,123,81,90"/>
+</map>
