@@ -4,7 +4,7 @@
 
 Welcome to the COVID-19 Data Analysis and Visualization Project. This project was made for the integration of information systems class in my faculty and contains in-depth exploration and visual representation of COVID-19 data spanning on the year 2022, with a particular emphasis on European countries. The project leverages data processing techniques, system integration principles, and technologies to deliver comprehensive insights into the evolution of the pandemic.
 
-The API was made using C# .NET 6 and the front end using React (and some libraries). Testing was done with Postman and data was stored using MySQL and i documented my code with Doxygen/Swagger.
+The API was made using C# .NET 6 and the front end using React (and some libraries). Testing was done with Postman, data was stored using MySQL and i documented my code with Doxygen/Swagger.
 
 ## Key Features
 
