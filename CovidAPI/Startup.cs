@@ -1,4 +1,6 @@
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Text;
 using CovidAPI.Models;
 using CovidAPI.Services;
@@ -18,14 +20,30 @@ using Microsoft.OpenApi.Models;
 
 namespace CovidAPI
 {
+
+   /// <summary>
+   /// Configures the application services and requests during startup.
+   /// </summary>
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration settings.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        /// <summary>
+        /// Gets the configuration settings.
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Configures the services used by the application.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -49,8 +67,23 @@ namespace CovidAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CovidAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CovidAPI",
+                    Description = "Covid-19 Testing Data API with Geolocation Integration",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Flávio Pereira",
+                        Email = "a21110@alunos.ipca.pt",
+                    },
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
+
 
             services.AddScoped<IGeolocationService, GeolocationService>();
             services.AddSingleton<GeolocationCache>();
@@ -59,6 +92,7 @@ namespace CovidAPI
                 options.Configuration = "localhost";
                 options.InstanceName = "SampleInstance";
             });
+
 
             services.AddAuthentication(options =>
             {
@@ -73,27 +107,44 @@ namespace CovidAPI
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "your-issuer",
-                    ValidAudience = "your-audience",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key"))
+                    ValidIssuer = Configuration["Jwt:Issuer"] ?? "default_issuer",
+                    ValidAudience = Configuration["Jwt:Audience"] ?? "default_audience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"] ?? "default_secret"))
+
                 };
             });
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IAuthService, AuthService>();
             services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
+
         }
 
+        /// <summary>
+        /// Configures the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">The application builder.</param>
+        /// <param name="env">The hosting environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+        
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CovidAPI v1"));
-            }
+                app.UseSwagger(c =>
+                {
+                    c.SerializeAsV2 = true;
+                });
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Covid API V1");
+                    c.RoutePrefix = "swagger";  // Set the root path for Swagger UI
+                });
+
+            
 
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -112,15 +163,22 @@ namespace CovidAPI
                 });
             });
 
-            app.UseAuthentication(); // Add this line
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+
         }
 
+
+        /// <summary>
+        /// Configures logging services for the application.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
         public void ConfigureLogging(IServiceCollection services)
         {
             services.AddLogging(builder =>

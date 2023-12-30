@@ -5,6 +5,9 @@ using CovidAPI.Models;
 using Microsoft.Extensions.Configuration;
 using CovidAPI.Services.Rest;
 
+/// <summary>
+/// Controller for authentication-related operations.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
@@ -12,12 +15,22 @@ public class AuthController : ControllerBase
     private readonly IAuthService _authService;
     private readonly IUserService _userService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthController"/> class.
+    /// </summary>
+    /// <param name="authService">The authentication service.</param>
+    /// <param name="userService">The user service.</param>
     public AuthController(IAuthService authService, IUserService userService)
     {
         _authService = authService;
         _userService = userService;
     }
 
+    /// <summary>
+    /// Logs in a user.
+    /// </summary>
+    /// <param name="request">The login request.</param>
+    /// <returns>Returns a JWT token if login is successful.</returns>
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestDTO request)
     {
@@ -54,6 +67,11 @@ public class AuthController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Registers a new user.
+    /// </summary>
+    /// <param name="request">The registration request.</param>
+    /// <returns>Returns a success message and JWT token if registration is successful.</returns>
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDTO request)
     {
@@ -94,4 +112,25 @@ public class AuthController : ControllerBase
             return StatusCode(500, "An error occurred during registration.");
         }
     }
+
+    /// <summary>
+    /// Logs out the currently authenticated user.
+    /// </summary>
+    /// <returns>Returns a success message upon successful logout.</returns>
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        try
+        {
+
+            return Ok(new { Message = "Logout successful" });
+        }
+        catch (Exception ex)
+        {
+            // Log or handle the exception as needed
+            Console.WriteLine($"Exception in AuthController.Logout: {ex}");
+            return StatusCode(500, "An error occurred during logout.");
+        }
+    }
+
 }

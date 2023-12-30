@@ -1,6 +1,6 @@
 // WeekSelector.jsx
 import React from 'react';
-
+import * as S from './styles'; // Import your styled components
 const WeekSelector = ({ weeks, selectedWeek, onSelectWeek }) => {
     const handleWeekChange = (event) => {
         const selected = event.target.value;
@@ -8,6 +8,7 @@ const WeekSelector = ({ weeks, selectedWeek, onSelectWeek }) => {
     };
 
     return (
+        <S.SelectorContainer>
         <div>
             <label htmlFor="weekSelector">Select Week:</label>
             <select id="weekSelector" value={selectedWeek} onChange={handleWeekChange}>
@@ -18,6 +19,7 @@ const WeekSelector = ({ weeks, selectedWeek, onSelectWeek }) => {
                 ))}
             </select>
         </div>
+        </S.SelectorContainer>
     );
 };
 

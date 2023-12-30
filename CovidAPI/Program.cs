@@ -1,8 +1,15 @@
 ﻿using CovidAPI;
 using System.Security.Cryptography;
 
+/// <summary>
+/// The entry point class for the application.
+/// </summary>
 public class Program
 {
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
     public static void Main(string[] args)
     {
         // Generate a secure 256-bit (32-byte) key
@@ -19,7 +26,11 @@ public class Program
         CreateHostBuilder(args).Build().Run();
     }
 
-
+    /// <summary>
+    /// Creates the default host builder for the application.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
+    /// <returns>The configured host builder.</returns>
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
@@ -27,6 +38,11 @@ public class Program
                 webBuilder.UseStartup<Startup>();
             });
 
+    /// <summary>
+    /// Generates a random key of the specified length using a secure random number generator.
+    /// </summary>
+    /// <param name="length">The length of the key in bytes.</param>
+    /// <returns>The generated random key.</returns>
     private static byte[] GenerateRandomKey(int length)
     {
         using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
@@ -36,5 +52,4 @@ public class Program
             return keyBytes;
         }
     }
-
 }
